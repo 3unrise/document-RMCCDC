@@ -27,6 +27,24 @@
     width: 100%
   }
 
+  .module-table {
+    table-layout: fixed;
+    overflow-wrap: anywhere
+  }
+
+  .module-table th:nth-child(1) {
+    width: 25%
+  }
+
+  .module-table th:nth-child(2),
+  .module-table th:nth-child(3) {
+    width: 30%
+  }
+
+  .module-table th:nth-child(4) {
+    width: 15%
+  }
+
   td,
   th {
     border: 1px solid #ccd8e0;
@@ -681,28 +699,47 @@
     </div>
   </section>
   <h2 id="module-1">Module 1 — Attacker already has system access</h2>
-  <h3 id="service-tampering">1.1 — Service tampering and recovery</h3>
-  <p>Investigate a service outage, identify its cause, and restore normal operation while keeping other services
-    available.</p>
-  <p><a href="linux-training.html#service-tampering">Linux task →</a> · <a
-      href="windows-training.html#service-tampering">Windows task →</a></p>
-  <h3 id="web-integrity">1.2 — Web-content tampering and evidence</h3>
-  <p>Detect unauthorized web-content changes and restore the trusted page, even when the server still returns a
-    successful response.</p>
-  <p><a href="linux-training.html#web-integrity">Linux task →</a> · <a
-      href="windows-training.html#web-integrity">Windows task →</a></p>
-  <h3 id="firewall-tampering">1.3 — Firewall tampering versus service failure</h3>
-  <p>Distinguish a firewall-related outage from a stopped service and restore required access.</p>
-  <p><a href="linux-training.html#firewall-tampering">Linux task →</a> · <a
-      href="windows-training.html#firewall-tampering">Windows task →</a></p>
-  <h3 id="account-compromise">1.4 — Compromised account and excessive privilege</h3>
-  <p>Identify excessive account privileges, contain unauthorized access, and preserve legitimate users and services.</p>
-  <p><a href="linux-training.html#account-compromise">Linux task →</a> · <a
-      href="windows-training.html#account-compromise">Windows task →</a></p>
+  <table class="module-table">
+    <tr>
+      <th>Possible attacker action</th>
+      <th>Evidence to look for</th>
+      <th>Defense to consider</th>
+      <th>Tasks</th>
+    </tr>
+    <tr id="service-tampering">
+      <td>1.1 — Service tampering and recovery</td>
+      <td>Service state, outage timestamps, service logs and failed requests</td>
+      <td>Identify the cause and restore normal operation while keeping other services available</td>
+      <td><a href="linux-training.html#service-tampering">Linux task</a><br><a
+          href="windows-training.html#service-tampering">Windows task</a></td>
+    </tr>
+    <tr id="web-integrity">
+      <td>1.2 — Web-content tampering and evidence</td>
+      <td>Unexpected page content, file modification times and hashes; a successful HTTP response alone does not
+        establish content integrity</td>
+      <td>Preserve evidence of unauthorized changes and restore the trusted page</td>
+      <td><a href="linux-training.html#web-integrity">Linux task</a><br><a
+          href="windows-training.html#web-integrity">Windows task</a></td>
+    </tr>
+    <tr id="firewall-tampering">
+      <td>1.3 — Firewall tampering versus service failure</td>
+      <td>Firewall rules, listening ports, service state and differences between local and remote access</td>
+      <td>Distinguish a firewall-related outage from a stopped service and restore required access</td>
+      <td><a href="linux-training.html#firewall-tampering">Linux task</a><br><a
+          href="windows-training.html#firewall-tampering">Windows task</a></td>
+    </tr>
+    <tr id="account-compromise">
+      <td>1.4 — Compromised account and excessive privilege</td>
+      <td>Unexpected account privileges, group memberships and authentication records</td>
+      <td>Contain unauthorized access and remove excessive privileges while preserving legitimate users and services</td>
+      <td><a href="linux-training.html#account-compromise">Linux task</a><br><a
+          href="windows-training.html#account-compromise">Windows task</a></td>
+    </tr>
+  </table>
   <h2 id="module-2">Module 2 — Attacker starts without system access</h2><span
     id="section-think-like-an-attacker-reason-like-a-defender"></span><span id="discovery"></span><span
     id="authentication"></span><span id="web-inputs"></span><span id="traffic"></span><span id="dos"></span>
-  <table>
+  <table class="module-table">
     <tr>
       <th>Possible attacker action</th>
       <th>Evidence to look for</th>
