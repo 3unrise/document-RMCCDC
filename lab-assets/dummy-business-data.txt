@@ -1,0 +1,4 @@
+CCDC TRAINING DATA ONLY
+record_id,customer,amount
+DEMO-001,Fictional Customer A,0
+DEMO-002,Fictional Customer B,0

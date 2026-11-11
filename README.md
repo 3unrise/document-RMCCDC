@@ -1,10 +1,10 @@
 # RMCCDC Student Training
 
-Student materials for CCDC practice, including lab access instructions, Linux and Windows exercises, incident investigation, and business inject practice.
+HTML training materials for Linux and Windows CCDC practice.
 
-## Getting started
+Open [index.html](index.html) to start. All student instructions, materials, and command links are in the HTML pages.
 
-Download or clone this repository, then open [index.html](index.html) in a web browser. No installation, build step, or web server is required.
+Instructors should complete [the environment setup](instructor-setup.html) before class. Students perform the attack, investigation, recovery, and cleanup themselves during training.
 
 Start with [Getting Started](student-workbook.html) and complete Module 0 using the connection instructions for your computer. Use the account assigned by your instructor.
 
@@ -26,10 +26,6 @@ The `access.html`, `linux-access.html`, `mac-access.html`, `windows-access.html`
 
 ## Updating the materials
 
-Edit the HTML and CSV files directly. Keep relative links so the pack works both locally and when hosted under a repository path. When changing a section ID or filename, update the corresponding navigation links across the HTML pages.
-
-The lab addresses and training account details describe the classroom environment. Instructors should keep these details aligned with the assigned lab. Run exercises only against assigned systems.
-
-## License
+Edit the HTML, CSV, and lab assets directly. Preserve relative links and update navigation when changing filenames or section IDs.
 
 See [LICENSE](LICENSE) for the Apache License 2.0.

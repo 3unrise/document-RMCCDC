@@ -56,7 +56,9 @@
   }
 
   h2,
-  h3 {
+  h3,
+  h4,
+  h5 {
     scroll-margin-top: 24px
   }
 
@@ -174,6 +176,20 @@
 
   #training-sidebar .sidebar-toggle {
     display: none
+  }
+
+  #training-sidebar .sidebar-copyright {
+    margin: 20px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid #ccd8e0;
+    font-size: 12px;
+    white-space: nowrap
+  }
+
+  #training-sidebar .sidebar-copyright a {
+    display: inline;
+    padding: 0;
+    margin: 0
   }
 
   #training-sidebar nav {
@@ -371,6 +387,7 @@
                         versus service failure</a></li>
                     <li><a class="submodule" href="student-workbook.html#account-compromise">1.4 — Compromised account
                         and excessive privilege</a></li>
+                    <li><a class="submodule" href="student-workbook.html#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
                   </ul>
                 </details>
               </li>
@@ -396,6 +413,7 @@
                         versus service failure</a></li>
                     <li><a class="submodule" href="linux-training.html#account-compromise">1.4 — Compromised account and
                         excessive privilege</a></li>
+                    <li><a class="submodule" href="linux-training.html#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
                   </ul>
                 </details>
               </li>
@@ -419,7 +437,6 @@
                   </ul>
                 </details>
               </li>
-              <li><a href="linux-training.html#section-inject-practice">Inject practice</a></li>
             </ul>
           </details>
         </li>
@@ -441,6 +458,7 @@
                         versus service failure</a></li>
                     <li><a class="submodule" href="windows-training.html#account-compromise">1.4 — Compromised account
                         and excessive privilege</a></li>
+                    <li><a class="submodule" href="windows-training.html#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
                   </ul>
                 </details>
               </li>
@@ -464,8 +482,6 @@
                   </ul>
                 </details>
               </li>
-              <li><a href="windows-training.html#business-inject">Practice — Business inject</a></li>
-              <li><a href="windows-training.html#section-inject-practice">Inject practice</a></li>
             </ul>
           </details>
         </li>
@@ -480,23 +496,15 @@
               <li><a href="#section-practice-b-write-a-disk-space-check">Practice B — Write a disk-space check</a></li>
               <li><a href="#section-practice-c-match-network-listeners-to-processes">Practice C — Match network
                   listeners to processes</a></li>
+              <li><a href="#business-inject">Practice D — Windows DNS business inject</a></li>
               <li><a href="#section-when-you-need-help">When you need help</a></li>
             </ul>
           </details>
         </li>
-        <li>
-          <details class="page-group">
-            <summary><a href="command-reference.html">Command Reference</a></summary>
-            <ul class="page-children">
-              <li><a href="command-reference.html#section-how-to-read-the-manual">How to read the manual</a></li>
-              <li><a href="command-reference.html#linux">Linux and Bash</a></li>
-              <li><a href="command-reference.html#windows">Windows</a></li>
-              <li><a href="command-reference.html#section-understanding-the-scripts">Understanding the scripts</a></li>
-            </ul>
-          </details>
-        </li>
+        <li><a href="instructor-setup.html">Instructor Setup</a></li>
       </ul>
     </nav>
+    <p class="sidebar-copyright">&copy; 2026 <a href="https://3unrise.github.io/">SUNRISE Lab</a></p>
   </div>
 </aside>
 <h1>Inject Practice</h1>
@@ -510,7 +518,8 @@
   written report submissions. Keep your working scripts and show the results to your group. During a real competition,
   follow the actual inject's delivery format and deadline.</p>
 <p>See <a href="index.html#training-groups">Overview for group assignments</a>. The starter checks below are read-only
-  and do not require stopping services, filling disks or changing firewalls. Use only your assigned VM.</p>
+  and do not require stopping services, filling disks or changing firewalls. Practice D changes a Windows DNS record.
+  Use only your assigned VM.</p>
 <h2 id="section-how-to-approach-any-inject">How to approach any inject</h2>
 <ol>
   <li>Read it twice. Identify the requested result, target system, constraints and deliverable.</li>
@@ -525,18 +534,21 @@
     href="https://github.com/CYSCUVU/CCDC-Injects/tree/main/2025%20RMCCDC/NETW22T%20-%20Define%20Ports">NETW22T:
     Defining Ports</a>. The original asks for a completed network-flow table in a business memo. Our version is a group
   discussion using the actual lab services; no memo is required.</p>
+<h3>Step 1 — Inspect listeners on your assigned platform</h3>
 <p><strong>Linux:</strong> inspect listeners and locate SSH on TCP 22 and Nginx on TCP 80.</p>
 <pre>sudo ss -lntup</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#linux-sudo">sudo</a> · <a href="command-reference.html#linux-ss">ss</a></p>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://manpages.ubuntu.com/manpages/noble/man8/sudo.8.html">sudo</a> ·
+  <a href="https://manpages.ubuntu.com/manpages/noble/man8/ss.8.html">ss</a></p>
 <p><strong>Windows:</strong> inspect TCP and UDP listeners. Locate HTTP on TCP 80 and DNS on TCP/UDP 53.</p>
 <pre>Get-NetTCPConnection -State Listen | Sort-Object LocalPort
 Get-NetUDPEndpoint | Sort-Object LocalPort</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#windows-get-nettcpconnection">Get-NetTCPConnection</a> · <a
-    href="command-reference.html#windows-get-netudpendpoint">Get-NetUDPEndpoint</a> · <a
-    href="command-reference.html#windows-sort-object">Sort-Object</a> · <a href="command-reference.html#syntax">script
-    syntax</a></p>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-nettcpconnection">Get-NetTCPConnection</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-netudpendpoint">Get-NetUDPEndpoint</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/sort-object">Sort-Object</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about">PowerShell syntax</a></p>
+<h3>Step 2 — Explain the service ports and network flow</h3>
 <p>For an HTTP request, explain which machine is the client, which is the server, and why the request destination is
   port 80. Distinguish a listening server port from a client source port. Repeat for DNS. Discuss the answer with your
   group rather than changing firewall rules.</p>
@@ -549,7 +561,8 @@ Get-NetUDPEndpoint | Sort-Object LocalPort</pre>
     75%</strong>. Scheduling and external alert delivery are extensions, not required here.</p>
 <p>Goal: save a script that prints the used percentage and either OK or ALERT. Each group writes only its assigned OS
   version. The scripts below are starting points: read each line and explain it before running.</p>
-<h3 id="section-linux-group">Linux group</h3>
+<h3>Step 1 — Create the script for your assigned platform</h3>
+<h4 id="section-linux-group">Linux group</h4>
 <p>In Ubuntu, open Text Editor and save the following as <code>disk-check.sh</code> in your home folder. Run it with
   <code>bash ~/disk-check.sh</code>.</p>
 <pre>#!/usr/bin/env bash
@@ -566,17 +579,17 @@ if (( used &gt;= threshold )); then
 else
   echo "OK: usage is below ${threshold}%"
 fi</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#linux-df">df</a> · <a href="command-reference.html#linux-awk">awk</a> · <a
-    href="command-reference.html#shell-echo">echo</a> · <a href="command-reference.html#shell-set">set</a> · <a
-    href="command-reference.html#shell-exit">exit</a> · <a href="command-reference.html#syntax">script syntax</a></p>
-<p>Compare its reading with <code>df -P /</code>. Use <code>bash ~/disk-check.sh 0</code> to exercise the ALERT branch
-  without filling the disk. Then run the normal command again. The percentage follows df's available-capacity
-  convention.</p>
-<h3 id="section-windows-group">Windows group</h3>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://manpages.ubuntu.com/manpages/noble/man1/df.1.html">df</a> ·
+  <a href="https://manpages.ubuntu.com/manpages/noble/man1/awk.1.html">awk</a> ·
+  <a href="https://www.gnu.org/software/bash/manual/bash.html">echo</a> ·
+  <a href="https://www.gnu.org/software/bash/manual/bash.html">set</a> ·
+  <a href="https://www.gnu.org/software/bash/manual/bash.html">exit</a> ·
+  <a href="https://www.gnu.org/software/bash/manual/bash.html">Bash syntax</a></p>
+<h4 id="section-windows-group">Windows group</h4>
 <p>Open PowerShell ISE in Windows, create a new script, paste the following, and save it as <code>disk-check.ps1</code>
-  in Documents. Press F5 to run. If execution is blocked by policy, ask for assistance; do not change the machine's
-  execution policy for this activity.</p>
+  in Documents. Press F5 to run. The lab is prepared to run local classroom scripts. If execution is blocked, inspect
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy"><code>Get-ExecutionPolicy -List</code></a> and record the policy conflict; do not bypass an enforced policy.</p>
 <pre>param(
     [ValidateRange(0,100)]
     [int]$Threshold = 75
@@ -592,14 +605,19 @@ if ($used -ge $Threshold) {
 } else {
     Write-Output "OK: usage is below $Threshold%"
 }</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#windows-get-ciminstance">Get-CimInstance</a> · <a
-    href="command-reference.html#windows-write-output">Write-Output</a> · <a href="command-reference.html#syntax">script
-    syntax</a></p>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance">Get-CimInstance</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-output">Write-Output</a></p>
+<h3>Step 2 — Validate the reading and test the alert</h3>
+<h4>Linux group</h4>
+<p>Compare its reading with <code>df -P /</code>. Use <code>bash ~/disk-check.sh 0</code> to exercise the ALERT branch
+  without filling the disk. Then run the normal command again. The percentage follows df's available-capacity
+  convention.</p>
+<h4>Windows group</h4>
 <p>Compare with <code>Get-Volume -DriveLetter C | Select-Object Size,SizeRemaining</code>. In the ISE console, run
   <code>&amp; "$HOME\Documents\disk-check.ps1" -Threshold 0</code> to exercise ALERT without filling the disk. Run again
   without the parameter for the normal 75% threshold.</p>
-<h3 id="section-check-your-work">Check your work</h3>
+<h3 id="section-check-your-work">Step 3 — Demonstrate and explain the script</h3>
 <p>Demonstrate a normal run and the forced ALERT test. Explain which disk is checked, how the percentage is calculated,
   what the threshold means, and why this prints a message but does not yet send an email or run on a schedule. You have
   completed the simplified activity when your reading matches the built-in command and you can explain the conditional.
@@ -609,22 +627,69 @@ if ($used -ge $Threshold) {
     href="https://github.com/CYSCUVU/CCDC-Injects/tree/main/2025%20RMCCDC/WINS05A%20-%20Find%20Processes%20using%20Network%20Connections">WINS05A:
     Discover Network Processes</a>. The original requests a memo with commands, a process/port table and an assessment.
   Our version is a guided demonstration; the Linux equivalent below is a classroom adaptation.</p>
-<p><strong>Linux:</strong> run <code>sudo ss -lntup</code>. Pick a listener and inspect its PID with
-  <code>ps -p PID -o pid,user,comm,args</code>, replacing PID with the observed number.</p>
-<p><strong>Windows:</strong> run the following in elevated PowerShell:</p>
-<pre>Get-NetTCPConnection -State Listen |
-  Select-Object LocalAddress,LocalPort,OwningProcess
-# Replace 1234 with a PID from the output above:
-Get-Process -Id 1234 | Select-Object Id,ProcessName,Path</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#linux-id">id</a> · <a
-    href="command-reference.html#windows-get-nettcpconnection">Get-NetTCPConnection</a> · <a
-    href="command-reference.html#windows-select-object">Select-Object</a> · <a
-    href="command-reference.html#windows-get-process">Get-Process</a> · <a href="command-reference.html#syntax">script
-    syntax</a></p>
+<p>Continue from the listener inventory in <a href="#section-practice-a-understand-services-and-ports">Practice A</a>;
+  reuse those results instead of repeating the port-identification task. Now identify the process that owns a listener.</p>
+<h3 id="practice-c-linux">Linux group</h3>
+<h4>Step 1 — Identify the HTTP listener and its PID</h4>
+<div>Open Terminal inside your assigned Ubuntu VM. In the Practice A output, find the HTTP listener whose local
+    address ends in <code>:80</code>. Read the <code>users:</code> field: it shows the process name,
+    <code>pid=</code> value and file descriptor. If you need current output for just this listener, run:
+    <pre>sudo ss -lntp 'sport = :80'</pre></div>
+<h4>Step 2 — Inspect the process</h4>
+<div>Copy one PID shown for that listener. Replace <code>1234</code> below with the actual PID, then run:
+    <pre>ps -p 1234 -o pid,user,comm=NAME,args=ARGS</pre>
+    <code>PID</code> is the process ID, <code>USER</code> is the account running it, <code>NAME</code> is the
+    process name and <code>ARGS</code> shows the command line and its arguments. If only the header appears,
+    refresh the listener output and use a current PID.</div>
+<h4>Step 3 — Record and compare the process details</h4>
+<div>Record the local address, TCP port, PID, user, process name and arguments. Compare the process with the expected
+    Nginx service on port 80. If several PIDs share the listener, inspect each listed PID and explain what you observe.</div>
+<h4>Step 4 — Demonstrate and explain the result</h4>
+<div>Show the listener and matching process to your group. Explain why the process is expected, or what additional
+    evidence you would check if it is unfamiliar. Do not stop or kill the process.</div>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://manpages.ubuntu.com/manpages/noble/man1/ps.1.html">ps</a></p>
+<h3 id="practice-c-windows">Windows group</h3>
+<h4>Step 1 — Identify the listener’s PID</h4>
+<p>Use the listener’s <code>OwningProcess</code> value from Practice A.</p>
+<h4>Step 2 — Inspect the process</h4>
+<p>In elevated PowerShell, replace 1234 with that PID:</p>
+<pre>Get-Process -Id 1234 | Select-Object Id,ProcessName,Path</pre>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object">Select-Object</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-process">Get-Process</a></p>
+<h4>Step 3 — Record and compare the process details</h4>
 <p>Match one listener to a known service from Overview. A familiar port does not prove a process is safe, and an
   unfamiliar process is not automatically malware. Windows HTTP may appear under PID 4/System because of HTTP.sys. Do
   not kill unfamiliar processes. Explain what you know and what you would need to investigate further.</p>
+<h4>Step 4 — Demonstrate and explain the result</h4>
+<p>Show the listener and its matching process to your group. Explain why it is expected or what additional evidence
+  you would inspect. Do not stop or kill the process.</p>
+<h2 id="business-inject">Practice D — Windows DNS business inject</h2>
+<p>Request: create intranet.training.test pointing to 172.29.242.40. Existing www.training.test, both web pages and SSH
+  must remain available. Demonstrate the change after verifying it.</p>
+<h3>Step 1 — Confirm the request and starting conditions</h3>
+<p><strong>Windows group only:</strong> run in elevated PowerShell inside your assigned Windows VM.
+  Check whether the requested record already exists before changing DNS:</p>
+<pre>Resolve-DnsName intranet.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
+<p>If the name is absent, continue to Step 2. If it already resolves to <code>172.29.242.40</code>, verify the existing
+  result instead of creating a duplicate. Do not replace an existing record that points elsewhere.</p>
+<h3>Step 2 — Create the DNS record</h3>
+<p>Run this command only when the record was absent in Step 1:</p>
+<pre>Add-DnsServerResourceRecordA -ZoneName training.test -Name intranet -IPv4Address 172.29.242.40</pre>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/dnsserver/add-dnsserverresourcerecorda">Add-DnsServerResourceRecordA</a></p>
+<h3>Step 3 — Verify DNS and web service</h3>
+<pre>Resolve-DnsName intranet.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile
+Resolve-DnsName intranet.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile -TcpOnly
+Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing</pre>
+
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname">Resolve-DnsName</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest">Invoke-WebRequest</a></p>
+<h3>Step 4 — Demonstrate the result</h3>
+<p>Practice check: demonstrate the result, explain your actions to your group, and retain your working files. No written
+  report submission is required.</p>
 <h2 id="section-when-you-need-help">When you need help</h2>
 <p>Show the exact command, the output or error, and what result you expected. Ask one specific question at a time. Your
   group can compare with the service inventory and built-in commands; an uncertain result is a reason to investigate,

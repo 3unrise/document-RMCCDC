@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Before-class lab setup</title>
+  <style>
+    body { font: 16px/1.6 system-ui; max-width: 960px; margin: 32px auto; padding: 0 22px; color: #193047; }
+    pre { background: #edf3f7; padding: 16px; white-space: pre-wrap; overflow-wrap: anywhere; }
+    h2 { margin-top: 32px; }
+  </style>
+<style id="training-sidebar-style">
+  html {
+    scroll-behavior: smooth
+  }
+
+  body {
+    max-width: 1050px !important;
+    width: auto !important;
+    margin: 32px auto 32px 312px !important;
+    padding: 0 28px !important
+  }
+
+  h2,
+  h3 {
+    scroll-margin-top: 24px
+  }
+
+  #training-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 272px;
+    box-sizing: border-box;
+    padding: 24px 16px;
+    overflow-y: auto;
+    background: #edf3f7;
+    border-right: 1px solid #ccd8e0;
+    z-index: 100;
+    font: 14px/1.45 system-ui;
+    color: #193047
+  }
+
+  #training-sidebar details {
+    margin: 3px 0
+  }
+
+  #training-sidebar summary {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    border-radius: 5px
+  }
+
+  #training-sidebar summary::-webkit-details-marker {
+    display: none
+  }
+
+  #training-sidebar summary::before {
+    content: '▸';
+    flex: 0 0 18px;
+    text-align: center
+  }
+
+  #training-sidebar details[open]>summary::before {
+    content: '▾'
+  }
+
+  #training-sidebar summary a {
+    flex: 1;
+    min-width: 0;
+    margin: 0
+  }
+
+  #training-sidebar summary:focus-visible {
+    outline: 3px solid #2479a8
+  }
+
+  #training-sidebar .page-children {
+    margin: 4px 0 10px 12px;
+    padding-left: 8px;
+    border-left: 1px solid #bccedb
+  }
+
+  #training-sidebar .section-children {
+    margin-left: 12px
+  }
+
+  #training-sidebar li {
+    margin: 0
+  }
+
+  #training-sidebar .sidebar-title {
+    font-weight: 750;
+    font-size: 18px;
+    margin: 0 0 14px
+  }
+
+  #training-sidebar .sidebar-label {
+    font-weight: 700;
+    margin: 20px 8px 8px;
+    color: #465e70
+  }
+
+  #training-sidebar a {
+    display: block;
+    padding: 7px 9px;
+    margin: 2px 0;
+    border-radius: 5px;
+    color: #193047;
+    text-decoration: none;
+    overflow-wrap: anywhere
+  }
+
+  #training-sidebar a:hover {
+    background: #dce7ef
+  }
+
+  #training-sidebar a:focus-visible {
+    outline: 3px solid #2479a8;
+    outline-offset: 1px
+  }
+
+  #training-sidebar a[aria-current="page"] {
+    font-weight: 750;
+    background: transparent;
+    color: #193047
+  }
+
+  #training-sidebar a[aria-current="location"] {
+    font-weight: 700;
+    background: transparent;
+    color: #193047
+  }
+
+  #training-sidebar a.submodule {
+    padding-left: 23px;
+    font-size: 13px
+  }
+
+  #training-sidebar .sidebar-toggle {
+    display: none
+  }
+
+  #training-sidebar .sidebar-copyright {
+    margin: 20px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid #ccd8e0;
+    font-size: 12px;
+    white-space: nowrap
+  }
+
+  #training-sidebar .sidebar-copyright a {
+    display: inline;
+    padding: 0;
+    margin: 0
+  }
+
+  #training-sidebar nav {
+    padding: 0;
+    margin: 0;
+    background: transparent
+  }
+
+  #training-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0
+  }
+
+  @media(min-width:1550px) {
+    body {
+      margin-left: calc(272px + (100vw - 272px - 1106px)/2) !important
+    }
+  }
+
+  @media(max-width:850px) {
+    body {
+      margin: 20px auto !important;
+      padding: 0 18px !important
+    }
+
+    #training-sidebar {
+      position: relative;
+      width: auto;
+      inset: auto;
+      margin: 0 0 24px;
+      padding: 14px;
+      border: 1px solid #ccd8e0;
+      border-radius: 6px;
+      max-height: none
+    }
+
+    #training-sidebar .sidebar-toggle {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: 0;
+      padding: 4px;
+      font: 700 16px system-ui;
+      color: #193047;
+      cursor: pointer
+    }
+
+    #training-sidebar details {
+      margin: 3px 0
+    }
+
+    #training-sidebar summary {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      cursor: pointer;
+      border-radius: 5px
+    }
+
+    #training-sidebar summary::-webkit-details-marker {
+      display: none
+    }
+
+    #training-sidebar summary::before {
+      content: '▸';
+      flex: 0 0 18px;
+      text-align: center
+    }
+
+    #training-sidebar details[open]>summary::before {
+      content: '▾'
+    }
+
+    #training-sidebar summary a {
+      flex: 1;
+      min-width: 0;
+      margin: 0
+    }
+
+    #training-sidebar summary:focus-visible {
+      outline: 3px solid #2479a8
+    }
+
+    #training-sidebar .page-children {
+      margin: 4px 0 10px 12px;
+      padding-left: 8px;
+      border-left: 1px solid #bccedb
+    }
+
+    #training-sidebar .section-children {
+      margin-left: 12px
+    }
+
+    #training-sidebar li {
+      margin: 0
+    }
+
+    #training-sidebar .sidebar-title {
+      display: none
+    }
+
+    #training-sidebar[data-collapsed="true"] .sidebar-content {
+      display: none
+    }
+  }
+
+  @media(prefers-reduced-motion:reduce) {
+    html {
+      scroll-behavior: auto
+    }
+  }
+
+  @media print {
+    #training-sidebar {
+      display: none
+    }
+
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      max-width: none !important
+    }
+  }
+</style>
+</head>
+<body>
+<aside id="training-sidebar" data-collapsed="false">
+  <p class="sidebar-title">CCDC Training</p><button class="sidebar-toggle" type="button" aria-expanded="true"
+    aria-controls="training-sidebar-content">Training navigation ▾</button>
+  <div id="training-sidebar-content" class="sidebar-content">
+    <nav aria-label="Training pages and sections">
+      <ul>
+        <li>
+          <details class="page-group" open>
+            <summary><a href="index.html">Overview</a></summary>
+            <ul class="page-children">
+              <li>
+                <details open>
+                  <summary><a href="index.html#section-lab-topology">Lab environment</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="index.html#section-ubuntu-services">Ubuntu services</a></li>
+                    <li><a class="submodule" href="index.html#section-windows-services">Windows services</a></li>
+                    <li><a class="submodule" href="index.html#section-lab-dns-records">Lab DNS records</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="index.html#course-map">Course structure</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="index.html#training-groups">Two training groups</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-0">Module 0 — Connect to your assigned VM</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-1">Module 1 — Attacker already has system access</a>
+                    </li>
+                    <li><a class="submodule" href="index.html#summary-module-2">Module 2 — Attacker starts without system
+                        access</a></li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="student-workbook.html">Getting Started</a></summary>
+            <ul class="page-children">
+              <li><a href="student-workbook.html#section-shared-response-workflow">Exercise workflow</a></li>
+              <li>
+                <details open>
+                  <summary><a href="student-workbook.html#section-preparation-connect-to-your-assigned-vm">Module 0 —
+                      Connect to your assigned VM</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="student-workbook.html#linux-credentials">Linux group</a></li>
+                    <li><a class="submodule" href="student-workbook.html#windows-credentials">Windows group</a></li>
+                    <li><a class="submodule" href="student-workbook.html#section-connect-from-macos">Connect from
+                        macOS</a></li>
+                    <li><a class="submodule" href="student-workbook.html#section-connect-from-windows">Connect from
+                        Windows</a></li>
+                    <li><a class="submodule" href="student-workbook.html#section-connect-from-linux">Connect from
+                        Linux</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="student-workbook.html#module-1">Module 1 — Attacker already has system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="student-workbook.html#service-tampering">1.1 — Service tampering and
+                        recovery</a></li>
+                    <li><a class="submodule" href="student-workbook.html#web-integrity">1.2 — Web-content tampering and
+                        evidence</a></li>
+                    <li><a class="submodule" href="student-workbook.html#firewall-tampering">1.3 — Firewall tampering
+                        versus service failure</a></li>
+                    <li><a class="submodule" href="student-workbook.html#account-compromise">1.4 — Compromised account
+                        and excessive privilege</a></li>
+                    <li><a class="submodule" href="student-workbook.html#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="student-workbook.html#module-2">Module 2 — Attacker starts without system access</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="linux-training.html">Linux Training</a></summary>
+            <ul class="page-children">
+              <li><a href="linux-training.html#baseline">Preparation — Service inventory and baseline</a></li>
+              <li>
+                <details open>
+                  <summary><a href="linux-training.html#module-1">Module 1 — Attacker already has system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="linux-training.html#service-tampering">1.1 — Service tampering and
+                        recovery</a></li>
+                    <li><a class="submodule" href="linux-training.html#web-integrity">1.2 — Web-content tampering and
+                        evidence</a></li>
+                    <li><a class="submodule" href="linux-training.html#firewall-tampering">1.3 — Firewall tampering
+                        versus service failure</a></li>
+                    <li><a class="submodule" href="linux-training.html#account-compromise">1.4 — Compromised account and
+                        excessive privilege</a></li>
+                    <li><a class="submodule" href="linux-training.html#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="linux-training.html#module-2">Module 2 — Attacker starts without system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="linux-training.html#discovery">2.1 — Port scanning and service
+                        discovery</a></li>
+                    <li><a class="submodule"
+                        href="linux-training.html#section-2-2-practical-investigate-failed-ssh-authentication">2.2
+                        Investigate failed SSH authentication</a></li>
+                    <li><a class="submodule"
+                        href="linux-training.html#section-2-3-practical-investigate-web-probing-and-a-dummy-exposed-backup">2.3
+                        Investigate web probing and a dummy exposed backup</a></li>
+                    <li><a class="submodule" href="linux-training.html#traffic">2.4 — Investigate suspicious request
+                        traffic</a></li>
+                    <li><a class="submodule" href="linux-training.html#dos">2.5 — Investigate denial of service and
+                        resource exhaustion</a></li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="windows-training.html">Windows Training</a></summary>
+            <ul class="page-children">
+              <li><a href="windows-training.html#baseline">Preparation — Service inventory and baseline</a></li>
+              <li>
+                <details open>
+                  <summary><a href="windows-training.html#module-1">Module 1 — Attacker already has system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="windows-training.html#service-tampering">1.1 — Service tampering and
+                        recovery</a></li>
+                    <li><a class="submodule" href="windows-training.html#web-integrity">1.2 — Web-content tampering and
+                        evidence</a></li>
+                    <li><a class="submodule" href="windows-training.html#firewall-tampering">1.3 — Firewall tampering
+                        versus service failure</a></li>
+                    <li><a class="submodule" href="windows-training.html#account-compromise">1.4 — Compromised account
+                        and excessive privilege</a></li>
+                    <li><a class="submodule" href="windows-training.html#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="windows-training.html#module-2">Module 2 — Attacker starts without system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="windows-training.html#discovery">2.1 — Port scanning and service
+                        discovery</a></li>
+                    <li><a class="submodule"
+                        href="windows-training.html#section-2-2-practical-investigate-failed-windows-authentication">2.2
+                        practical — Investigate failed Windows authentication</a></li>
+                    <li><a class="submodule"
+                        href="windows-training.html#section-2-3-practical-investigate-iis-probing-and-a-dummy-exposed-backup">2.3
+                        practical — Investigate IIS probing and a dummy exposed backup</a></li>
+                    <li><a class="submodule" href="windows-training.html#traffic">2.4 — Investigate suspicious request
+                        traffic</a></li>
+                    <li><a class="submodule" href="windows-training.html#dos">2.5 — Investigate denial of service and
+                        resource exhaustion</a></li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="inject-practice.html">Inject Practice</a></summary>
+            <ul class="page-children">
+              <li><a href="inject-practice.html#section-our-classroom-version">Our classroom version</a></li>
+              <li><a href="inject-practice.html#section-how-to-approach-any-inject">How to approach any inject</a></li>
+              <li><a href="inject-practice.html#section-practice-a-understand-services-and-ports">Practice A —
+                  Understand services and ports</a></li>
+              <li><a href="inject-practice.html#section-practice-b-write-a-disk-space-check">Practice B — Write a
+                  disk-space check</a></li>
+              <li><a href="inject-practice.html#section-practice-c-match-network-listeners-to-processes">Practice C —
+                  Match network listeners to processes</a></li>
+              <li><a href="inject-practice.html#business-inject">Practice D — Windows DNS business inject</a></li>
+              <li><a href="inject-practice.html#section-when-you-need-help">When you need help</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group" open>
+            <summary><a href="instructor-setup.html" aria-current="page">Instructor Setup</a></summary>
+            <ul class="page-children">
+              <li><a href="#shared-environment">Shared environment</a></li>
+              <li><a href="#dummy-data-receiver">Separate dummy-data receiver</a></li>
+              <li><a href="#receipts-and-lifecycle">Receipts and lifecycle</a></li>
+              <li><a href="#local-receiver-check">Optional local receiver check</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </nav>
+    <p class="sidebar-copyright">&copy; 2026 <a href="https://3unrise.github.io/">SUNRISE Lab</a></p>
+  </div>
+</aside>
+  <p><a href="index.html">Training overview</a></p>
+  <h1>Before-class lab setup</h1>
+  <p>Complete this environment setup before students arrive. During training, students perform scenario changes and
+    attacks as the attacker, then investigate, contain and recover as the defender. The exercise sequence requires no
+    instructor actions or file releases.</p>
+  <h2 id="shared-environment">Shared environment</h2>
+  <ul>
+    <li>Provide Ubuntu at <code>172.29.242.30</code> with Nginx, SSH, remote desktop and active UFW.</li>
+    <li>Provide Windows at <code>172.29.242.40</code> with IIS, DNS, remote desktop and enabled Windows Firewall profiles.</li>
+    <li>Verify the assigned trainee accounts’ sudo or elevated PowerShell access and both operational webpages.</li>
+    <li>Confirm campus HTTP and remote desktop routes. Distribute verified connection certificate details before class.</li>
+    <li>Enable the authentication and web logging used in the tasks, including IIS W3C date, time, c-ip, cs-method,
+      cs-uri-stem, cs-uri-query and sc-status fields. Ensure classroom PowerShell scripts can run under the lab’s policy.</li>
+    <li>Distribute the complete HTML pack or published site, including the CSV files and
+      <a href="lab-assets/dummy-business-data.txt" download>dummy business data</a>. Preserve relative paths.</li>
+  </ul>
+  <p>Students create their own recovery copies, checksums, exercise accounts, dummy exposed files and evidence folders
+    as directed by the HTML tasks. Attack actions and cleanup are included in their steps.</p>
+  <h2 id="dummy-data-receiver">Separate dummy-data receiver</h2>
+  <p>The outbound-transfer exercise needs a receiver outside both victim VMs. On the lab host, run this command from
+    the repository before class:</p>
+  <pre>python3 lab-tools/dummy-data-receiver.py</pre>
+  <p>The <a href="lab-tools/dummy-data-receiver.py">receiver</a> binds to <code>172.29.242.1:18081</code>. Keep it running
+    throughout the exercise. It accepts only the exact supplied dummy payload from the assigned VM IP addresses.</p>
+  <ul>
+    <li>Ubuntu uploads to <code>/upload/linux</code>; Windows uploads to <code>/upload/windows</code>.</li>
+    <li>Students check <code>/health</code> and inspect <code>/receipts/linux</code> or <code>/receipts/windows</code>.</li>
+    <li>The receiver records each upload immediately and delays acknowledgement for 120 seconds so the sender’s
+      connection remains visible. No background sender or startup entry is installed in either VM.</li>
+  </ul>
+  <p>Verify receiver health from both VMs before class. Keep this port on the isolated lab network.</p>
+  <h2 id="receipts-and-lifecycle">Receipts and lifecycle</h2>
+  <p>Receipt pages show recent transfers since receiver startup. Receipts also persist in the host account’s
+    <code>~/.local/state/ccdc-task15/receipts.jsonl</code>. Students identify their transfer by time, source IP and checksum.</p>
+  <p>Ctrl+C stops a foreground receiver. Restart it before class after a host restart. If the lab host already runs the
+    receiver as a user service, inspect that instance instead of starting a second one:</p>
+  <pre>systemctl --user status ccdc-task15-receiver.service</pre>
+  <p>After class, stop that service with:</p>
+  <pre>systemctl --user stop ccdc-task15-receiver.service</pre>
+  <p>This transient service does not start automatically after a host restart.</p>
+  <h2 id="local-receiver-check">Optional local receiver check</h2>
+  <p>For a local test without the VMs, use loopback mode and immediate acknowledgement:</p>
+  <pre>python3 lab-tools/dummy-data-receiver.py --bind 127.0.0.1 --hold-seconds 0</pre>
+  <p>Classroom tasks use the default lab binding and observation delay. All student instructions are in the HTML
+    training pages; students do not need the repository README or this setup page during their exercises.</p>
+<script id="training-sidebar-script">
+  (() => {const sidebar = document.getElementById('training-sidebar'); const button = sidebar.querySelector('button'); button.addEventListener('click', () => {const collapsed = sidebar.dataset.collapsed !== 'true'; sidebar.dataset.collapsed = String(collapsed); button.setAttribute('aria-expanded', String(!collapsed));}); const links = [...sidebar.querySelectorAll('a[href^="#"]')]; const sections = links.map(a => document.getElementById(decodeURIComponent(a.hash.slice(1)))); let pending = false; function update() {let active = 0; sections.forEach((section, i) => {if (section && section.getBoundingClientRect().top <= 110) active = i}); links.forEach((link, i) => {if (i === active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current')}); pending = false} window.addEventListener('scroll', () => {if (!pending) {pending = true; requestAnimationFrame(update)} }, {passive: true}); function reveal() {const target = document.getElementById(decodeURIComponent(location.hash.slice(1))); const link = links.find(a => a.hash === location.hash); if (target && link) {let parent = link.parentElement; while (parent && parent !== sidebar) {if (parent.tagName === 'DETAILS') parent.open = true; parent = parent.parentElement} } update()} window.addEventListener('hashchange', reveal); reveal();})();
+</script>
+</body>
+</html>

