@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CCDC Student Training</title>
+<style>
+  body {
+    font: 16px/1.6 system-ui;
+    max-width: 1050px;
+    margin: 32px auto;
+    padding: 0 22px;
+    color: #193047
+  }
+
+  nav,
+  pre {
+    background: #edf3f7;
+    padding: 16px
+  }
+
+  pre {
+    white-space: pre-wrap
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%
+  }
+
+  td,
+  th {
+    border: 1px solid #ccd8e0;
+    padding: 10px;
+    text-align: left
+  }
+
+  h2 {
+    margin-top: 32px
+  }
+
+  svg {
+    width: 100%;
+    height: auto
+  }
+</style>
+<style id="training-sidebar-style">
+  html {
+    scroll-behavior: smooth
+  }
+
+  body {
+    max-width: 1050px !important;
+    width: auto !important;
+    margin: 32px auto 32px 312px !important;
+    padding: 0 28px !important
+  }
+
+  h2,
+  h3 {
+    scroll-margin-top: 24px
+  }
+
+  #training-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 272px;
+    box-sizing: border-box;
+    padding: 24px 16px;
+    overflow-y: auto;
+    background: #edf3f7;
+    border-right: 1px solid #ccd8e0;
+    z-index: 100;
+    font: 14px/1.45 system-ui;
+    color: #193047
+  }
+
+  #training-sidebar details {
+    margin: 3px 0
+  }
+
+  #training-sidebar summary {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    border-radius: 5px
+  }
+
+  #training-sidebar summary::-webkit-details-marker {
+    display: none
+  }
+
+  #training-sidebar summary::before {
+    content: '▸';
+    flex: 0 0 18px;
+    text-align: center
+  }
+
+  #training-sidebar details[open]>summary::before {
+    content: '▾'
+  }
+
+  #training-sidebar summary a {
+    flex: 1;
+    min-width: 0;
+    margin: 0
+  }
+
+  #training-sidebar summary:focus-visible {
+    outline: 3px solid #2479a8
+  }
+
+  #training-sidebar .page-children {
+    margin: 4px 0 10px 12px;
+    padding-left: 8px;
+    border-left: 1px solid #bccedb
+  }
+
+  #training-sidebar .section-children {
+    margin-left: 12px
+  }
+
+  #training-sidebar li {
+    margin: 0
+  }
+
+  #training-sidebar .sidebar-title {
+    font-weight: 750;
+    font-size: 18px;
+    margin: 0 0 14px
+  }
+
+  #training-sidebar .sidebar-label {
+    font-weight: 700;
+    margin: 20px 8px 8px;
+    color: #465e70
+  }
+
+  #training-sidebar a {
+    display: block;
+    padding: 7px 9px;
+    margin: 2px 0;
+    border-radius: 5px;
+    color: #193047;
+    text-decoration: none;
+    overflow-wrap: anywhere
+  }
+
+  #training-sidebar a:hover {
+    background: #dce7ef
+  }
+
+  #training-sidebar a:focus-visible {
+    outline: 3px solid #2479a8;
+    outline-offset: 1px
+  }
+
+  #training-sidebar a[aria-current="page"] {
+    font-weight: 750;
+    background: transparent;
+    color: #193047
+  }
+
+  #training-sidebar a[aria-current="location"] {
+    font-weight: 700;
+    background: transparent;
+    color: #193047
+  }
+
+  #training-sidebar a.submodule {
+    padding-left: 23px;
+    font-size: 13px
+  }
+
+  #training-sidebar .sidebar-toggle {
+    display: none
+  }
+
+  #training-sidebar nav {
+    padding: 0;
+    margin: 0;
+    background: transparent
+  }
+
+  #training-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0
+  }
+
+  @media(min-width:1550px) {
+    body {
+      margin-left: calc(272px + (100vw - 272px - 1106px)/2) !important
+    }
+  }
+
+  @media(max-width:850px) {
+    body {
+      margin: 20px auto !important;
+      padding: 0 18px !important
+    }
+
+    #training-sidebar {
+      position: relative;
+      width: auto;
+      inset: auto;
+      margin: 0 0 24px;
+      padding: 14px;
+      border: 1px solid #ccd8e0;
+      border-radius: 6px;
+      max-height: none
+    }
+
+    #training-sidebar .sidebar-toggle {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: 0;
+      padding: 4px;
+      font: 700 16px system-ui;
+      color: #193047;
+      cursor: pointer
+    }
+
+    #training-sidebar details {
+      margin: 3px 0
+    }
+
+    #training-sidebar summary {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      cursor: pointer;
+      border-radius: 5px
+    }
+
+    #training-sidebar summary::-webkit-details-marker {
+      display: none
+    }
+
+    #training-sidebar summary::before {
+      content: '▸';
+      flex: 0 0 18px;
+      text-align: center
+    }
+
+    #training-sidebar details[open]>summary::before {
+      content: '▾'
+    }
+
+    #training-sidebar summary a {
+      flex: 1;
+      min-width: 0;
+      margin: 0
+    }
+
+    #training-sidebar summary:focus-visible {
+      outline: 3px solid #2479a8
+    }
+
+    #training-sidebar .page-children {
+      margin: 4px 0 10px 12px;
+      padding-left: 8px;
+      border-left: 1px solid #bccedb
+    }
+
+    #training-sidebar .section-children {
+      margin-left: 12px
+    }
+
+    #training-sidebar li {
+      margin: 0
+    }
+
+    #training-sidebar .sidebar-title {
+      display: none
+    }
+
+    #training-sidebar[data-collapsed="true"] .sidebar-content {
+      display: none
+    }
+  }
+
+  @media(prefers-reduced-motion:reduce) {
+    html {
+      scroll-behavior: auto
+    }
+  }
+
+  @media print {
+    #training-sidebar {
+      display: none
+    }
+
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      max-width: none !important
+    }
+  }
+</style>
+<aside id="training-sidebar" data-collapsed="false">
+  <p class="sidebar-title">CCDC Training</p><button class="sidebar-toggle" type="button" aria-expanded="true"
+    aria-controls="training-sidebar-content">Training navigation ▾</button>
+  <div id="training-sidebar-content" class="sidebar-content">
+    <nav aria-label="Training pages and sections">
+      <ul>
+        <li>
+          <details class="page-group">
+            <summary><a href="index.html">Overview</a></summary>
+            <ul class="page-children">
+              <li>
+                <details open>
+                  <summary><a href="index.html#section-lab-topology">Lab environment</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="index.html#section-ubuntu-services">Ubuntu services</a></li>
+                    <li><a class="submodule" href="index.html#section-windows-services">Windows services</a></li>
+                    <li><a class="submodule" href="index.html#section-lab-dns-records">Lab DNS records</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="index.html#course-map">Course structure</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="index.html#training-groups">Two training groups</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-0">Module 0 — Connect to your assigned
+                        VM</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-1">Module 1 — Attacker already has system
+                        access</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-2">Module 2 — Attacker starts without
+                        system access</a></li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="student-workbook.html">Getting Started</a></summary>
+            <ul class="page-children">
+              <li><a href="student-workbook.html#section-shared-response-workflow">Exercise workflow</a></li>
+              <li>
+                <details open>
+                  <summary><a href="student-workbook.html#section-preparation-connect-to-your-assigned-vm">Module 0 —
+                      Connect to your assigned VM</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="student-workbook.html#linux-credentials">Linux group</a></li>
+                    <li><a class="submodule" href="student-workbook.html#windows-credentials">Windows group</a></li>
+                    <li><a class="submodule" href="student-workbook.html#section-connect-from-macos">Connect from
+                        macOS</a></li>
+                    <li><a class="submodule" href="student-workbook.html#section-connect-from-windows">Connect from
+                        Windows</a></li>
+                    <li><a class="submodule" href="student-workbook.html#section-connect-from-linux">Connect from
+                        Linux</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="student-workbook.html#module-1">Module 1 — Attacker already has system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="student-workbook.html#service-tampering">1.1 — Service tampering and
+                        recovery</a></li>
+                    <li><a class="submodule" href="student-workbook.html#web-integrity">1.2 — Web-content tampering and
+                        evidence</a></li>
+                    <li><a class="submodule" href="student-workbook.html#firewall-tampering">1.3 — Firewall tampering
+                        versus service failure</a></li>
+                    <li><a class="submodule" href="student-workbook.html#account-compromise">1.4 — Compromised account
+                        and excessive privilege</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="student-workbook.html#module-2">Module 2 — Attacker starts without system access</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="linux-training.html">Linux Training</a></summary>
+            <ul class="page-children">
+              <li><a href="linux-training.html#baseline">Preparation — Service inventory and baseline</a></li>
+              <li>
+                <details open>
+                  <summary><a href="linux-training.html#module-1">Module 1 — Attacker already has system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="linux-training.html#service-tampering">1.1 — Service tampering and
+                        recovery</a></li>
+                    <li><a class="submodule" href="linux-training.html#web-integrity">1.2 — Web-content tampering and
+                        evidence</a></li>
+                    <li><a class="submodule" href="linux-training.html#firewall-tampering">1.3 — Firewall tampering
+                        versus service failure</a></li>
+                    <li><a class="submodule" href="linux-training.html#account-compromise">1.4 — Compromised account and
+                        excessive privilege</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="linux-training.html#module-2">Module 2 — Attacker starts without system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="linux-training.html#discovery">2.1 — Port scanning and service
+                        discovery</a></li>
+                    <li><a class="submodule"
+                        href="linux-training.html#section-2-2-practical-investigate-failed-ssh-authentication">2.2
+                        Investigate failed SSH authentication</a></li>
+                    <li><a class="submodule"
+                        href="linux-training.html#section-2-3-practical-investigate-web-probing-and-a-dummy-exposed-backup">2.3
+                        Investigate web probing and a dummy exposed backup</a></li>
+                    <li><a class="submodule" href="linux-training.html#traffic">2.4 — Investigate suspicious request
+                        traffic</a></li>
+                    <li><a class="submodule" href="linux-training.html#dos">2.5 — Investigate denial of service and
+                        resource exhaustion</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="linux-training.html#section-inject-practice">Inject practice</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="windows-training.html">Windows Training</a></summary>
+            <ul class="page-children">
+              <li><a href="windows-training.html#baseline">Preparation — Service inventory and baseline</a></li>
+              <li>
+                <details open>
+                  <summary><a href="windows-training.html#module-1">Module 1 — Attacker already has system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="windows-training.html#service-tampering">1.1 — Service tampering and
+                        recovery</a></li>
+                    <li><a class="submodule" href="windows-training.html#web-integrity">1.2 — Web-content tampering and
+                        evidence</a></li>
+                    <li><a class="submodule" href="windows-training.html#firewall-tampering">1.3 — Firewall tampering
+                        versus service failure</a></li>
+                    <li><a class="submodule" href="windows-training.html#account-compromise">1.4 — Compromised account
+                        and excessive privilege</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="windows-training.html#module-2">Module 2 — Attacker starts without system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="windows-training.html#discovery">2.1 — Port scanning and service
+                        discovery</a></li>
+                    <li><a class="submodule"
+                        href="windows-training.html#section-2-2-practical-investigate-failed-windows-authentication">2.2
+                        practical — Investigate failed Windows authentication</a></li>
+                    <li><a class="submodule"
+                        href="windows-training.html#section-2-3-practical-investigate-iis-probing-and-a-dummy-exposed-backup">2.3
+                        practical — Investigate IIS probing and a dummy exposed backup</a></li>
+                    <li><a class="submodule" href="windows-training.html#traffic">2.4 — Investigate suspicious request
+                        traffic</a></li>
+                    <li><a class="submodule" href="windows-training.html#dos">2.5 — Investigate denial of service and
+                        resource exhaustion</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="windows-training.html#business-inject">Practice — Business inject</a></li>
+              <li><a href="windows-training.html#section-inject-practice">Inject practice</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="inject-practice.html">Inject Practice</a></summary>
+            <ul class="page-children">
+              <li><a href="inject-practice.html#section-our-classroom-version">Our classroom version</a></li>
+              <li><a href="inject-practice.html#section-how-to-approach-any-inject">How to approach any inject</a></li>
+              <li><a href="inject-practice.html#section-practice-a-understand-services-and-ports">Practice A —
+                  Understand services and ports</a></li>
+              <li><a href="inject-practice.html#section-practice-b-write-a-disk-space-check">Practice B — Write a
+                  disk-space check</a></li>
+              <li><a href="inject-practice.html#section-practice-c-match-network-listeners-to-processes">Practice C —
+                  Match network listeners to processes</a></li>
+              <li><a href="inject-practice.html#section-when-you-need-help">When you need help</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group" open>
+            <summary><a href="command-reference.html" aria-current="page">Command Reference</a></summary>
+            <ul class="page-children">
+              <li><a href="#section-how-to-read-the-manual">How to read the manual</a></li>
+              <li><a href="#linux">Linux and Bash</a></li>
+              <li><a href="#windows">Windows</a></li>
+              <li><a href="#section-understanding-the-scripts">Understanding the scripts</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>
+<h1>Command reference</h1>
+<p>Look up the command before running it. Each entry explains its purpose, relevant options, and where it runs. Service,
+  firewall, file and DNS changes affect everyone sharing the VM. Examples in the modules remain the exercise
+  instructions.</p>
+<p><a href="#linux">Linux commands</a> · <a href="#windows">Windows commands</a> · <a href="#syntax">Script syntax</a>
+</p>
+<h2 id="section-how-to-read-the-manual">How to read the manual</h2>
+<p>Linux: use <code>man COMMAND</code>, press / to search, n for the next match, and q to exit. If local manuals are
+  unavailable, use the linked Ubuntu manual. Bash built-ins use <code>help COMMAND</code>. Windows: use
+  <code>Get-Help COMMAND -Full</code> or <code>-Examples</code>. Local PowerShell help may be incomplete; use the linked
+  Microsoft documentation. Reading help does not execute the exercise command.</p>
+<p>On Windows, open PowerShell with <strong>Run as administrator</strong> for changes to IIS, DNS and firewall rules.
+  Get-Service can succeed even when Stop-Service cannot open the service due to missing elevation. Check hostname first
+  so commands do not run on your own computer.</p>
+<h2 id="linux">Linux and Bash</h2>
+<section id="linux-hostname">
+  <h3 id="section-hostname">hostname</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Show the machine name; confirm you are inside ccdc-linux before changing a service.</p>
+  <pre>man hostname</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/hostname.1.html">Official manual: hostname</a></p>
+</section>
+<section id="linux-whoami">
+  <h3 id="section-whoami">whoami</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Show the current effective username. sudo whoami should print root.</p>
+  <pre>man whoami</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/whoami.1.html">Official manual: whoami</a></p>
+</section>
+<section id="linux-sudo">
+  <h3 id="section-sudo">sudo</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Run a permitted command as another user, normally root. -l lists permissions; -u selects a user; -i starts a login
+    shell; -n refuses a password prompt. Changes made as root affect the shared VM.</p>
+  <pre>man sudo</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man8/sudo.8.html">Official manual: sudo</a></p>
+</section>
+<section id="linux-ip">
+  <h3 id="section-ip">ip</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Show network configuration. -br address gives a compact address list; route shows the routing table. These forms
+    only inspect configuration.</p>
+  <pre>man ip</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man8/ip.8.html">Official manual: ip</a></p>
+</section>
+<section id="linux-ss">
+  <h3 id="section-ss">ss</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Inspect sockets. -l listening, -n numeric ports, -t TCP, -u UDP, -p owning processes, -H no header. sport = :80
+    filters local port 80. sudo reveals process details.</p>
+  <pre>man ss</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man8/ss.8.html">Official manual: ss</a></p>
+</section>
+<section id="linux-systemctl">
+  <h3 id="section-systemctl">systemctl</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Inspect or control services. status shows details, is-active reports state, stop causes an outage, start restores a
+    service. --no-pager prints directly. A running service does not by itself prove its website works.</p>
+  <pre>man systemctl</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/systemctl.1.html">Official manual: systemctl</a></p>
+</section>
+<section id="linux-ufw">
+  <h3 id="section-ufw">ufw</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Inspect or change the Linux firewall. status verbose/numbered lists rules. insert 1 deny places a blocking rule
+    first; delete NUMBER removes the rule at that current list position. Rule changes affect everyone and can disconnect
+    access.</p>
+  <pre>man ufw</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man8/ufw.8.html">Official manual: ufw</a></p>
+</section>
+<section id="linux-curl">
+  <h3 id="section-curl">curl</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Request a URL. -f fails on HTTP error status, -s hides progress, -S keeps errors visible, -i includes headers,
+    --max-time 5 limits the request to five seconds. Test the supplied URL; 127.0.0.1 tests only the local VM.</p>
+  <pre>man curl</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/curl.1.html">Official manual: curl</a></p>
+</section>
+<section id="linux-date">
+  <h3 id="section-date">date</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Print time. -u uses UTC; +%Y%m%dT%H%M%SZ produces a sortable timestamp for an evidence-folder name.</p>
+  <pre>man date</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/date.1.html">Official manual: date</a></p>
+</section>
+<section id="linux-journalctl">
+  <h3 id="section-journalctl">journalctl</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Read the system journal. -u selects a service, --since limits time, --utc uses UTC, -n limits lines, --no-pager
+    avoids an interactive viewer. --user selects user-service logs.</p>
+  <pre>man journalctl</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/journalctl.1.html">Official manual: journalctl</a></p>
+</section>
+<section id="linux-mkdir">
+  <h3 id="section-mkdir">mkdir</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Create a directory. -m 700 allows access only to its owner. The evidence directory stores observations for the
+    exercise.</p>
+  <pre>man mkdir</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/mkdir.1.html">Official manual: mkdir</a></p>
+</section>
+<section id="linux-stat">
+  <h3 id="section-stat">stat</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Show file metadata such as owner, permissions, size and timestamps; it does not establish who changed the file.</p>
+  <pre>man stat</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/stat.1.html">Official manual: stat</a></p>
+</section>
+<section id="linux-sha256sum">
+  <h3 id="section-sha256sum">sha256sum</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Compute a SHA-256 file fingerprint. Compare with a known-good hash to detect changed contents; a hash alone does
+    not prove authenticity.</p>
+  <pre>man sha256sum</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/sha256sum.1.html">Official manual: sha256sum</a></p>
+</section>
+<section id="linux-cat">
+  <h3 id="section-cat">cat</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Read file contents. In the exercise, redirection saves a copy in the evidence directory.</p>
+  <pre>man cat</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/cat.1.html">Official manual: cat</a></p>
+</section>
+<section id="linux-tee">
+  <h3 id="section-tee">tee</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Copy input to the screen and a file. It overwrites the file unless -a is used. sudo tee can write a protected file.
+  </p>
+  <pre>man tee</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/tee.1.html">Official manual: tee</a></p>
+</section>
+<section id="linux-tail">
+  <h3 id="section-tail">tail</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Read the end of a file. -n 100 selects the last 100 log lines.</p>
+  <pre>man tail</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/tail.1.html">Official manual: tail</a></p>
+</section>
+<section id="linux-df">
+  <h3 id="section-df">df</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Report filesystem capacity and use. -P gives a stable one-line-per-filesystem layout; / selects the root
+    filesystem.</p>
+  <pre>man df</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/df.1.html">Official manual: df</a></p>
+</section>
+<section id="linux-awk">
+  <h3 id="section-awk">awk</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Process text records. NR==2 selects the second line; $5 selects field five; gsub removes the percent sign; print
+    emits the resulting usage value.</p>
+  <pre>man awk</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/awk.1.html">Official manual: awk</a></p>
+</section>
+<section id="linux-apt">
+  <h3 id="section-apt">apt</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Manage packages on the machine where it is run. update refreshes package indexes; install adds the named packages.
+    The Remmina example runs on a student Linux computer, not automatically on the lab VM.</p>
+  <pre>man apt</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man8/apt.8.html">Official manual: apt</a></p>
+</section>
+<section id="linux-id">
+  <h3 id="section-id">id</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Show numeric IDs and group membership for a user.</p>
+  <pre>man id</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/id.1.html">Official manual: id</a></p>
+</section>
+<section id="linux-getent">
+  <h3 id="section-getent">getent</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Query configured system databases. passwd NAME looks up the account record.</p>
+  <pre>man getent</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/getent.1.html">Official manual: getent</a></p>
+</section>
+<section id="linux-install">
+  <h3 id="section-install">install</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Copy files or create directories with chosen permissions. -d -m 700 creates an owner-only directory.</p>
+  <pre>man install</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/install.1.html">Official manual: install</a></p>
+</section>
+<section id="linux-rm">
+  <h3 id="section-rm">rm</h3>
+  <p><strong>Run in:</strong> Ubuntu terminal</p>
+  <p>Remove the named file. In cleanup, remove only the exact instructor-created policy file after preserving evidence.
+  </p>
+  <pre>man rm</pre>
+  <p><a href="https://manpages.ubuntu.com/manpages/noble/man1/rm.1.html">Official manual: rm</a></p>
+</section>
+<section id="shell-echo">
+  <h3 id="section-echo">echo</h3>
+  <p><strong>Run in:</strong> Bash terminal/script</p>
+  <p>Print a message. &gt;&amp;2 sends an error to standard error.</p>
+  <pre>help echo</pre>
+  <p><a href="https://www.gnu.org/software/bash/manual/bash.html">Official manual: echo</a></p>
+</section>
+<section id="shell-set">
+  <h3 id="section-set">set</h3>
+  <p><strong>Run in:</strong> Bash terminal/script</p>
+  <p>set -eu enables unset-variable errors and exit-on-error behavior, with shell exceptions. It does not validate the
+    entire script.</p>
+  <pre>help set</pre>
+  <p><a href="https://www.gnu.org/software/bash/manual/bash.html">Official manual: set</a></p>
+</section>
+<section id="shell-exit">
+  <h3 id="section-exit">exit</h3>
+  <p><strong>Run in:</strong> Bash terminal/script</p>
+  <p>Leave the shell or script; exit 2 reports an error status.</p>
+  <pre>help exit</pre>
+  <p><a href="https://www.gnu.org/software/bash/manual/bash.html">Official manual: exit</a></p>
+</section>
+<section id="shell-test">
+  <h3 id="section-test">test</h3>
+  <p><strong>Run in:</strong> Bash terminal/script</p>
+  <p>Test a condition; ! -e PATH checks that a path does not exist.</p>
+  <pre>help test</pre>
+  <p><a href="https://www.gnu.org/software/bash/manual/bash.html">Official manual: test</a></p>
+</section>
+<h2 id="windows">Windows</h2>
+<section id="windows-get-netipconfiguration">
+  <h3 id="section-get-netipconfiguration">Get-NetIPConfiguration</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Show interfaces, IP addresses, gateways and DNS configuration.</p>
+  <pre>Get-Help Get-NetIPConfiguration -Full
+Get-Help Get-NetIPConfiguration -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-netipconfiguration">Official manual:
+      Get-NetIPConfiguration</a></p>
+</section>
+<section id="windows-get-service">
+  <h3 id="section-get-service">Get-Service</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Inspect service state. W3SVC is IIS, DNS is the DNS server, TermService provides Remote Desktop. Finding a service
+    is different from having permission to stop it.</p>
+  <pre>Get-Help Get-Service -Full
+Get-Help Get-Service -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service">Official
+      manual: Get-Service</a></p>
+</section>
+<section id="windows-stop-service">
+  <h3 id="section-stop-service">Stop-Service</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Stop the named service. Requires elevated PowerShell for these lab services and intentionally interrupts service
+    for the whole group.</p>
+  <pre>Get-Help Stop-Service -Full
+Get-Help Stop-Service -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/stop-service">Official
+      manual: Stop-Service</a></p>
+</section>
+<section id="windows-start-service">
+  <h3 id="section-start-service">Start-Service</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Start the named service after the exercise. Verify the actual website or DNS response as well as service state.</p>
+  <pre>Get-Help Start-Service -Full
+Get-Help Start-Service -Examples</pre>
+  <p><a
+      href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-service">Official
+      manual: Start-Service</a></p>
+</section>
+<section id="windows-get-nettcpconnection">
+  <h3 id="section-get-nettcpconnection">Get-NetTCPConnection</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Inspect TCP sockets. -State Listen shows listeners; LocalPort is the service port and OwningProcess is its PID.</p>
+  <pre>Get-Help Get-NetTCPConnection -Full
+Get-Help Get-NetTCPConnection -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-nettcpconnection">Official manual:
+      Get-NetTCPConnection</a></p>
+</section>
+<section id="windows-get-netudpendpoint">
+  <h3 id="section-get-netudpendpoint">Get-NetUDPEndpoint</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Inspect UDP endpoints. UDP has no TCP-style Listen/Established connection states.</p>
+  <pre>Get-Help Get-NetUDPEndpoint -Full
+Get-Help Get-NetUDPEndpoint -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-netudpendpoint">Official manual:
+      Get-NetUDPEndpoint</a></p>
+</section>
+<section id="windows-resolve-dnsname">
+  <h3 id="section-resolve-dnsname">Resolve-DnsName</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Query DNS. -Server selects the lab DNS server, -DnsOnly limits resolution to DNS, -NoHostsFile skips the hosts
+    file, -TcpOnly tests DNS over TCP, -QuickTimeout shortens waits.</p>
+  <pre>Get-Help Resolve-DnsName -Full
+Get-Help Resolve-DnsName -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname">Official manual:
+      Resolve-DnsName</a></p>
+</section>
+<section id="windows-invoke-webrequest">
+  <h3 id="section-invoke-webrequest">Invoke-WebRequest</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Request a web page. -UseBasicParsing avoids the legacy browser parser in Windows PowerShell 5.1; -TimeoutSec 5
+    bounds the wait. .Content selects the response body.</p>
+  <pre>Get-Help Invoke-WebRequest -Full
+Get-Help Invoke-WebRequest -Examples</pre>
+  <p><a
+      href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest">Official
+      manual: Invoke-WebRequest</a></p>
+</section>
+<section id="windows-get-date">
+  <h3 id="section-get-date">Get-Date</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Get a DateTime object. ToUniversalTime() converts to UTC, ToString(&#x27;o&#x27;) formats it, and AddMinutes(-15)
+    sets a recent-log cutoff.</p>
+  <pre>Get-Help Get-Date -Full
+Get-Help Get-Date -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date">Official
+      manual: Get-Date</a></p>
+</section>
+<section id="windows-get-winevent">
+  <h3 id="section-get-winevent">Get-WinEvent</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Read event logs. -FilterHashtable selects System events after StartTime. Filter Service Control Manager events to
+    investigate service changes.</p>
+  <pre>Get-Help Get-WinEvent -Full
+Get-Help Get-WinEvent -Examples</pre>
+  <p><a
+      href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent">Official
+      manual: Get-WinEvent</a></p>
+</section>
+<section id="windows-where-object">
+  <h3 id="section-where-object">Where-Object</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Keep pipeline objects matching a condition, such as ProviderName -eq a given name. -in tests membership in a list.
+  </p>
+  <pre>Get-Help Where-Object -Full
+Get-Help Where-Object -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object">Official
+      manual: Where-Object</a></p>
+</section>
+<section id="windows-select-object">
+  <h3 id="section-select-object">Select-Object</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Select output properties such as TimeCreated, Id and Message; it does not change the underlying objects or
+    services.</p>
+  <pre>Get-Help Select-Object -Full
+Get-Help Select-Object -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object">Official
+      manual: Select-Object</a></p>
+</section>
+<section id="windows-sort-object">
+  <h3 id="section-sort-object">Sort-Object</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Sort pipeline objects by a property such as LocalPort.</p>
+  <pre>Get-Help Sort-Object -Full
+Get-Help Sort-Object -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/sort-object">Official
+      manual: Sort-Object</a></p>
+</section>
+<section id="windows-clear-dnsclientcache">
+  <h3 id="section-clear-dnsclientcache">Clear-DnsClientCache</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Clear this VM’s DNS client cache before a fresh test. It does not delete DNS server zone records.</p>
+  <pre>Get-Help Clear-DnsClientCache -Full
+Get-Help Clear-DnsClientCache -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/dnsclient/clear-dnsclientcache">Official manual:
+      Clear-DnsClientCache</a></p>
+</section>
+<section id="windows-add-dnsserverresourcerecorda">
+  <h3 id="section-add-dnsserverresourcerecorda">Add-DnsServerResourceRecordA</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Create an IPv4 A record. -ZoneName identifies the zone, -Name is the host label, -IPv4Address is its address. This
+    changes shared DNS configuration.</p>
+  <pre>Get-Help Add-DnsServerResourceRecordA -Full
+Get-Help Add-DnsServerResourceRecordA -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/dnsserver/add-dnsserverresourcerecorda">Official
+      manual: Add-DnsServerResourceRecordA</a></p>
+</section>
+<section id="windows-get-ciminstance">
+  <h3 id="section-get-ciminstance">Get-CimInstance</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Query management data. Win32_LogicalDisk with the C: filter provides Size and FreeSpace in bytes; the inject script
+    computes percent used.</p>
+  <pre>Get-Help Get-CimInstance -Full
+Get-Help Get-CimInstance -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance">Official manual:
+      Get-CimInstance</a></p>
+</section>
+<section id="windows-write-output">
+  <h3 id="section-write-output">Write-Output</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Send a value into the output pipeline. The script formats usage with {0:N1} for one decimal place.</p>
+  <pre>Get-Help Write-Output -Full
+Get-Help Write-Output -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-output">Official
+      manual: Write-Output</a></p>
+</section>
+<section id="windows-get-process">
+  <h3 id="section-get-process">Get-Process</h3>
+  <p><strong>Run in:</strong> PowerShell inside Windows VM</p>
+  <p>Inspect processes. -Id selects a PID from socket output. Some process properties require elevation.</p>
+  <pre>Get-Help Get-Process -Full
+Get-Help Get-Process -Examples</pre>
+  <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-process">Official
+      manual: Get-Process</a></p>
+</section>
+<section id="windows-mstsc">
+  <h3 id="section-mstsc">mstsc</h3>
+  <p><strong>Run in:</strong> Windows client or VM as specified</p>
+  <p>Start Remote Desktop Connection on your own Windows 11 computer, before connecting to a VM.</p>
+  <pre>mstsc /?</pre>
+  <p><a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc">Official manual:
+      mstsc</a></p>
+</section>
+<section id="windows-hostname">
+  <h3 id="section-hostname-2">hostname</h3>
+  <p><strong>Run in:</strong> Windows client or VM as specified</p>
+  <p>In Windows, print the machine name; expect CCDC-WINDOWS inside the training VM.</p>
+  <pre>hostname /?</pre>
+  <p><a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/hostname">Official
+      manual: hostname</a></p>
+</section>
+<section id="windows-whoami">
+  <h3 id="section-whoami-2">whoami</h3>
+  <p><strong>Run in:</strong> Windows client or VM as specified</p>
+  <p>In Windows, print the current domain/computer and username.</p>
+  <pre>whoami /?</pre>
+  <p><a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/whoami">Official manual:
+      whoami</a></p>
+</section>
+<section id="windows-winver">
+  <h3 id="section-winver">winver</h3>
+  <p><strong>Run in:</strong> Windows client or VM as specified</p>
+  <p>Open the Windows version dialog on the computer being checked.</p>
+  <pre>Run winver to view the version; it is a graphical utility.</pre>
+  <p><a href="https://support.microsoft.com/windows">Official manual: winver</a></p>
+</section>
+<section id="syntax">
+  <h2 id="section-understanding-the-scripts">Understanding the scripts</h2>
+  <h3 id="section-bash-evidence-collection">Bash evidence collection</h3>
+  <p><code>case_dir="…"</code> assigns a variable; <code>$HOME</code> expands your home directory;
+    <code>$(date …)</code> inserts command output. Quotes keep spaces from splitting a filename. A pipe <code>|</code>
+    sends text to the next command. <code>&gt;</code> creates or overwrites a file; <code>&gt;&gt;</code> appends.
+    Redirection is performed by the current shell: <code>sudo cat file &gt; copy</code> reads as root but writes copy as
+    your user.</p>
+  <h3 id="section-bash-disk-usage-inject">Bash disk-usage inject</h3>
+  <p>The shebang selects Bash. <code>${1:-75}</code> uses the first argument or defaults to 75.
+    <code>[[ … =~ … ]]</code> validates an integer, <code>!</code> negates a test, <code>||</code> means OR, and
+    <code>(( … ))</code> evaluates integer arithmetic. The script checks percent <em>used</em>, not free space. A
+    threshold of 0 tests the alert branch without filling the disk. This script prints a message; it does not send email
+    or schedule itself.</p>
+  <pre>help if
+help set
+help [[
+help let
+man bash</pre>
+  <h3 id="section-powershell-objects-and-disk-usage-inject">PowerShell objects and disk-usage inject</h3>
+  <p><code>param</code> declares the threshold parameter, <code>[int]</code> specifies its type and
+    <code>[ValidateRange(0,100)]</code> limits values. <code>$disk</code> stores an object; <code>.Size</code> and
+    <code>.FreeSpace</code> read properties. <code>-not</code>, <code>-or</code>, <code>-le</code> and <code>-ge</code>
+    implement tests. <code>throw</code> raises an error. <code>-f</code> formats a string. PowerShell pipes pass
+    objects, so Where-Object filters records and Select-Object chooses properties.</p>
+  <p><code>@{…}</code> is a hashtable used for the event filter. Parentheses evaluate an expression; a dot accesses a
+    property or method. The Module 0 WindowsPrincipal expression checks whether the current process has the
+    Administrator role; it does not elevate it.</p>
+  <pre>Get-Help about_Pipelines
+Get-Help about_Redirection
+Get-Help about_Variables
+Get-Help about_Comparison_Operators
+Get-Help about_Functions_Advanced_Parameters
+Get-Help about_Hash_Tables</pre>
+  <p><a href="https://www.gnu.org/software/bash/manual/bash.html">GNU Bash manual</a> · <a
+      href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about">Microsoft
+      PowerShell language help</a></p>
+</section>
+<script id="training-sidebar-script">
+  (() => {const sidebar = document.getElementById('training-sidebar'); const button = sidebar.querySelector('button'); button.addEventListener('click', () => {const collapsed = sidebar.dataset.collapsed !== 'true'; sidebar.dataset.collapsed = String(collapsed); button.setAttribute('aria-expanded', String(!collapsed));}); const links = [...sidebar.querySelectorAll('a[href^="#"]')]; const sections = links.map(a => document.getElementById(decodeURIComponent(a.hash.slice(1)))); let pending = false; function update() {let active = 0; sections.forEach((section, i) => {if (section && section.getBoundingClientRect().top <= 110) active = i}); links.forEach((link, i) => {if (i === active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current')}); pending = false} window.addEventListener('scroll', () => {if (!pending) {pending = true; requestAnimationFrame(update)} }, {passive: true}); function reveal() {const target = document.getElementById(decodeURIComponent(location.hash.slice(1))); const link = links.find(a => a.hash === location.hash); if (target && link) {let parent = link.parentElement; while (parent && parent !== sidebar) {if (parent.tagName === 'DETAILS') parent.open = true; parent = parent.parentElement} } update()} window.addEventListener('hashchange', reveal); reveal();})();
+</script>
+
+</html>

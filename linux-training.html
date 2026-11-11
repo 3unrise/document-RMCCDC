@@ -1,0 +1,900 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linux Training</title>
+<style>
+  body {
+    font: 16px/1.6 system-ui;
+    max-width: 1050px;
+    margin: 32px auto;
+    padding: 0 22px;
+    color: #193047
+  }
+
+  nav,
+  pre {
+    background: #edf3f7;
+    padding: 16px
+  }
+
+  pre {
+    white-space: pre-wrap
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%
+  }
+
+  td,
+  th {
+    border: 1px solid #ccd8e0;
+    padding: 10px;
+    text-align: left
+  }
+
+  h2 {
+    margin-top: 32px
+  }
+
+  svg {
+    width: 100%;
+    height: auto
+  }
+</style>
+<style id="training-sidebar-style">
+  html {
+    scroll-behavior: smooth
+  }
+
+  body {
+    max-width: 1050px !important;
+    width: auto !important;
+    margin: 32px auto 32px 312px !important;
+    padding: 0 28px !important
+  }
+
+  h2,
+  h3 {
+    scroll-margin-top: 24px
+  }
+
+  #training-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 272px;
+    box-sizing: border-box;
+    padding: 24px 16px;
+    overflow-y: auto;
+    background: #edf3f7;
+    border-right: 1px solid #ccd8e0;
+    z-index: 100;
+    font: 14px/1.45 system-ui;
+    color: #193047
+  }
+
+  #training-sidebar details {
+    margin: 3px 0
+  }
+
+  #training-sidebar summary {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    border-radius: 5px
+  }
+
+  #training-sidebar summary::-webkit-details-marker {
+    display: none
+  }
+
+  #training-sidebar summary::before {
+    content: '▸';
+    flex: 0 0 18px;
+    text-align: center
+  }
+
+  #training-sidebar details[open]>summary::before {
+    content: '▾'
+  }
+
+  #training-sidebar summary a {
+    flex: 1;
+    min-width: 0;
+    margin: 0
+  }
+
+  #training-sidebar summary:focus-visible {
+    outline: 3px solid #2479a8
+  }
+
+  #training-sidebar .page-children {
+    margin: 4px 0 10px 12px;
+    padding-left: 8px;
+    border-left: 1px solid #bccedb
+  }
+
+  #training-sidebar .section-children {
+    margin-left: 12px
+  }
+
+  #training-sidebar li {
+    margin: 0
+  }
+
+  #training-sidebar .sidebar-title {
+    font-weight: 750;
+    font-size: 18px;
+    margin: 0 0 14px
+  }
+
+  #training-sidebar .sidebar-label {
+    font-weight: 700;
+    margin: 20px 8px 8px;
+    color: #465e70
+  }
+
+  #training-sidebar a {
+    display: block;
+    padding: 7px 9px;
+    margin: 2px 0;
+    border-radius: 5px;
+    color: #193047;
+    text-decoration: none;
+    overflow-wrap: anywhere
+  }
+
+  #training-sidebar a:hover {
+    background: #dce7ef
+  }
+
+  #training-sidebar a:focus-visible {
+    outline: 3px solid #2479a8;
+    outline-offset: 1px
+  }
+
+  #training-sidebar a[aria-current="page"] {
+    font-weight: 750;
+    background: transparent;
+    color: #193047
+  }
+
+  #training-sidebar a[aria-current="location"] {
+    font-weight: 700;
+    background: transparent;
+    color: #193047
+  }
+
+  #training-sidebar a.submodule {
+    padding-left: 23px;
+    font-size: 13px
+  }
+
+  #training-sidebar .sidebar-toggle {
+    display: none
+  }
+
+  #training-sidebar nav {
+    padding: 0;
+    margin: 0;
+    background: transparent
+  }
+
+  #training-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0
+  }
+
+  @media(min-width:1550px) {
+    body {
+      margin-left: calc(272px + (100vw - 272px - 1106px)/2) !important
+    }
+  }
+
+  @media(max-width:850px) {
+    body {
+      margin: 20px auto !important;
+      padding: 0 18px !important
+    }
+
+    #training-sidebar {
+      position: relative;
+      width: auto;
+      inset: auto;
+      margin: 0 0 24px;
+      padding: 14px;
+      border: 1px solid #ccd8e0;
+      border-radius: 6px;
+      max-height: none
+    }
+
+    #training-sidebar .sidebar-toggle {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: 0;
+      padding: 4px;
+      font: 700 16px system-ui;
+      color: #193047;
+      cursor: pointer
+    }
+
+    #training-sidebar details {
+      margin: 3px 0
+    }
+
+    #training-sidebar summary {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      cursor: pointer;
+      border-radius: 5px
+    }
+
+    #training-sidebar summary::-webkit-details-marker {
+      display: none
+    }
+
+    #training-sidebar summary::before {
+      content: '▸';
+      flex: 0 0 18px;
+      text-align: center
+    }
+
+    #training-sidebar details[open]>summary::before {
+      content: '▾'
+    }
+
+    #training-sidebar summary a {
+      flex: 1;
+      min-width: 0;
+      margin: 0
+    }
+
+    #training-sidebar summary:focus-visible {
+      outline: 3px solid #2479a8
+    }
+
+    #training-sidebar .page-children {
+      margin: 4px 0 10px 12px;
+      padding-left: 8px;
+      border-left: 1px solid #bccedb
+    }
+
+    #training-sidebar .section-children {
+      margin-left: 12px
+    }
+
+    #training-sidebar li {
+      margin: 0
+    }
+
+    #training-sidebar .sidebar-title {
+      display: none
+    }
+
+    #training-sidebar[data-collapsed="true"] .sidebar-content {
+      display: none
+    }
+  }
+
+  @media(prefers-reduced-motion:reduce) {
+    html {
+      scroll-behavior: auto
+    }
+  }
+
+  @media print {
+    #training-sidebar {
+      display: none
+    }
+
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      max-width: none !important
+    }
+  }
+</style>
+<aside id="training-sidebar" data-collapsed="false">
+  <p class="sidebar-title">CCDC Training</p><button class="sidebar-toggle" type="button" aria-expanded="true"
+    aria-controls="training-sidebar-content">Training navigation ▾</button>
+  <div id="training-sidebar-content" class="sidebar-content">
+    <nav aria-label="Training pages and sections">
+      <ul>
+        <li>
+          <details class="page-group">
+            <summary><a href="index.html">Overview</a></summary>
+            <ul class="page-children">
+              <li>
+                <details open>
+                  <summary><a href="index.html#section-lab-topology">Lab environment</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="index.html#section-ubuntu-services">Ubuntu services</a></li>
+                    <li><a class="submodule" href="index.html#section-windows-services">Windows services</a></li>
+                    <li><a class="submodule" href="index.html#section-lab-dns-records">Lab DNS records</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="index.html#course-map">Course structure</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="index.html#training-groups">Two training groups</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-0">Module 0 — Connect to your assigned
+                        VM</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-1">Module 1 — Attacker already has system
+                        access</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-2">Module 2 — Attacker starts without
+                        system access</a></li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="student-workbook.html">Getting Started</a></summary>
+            <ul class="page-children">
+              <li><a href="student-workbook.html#section-shared-response-workflow">Exercise workflow</a></li>
+              <li>
+                <details open>
+                  <summary><a href="student-workbook.html#section-preparation-connect-to-your-assigned-vm">Module 0 —
+                      Connect to your assigned VM</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="student-workbook.html#linux-credentials">Linux group</a></li>
+                    <li><a class="submodule" href="student-workbook.html#windows-credentials">Windows group</a></li>
+                    <li><a class="submodule" href="student-workbook.html#section-connect-from-macos">Connect from
+                        macOS</a></li>
+                    <li><a class="submodule" href="student-workbook.html#section-connect-from-windows">Connect from
+                        Windows</a></li>
+                    <li><a class="submodule" href="student-workbook.html#section-connect-from-linux">Connect from
+                        Linux</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="student-workbook.html#module-1">Module 1 — Attacker already has system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="student-workbook.html#service-tampering">1.1 — Service tampering and
+                        recovery</a></li>
+                    <li><a class="submodule" href="student-workbook.html#web-integrity">1.2 — Web-content tampering and
+                        evidence</a></li>
+                    <li><a class="submodule" href="student-workbook.html#firewall-tampering">1.3 — Firewall tampering
+                        versus service failure</a></li>
+                    <li><a class="submodule" href="student-workbook.html#account-compromise">1.4 — Compromised account
+                        and excessive privilege</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="student-workbook.html#module-2">Module 2 — Attacker starts without system access</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group" open>
+            <summary><a href="linux-training.html" aria-current="page">Linux Training</a></summary>
+            <ul class="page-children">
+              <li><a href="#baseline">Preparation — Service inventory and baseline</a></li>
+              <li>
+                <details open>
+                  <summary><a href="#module-1">Module 1 — Attacker already has system access</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="#service-tampering">1.1 — Service tampering and recovery</a></li>
+                    <li><a class="submodule" href="#web-integrity">1.2 — Web-content tampering and evidence</a></li>
+                    <li><a class="submodule" href="#firewall-tampering">1.3 — Firewall tampering versus service
+                        failure</a></li>
+                    <li><a class="submodule" href="#account-compromise">1.4 — Compromised account and excessive
+                        privilege</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="#module-2">Module 2 — Attacker starts without system access</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="#discovery">2.1 — Port scanning and service discovery</a></li>
+                    <li><a class="submodule" href="#section-2-2-practical-investigate-failed-ssh-authentication">2.2
+                        Investigate failed SSH authentication</a></li>
+                    <li><a class="submodule"
+                        href="#section-2-3-practical-investigate-web-probing-and-a-dummy-exposed-backup">2.3 Investigate
+                        web probing and a dummy exposed backup</a></li>
+                    <li><a class="submodule" href="#traffic">2.4 — Investigate suspicious request traffic</a></li>
+                    <li><a class="submodule" href="#dos">2.5 — Investigate denial of service and resource exhaustion</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="#section-inject-practice">Inject practice</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="windows-training.html">Windows Training</a></summary>
+            <ul class="page-children">
+              <li><a href="windows-training.html#baseline">Preparation — Service inventory and baseline</a></li>
+              <li>
+                <details open>
+                  <summary><a href="windows-training.html#module-1">Module 1 — Attacker already has system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="windows-training.html#service-tampering">1.1 — Service tampering and
+                        recovery</a></li>
+                    <li><a class="submodule" href="windows-training.html#web-integrity">1.2 — Web-content tampering and
+                        evidence</a></li>
+                    <li><a class="submodule" href="windows-training.html#firewall-tampering">1.3 — Firewall tampering
+                        versus service failure</a></li>
+                    <li><a class="submodule" href="windows-training.html#account-compromise">1.4 — Compromised account
+                        and excessive privilege</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="windows-training.html#module-2">Module 2 — Attacker starts without system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="windows-training.html#discovery">2.1 — Port scanning and service
+                        discovery</a></li>
+                    <li><a class="submodule"
+                        href="windows-training.html#section-2-2-practical-investigate-failed-windows-authentication">2.2
+                        practical — Investigate failed Windows authentication</a></li>
+                    <li><a class="submodule"
+                        href="windows-training.html#section-2-3-practical-investigate-iis-probing-and-a-dummy-exposed-backup">2.3
+                        practical — Investigate IIS probing and a dummy exposed backup</a></li>
+                    <li><a class="submodule" href="windows-training.html#traffic">2.4 — Investigate suspicious request
+                        traffic</a></li>
+                    <li><a class="submodule" href="windows-training.html#dos">2.5 — Investigate denial of service and
+                        resource exhaustion</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="windows-training.html#business-inject">Practice — Business inject</a></li>
+              <li><a href="windows-training.html#section-inject-practice">Inject practice</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="inject-practice.html">Inject Practice</a></summary>
+            <ul class="page-children">
+              <li><a href="inject-practice.html#section-our-classroom-version">Our classroom version</a></li>
+              <li><a href="inject-practice.html#section-how-to-approach-any-inject">How to approach any inject</a></li>
+              <li><a href="inject-practice.html#section-practice-a-understand-services-and-ports">Practice A —
+                  Understand services and ports</a></li>
+              <li><a href="inject-practice.html#section-practice-b-write-a-disk-space-check">Practice B — Write a
+                  disk-space check</a></li>
+              <li><a href="inject-practice.html#section-practice-c-match-network-listeners-to-processes">Practice C —
+                  Match network listeners to processes</a></li>
+              <li><a href="inject-practice.html#section-when-you-need-help">When you need help</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="command-reference.html">Command Reference</a></summary>
+            <ul class="page-children">
+              <li><a href="command-reference.html#section-how-to-read-the-manual">How to read the manual</a></li>
+              <li><a href="command-reference.html#linux">Linux and Bash</a></li>
+              <li><a href="command-reference.html#windows">Windows</a></li>
+              <li><a href="command-reference.html#section-understanding-the-scripts">Understanding the scripts</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>
+<h1>Linux Training</h1>
+<p><a href="index.html">← Overview</a>|......|<a href="student-workbook.html#linux-credentials">Linux group login
+    credentials →</a></p>
+<p>Run these activities inside Ubuntu. Complete Getting Started first. See <a href="index.html#training-groups">Overview
+    for group organization</a>.</p>
+<h2 id="baseline">Preparation — Service inventory and baseline</h2>
+<p>Identify your hostname, IP, listeners and running services. Compare with Overview.</p>
+<pre>hostname
+ip -br address
+ip route
+sudo ss -lntup
+systemctl status nginx ssh --no-pager
+sudo ufw status verbose
+curl -fsS http://172.29.242.30/index.html</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#linux-hostname">hostname</a> · <a href="command-reference.html#linux-sudo">sudo</a> ·
+  <a href="command-reference.html#linux-ip">ip</a> · <a href="command-reference.html#linux-ss">ss</a> · <a
+    href="command-reference.html#linux-systemctl">systemctl</a> · <a href="command-reference.html#linux-ufw">ufw</a> ·
+  <a href="command-reference.html#linux-curl">curl</a>
+</p>
+<h2 id="module-1">Module 1 — Attacker already has system access</h2>
+<p>Read <a href="student-workbook.html#module-1">Module 1 concepts and the exercise workflow in Getting Started</a>,
+  then complete these platform tasks.</p>
+<h3 id="service-tampering">1.1 — Service tampering and recovery</h3>
+<p></p>
+<p>Location: service and investigation commands run in Terminal INSIDE the Ubuntu VM (ccdc-linux, 172.29.242.30). The
+  explicitly labeled laptop browser checks run on your own computer outside the VM. No Windows commands or Windows login
+  are needed. Use trainee01 with sudo; enter TrainLab!2601 when prompted.</p>
+<p>Scenario: the attacker already has administrative access and deliberately stops a business service. This is a
+  controlled simulation of privileged-account misuse, not a remote exploit or password attack.</p>
+<p>Roles: one attacker, one defender and one observer. Because they share the same desktop/account, take turns at the
+  keyboard: attacker performs the assigned action, then hands over to the defender. The observer records UTC times. Do
+  not open competing trainee01 desktop sessions. Do not stop SSH, xrdp or networking.</p>
+<h3 id="section-step-1-verify-the-linux-baseline">Step 1 - Verify the Linux baseline</h3>
+<p> Verify the relevant services and record the results. </p>
+<pre>date -u
+hostname
+systemctl is-active nginx ssh
+curl --max-time 5 -fsS http://172.29.242.30/index.html</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#linux-hostname">hostname</a> · <a
+    href="command-reference.html#linux-systemctl">systemctl</a> · <a href="command-reference.html#linux-curl">curl</a> ·
+  <a href="command-reference.html#linux-date">date</a>
+</p>
+<section id="service-web-linux-baseline">
+  <h4>Laptop browser check — baseline</h4>
+  <p><strong>Location: your own computer, outside the VM.</strong> Before the attacker stops the service, confirm the
+    website works from your own campus laptop. Open <a
+      href="http://128.198.74.133:18080/index.html">http://128.198.74.133:18080/index.html</a>. Hard-refresh to avoid a
+    cached page, or use the command below for a new request. Keep this separate from the guest-side commands above.</p>
+  <p>Windows laptop, PowerShell:</p>
+  <pre>curl.exe -i --max-time 5 http://128.198.74.133:18080/index.html</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p>macOS/Linux laptop, Terminal:</p>
+  <pre>curl -i --max-time 5 http://128.198.74.133:18080/index.html</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p>Expect HTTP 200 and the page text <code>CCDC Linux storefront: operational</code>. Compare the response with the
+    service state and timestamps inside the target VM. The relay's TCP port can still accept a connection when the guest
+    HTTP service is down: a successful port test alone does not prove HTTP works. This is an HTTP service exercise; do
+    not stop networking, RDP or TCP itself.</p>
+</section>
+<h3 id="section-step-2-linux-attacker-action">Step 2 - Linux attacker action</h3>
+<p>Record the time, stop Nginx once, then hand over. Do not change anything else.</p>
+<pre>date -u
+sudo systemctl stop nginx</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#linux-sudo">sudo</a> · <a href="command-reference.html#linux-systemctl">systemctl</a> ·
+  <a href="command-reference.html#linux-date">date</a>
+</p>
+<section id="service-web-linux-outage">
+  <h4>Laptop browser check — outage</h4>
+  <p><strong>Location: your own computer, outside the VM.</strong> With the HTTP service stopped, test again from your
+    own campus laptop before the defender restores it. Open <a
+      href="http://128.198.74.133:18080/index.html">http://128.198.74.133:18080/index.html</a>. Hard-refresh to avoid a
+    cached page, or use the command below for a new request. Keep this separate from the guest-side commands above.</p>
+  <p>Windows laptop, PowerShell:</p>
+  <pre>curl.exe -i --max-time 5 http://128.198.74.133:18080/index.html</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p>macOS/Linux laptop, Terminal:</p>
+  <pre>curl -i --max-time 5 http://128.198.74.133:18080/index.html</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p>Expect a request failure, empty reply, timeout or HTTP error; the operational page must not be returned. IIS can
+    return an HTTP error while its HTTP.sys TCP listener remains available. Compare the response with the service state
+    and timestamps inside the target VM. The relay's TCP port can still accept a connection when the guest HTTP service
+    is down: a successful port test alone does not prove HTTP works. This is an HTTP service exercise; do not stop
+    networking, RDP or TCP itself.</p>
+</section>
+<h3 id="section-step-3-linux-defender-investigation">Step 3 - Linux defender investigation</h3>
+<p>Confirm the outage before changing the system. A failed curl and an inactive service are expected in this round.
+  Record output or screenshots; the journal provides evidence of a service change, not necessarily the actor&#x27;s
+  identity.</p>
+<pre>date -u
+curl --max-time 5 -i http://172.29.242.30/index.html
+systemctl status nginx --no-pager
+sudo journalctl -u nginx --since &quot;15 minutes ago&quot; --utc --no-pager
+sudo ss -lntup</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#linux-sudo">sudo</a> · <a href="command-reference.html#linux-ss">ss</a> · <a
+    href="command-reference.html#linux-systemctl">systemctl</a> · <a href="command-reference.html#linux-curl">curl</a> ·
+  <a href="command-reference.html#linux-date">date</a> · <a
+    href="command-reference.html#linux-journalctl">journalctl</a>
+</p>
+<h3 id="section-step-4-linux-defender-recovery-and-validation">Step 4 - Linux defender recovery and validation</h3>
+<p> Verify the relevant services and record the results. </p>
+<pre>sudo systemctl start nginx
+systemctl is-active nginx ssh
+curl --max-time 5 -fsS http://172.29.242.30/index.html
+sudo ss -lntp &#x27;sport = :80&#x27;
+date -u</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#linux-sudo">sudo</a> · <a href="command-reference.html#linux-ss">ss</a> · <a
+    href="command-reference.html#linux-systemctl">systemctl</a> · <a href="command-reference.html#linux-curl">curl</a> ·
+  <a href="command-reference.html#linux-date">date</a>
+</p>
+<section id="service-web-linux-recovery">
+  <h4>Laptop browser check — recovery</h4>
+  <p><strong>Location: your own computer, outside the VM.</strong> After restoring the HTTP service, repeat the same
+    request from your own campus laptop. Open <a
+      href="http://128.198.74.133:18080/index.html">http://128.198.74.133:18080/index.html</a>. Hard-refresh to avoid a
+    cached page, or use the command below for a new request. Keep this separate from the guest-side commands above.</p>
+  <p>Windows laptop, PowerShell:</p>
+  <pre>curl.exe -i --max-time 5 http://128.198.74.133:18080/index.html</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p>macOS/Linux laptop, Terminal:</p>
+  <pre>curl -i --max-time 5 http://128.198.74.133:18080/index.html</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p>Expect HTTP 200 and the page text <code>CCDC Linux storefront: operational</code>. Compare the response with the
+    service state and timestamps inside the target VM. The relay's TCP port can still accept a connection when the guest
+    HTTP service is down: a successful port test alone does not prove HTTP works. This is an HTTP service exercise; do
+    not stop networking, RDP or TCP itself.</p>
+</section>
+<h3 id="section-step-5-linux-defense-review-and-deliverables">Step 5 - Linux defense review and deliverables</h3>
+<p> Verify the relevant services and record the results. </p>
+<h3 id="web-integrity">1.2 — Web-content tampering and evidence</h3>
+<p><a href="student-workbook.html#web-integrity">Shared concept →</a></p>
+<p>Objective: distinguish an intact service from correct business content. Instructor introduces an altered Linux page.
+</p>
+<p>Defender, Linux guest; use a new evidence directory for this round:</p>
+<pre>case_dir=&quot;$HOME/case-$(date -u +%Y%m%dT%H%M%SZ)&quot;
+mkdir -m 700 &quot;$case_dir&quot;
+sudo stat /var/www/html/index.html | tee &quot;$case_dir/stat.txt&quot;
+sudo sha256sum /var/www/html/index.html | tee &quot;$case_dir/hash.txt&quot;
+sudo cat /var/www/html/index.html &gt; &quot;$case_dir/page.txt&quot;
+sudo journalctl -u nginx --since &quot;20 minutes ago&quot; --utc --no-pager &gt; &quot;$case_dir/nginx-journal.txt&quot;
+sudo tail -n 100 /var/log/nginx/access.log &gt; &quot;$case_dir/access.txt&quot;
+curl -i http://172.29.242.30/index.html</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#linux-sudo">sudo</a> · <a href="command-reference.html#linux-curl">curl</a> · <a
+    href="command-reference.html#linux-date">date</a> · <a href="command-reference.html#linux-journalctl">journalctl</a>
+  · <a href="command-reference.html#linux-mkdir">mkdir</a> · <a href="command-reference.html#linux-stat">stat</a> · <a
+    href="command-reference.html#linux-sha256sum">sha256sum</a> · <a href="command-reference.html#linux-cat">cat</a> ·
+  <a href="command-reference.html#linux-tee">tee</a> · <a href="command-reference.html#linux-tail">tail</a> · <a
+    href="command-reference.html#syntax">script syntax</a>
+</p>
+<p>Request the instructor&#x27;s trusted backup after collecting evidence, restore it, and verify content. Do not copy
+  the attacker&#x27;s altered page into the baseline.</p>
+<p>Practice check: demonstrate the result, explain your actions to your group, and retain your working files. No written
+  report submission is required.</p>
+<h3 id="firewall-tampering">1.3 — Firewall tampering versus service failure</h3>
+<p><a href="student-workbook.html#firewall-tampering">Shared concept →</a></p>
+<p>Instructor blocks Linux HTTP through a temporary guest firewall rule. Defender must preserve SSH and console access.
+</p>
+<p>Linux guest:</p>
+<pre>systemctl is-active nginx
+curl -fsS http://127.0.0.1/index.html
+sudo ss -lntp
+sudo ufw status numbered</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#linux-sudo">sudo</a> · <a href="command-reference.html#linux-ss">ss</a> · <a
+    href="command-reference.html#linux-systemctl">systemctl</a> · <a href="command-reference.html#linux-ufw">ufw</a> ·
+  <a href="command-reference.html#linux-curl">curl</a>
+</p>
+<p>Ask the instructor to test HTTP and SSH from outside the Ubuntu VM before and after recovery. Local loopback success
+  alone does not prove external access.</p>
+<p>Identify the instructor&#x27;s exercise rule. Remove that rule only, then retest externally. Do not disable the
+  entire firewall or alter the host firewall.</p>
+<p>Practice check: demonstrate the result, explain your actions to your group, and retain your working files. No written
+  report submission is required.</p>
+<h3 id="account-compromise">1.4 — Compromised account and excessive privilege</h3>
+<p><a href="student-workbook.html#account-compromise">Shared concept →</a></p>
+<p>Instructor creates an exercise-only Linux account with one deliberately excessive sudo permission: stopping Nginx.
+  This is a supplied compromised-account scenario, not password cracking.</p>
+<p>Attacker, in the provided exercise account&#x27;s guest session:</p>
+<pre>whoami
+sudo -l
+sudo /usr/bin/systemctl stop nginx</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#linux-whoami">whoami</a> · <a href="command-reference.html#linux-sudo">sudo</a> · <a
+    href="command-reference.html#linux-systemctl">systemctl</a></p>
+<p>Defender: inventory the exercise account and its sudo rule, preserve the relevant sudo/journal records, revoke the
+  unnecessary permission and restore Nginx. Ask the instructor to retest the same command as the exercise account; it
+  should be denied while HTTP remains available.</p>
+<p>Practice check: demonstrate the result, explain your actions to your group, and retain your working files. No written
+  report submission is required.</p>
+<section id="before-login">
+  <h2 id="module-2">Module 2 — Attacker starts without system access</h2><span id="authentication"></span><span
+    id="web-inputs"></span>
+  <p>Read <a href="student-workbook.html#module-2">Module 2 concepts and exercise boundaries in Getting Started</a>,
+    then complete the platform tasks below. This track includes a bounded port pass, request-log investigation and a
+    supplied DoS evidence exercise.</p>
+  <h3 id="discovery">2.1 — Port scanning and service discovery</h3>
+  <p>Use the assigned guest only. In these single-VM simulations, the red-team operator uses a normal guest terminal to
+    generate network requests; target administration is reserved for the blue team. The operator login is a
+    traffic-generation convenience, not evidence of a successful intrusion. Do not elevate the red-team commands.</p>
+  <h4>Blue team — establish the service inventory</h4>
+  <p>Record listening ports before the red-team pass. The instructor confirms TCP 65000 is unused; if it is in use, omit
+    it. Required ports are 22 (SSH), 80 (HTTP), and 3389 (RDP).</p>
+  <pre>date -Is
+sudo ss -lntup
+systemctl is-active nginx ssh xrdp</pre>
+  <h4>Red team — one bounded pass</h4>
+  <p>Probe only these four ports once. A failed connection can mean a closed port or filtering; it is not a conclusive
+    firewall diagnosis. Save the displayed results for comparison.</p>
+  <pre>for port in 22 80 3389 65000; do
+  if timeout 2 bash -c &quot;exec 3&lt;&gt;/dev/tcp/172.29.242.30/$port&quot; 2&gt;/dev/null; then
+    printf &#x27;%s open\n&#x27; &quot;$port&quot;
+  else
+    printf &#x27;%s closed-or-filtered\n&#x27; &quot;$port&quot;
+  fi
+done</pre>
+  <h4>Blue team — explain and verify</h4>
+  <ol>
+    <li>Compare probe results with the inventory. Explain each expected listener and investigate any discrepancy.</li>
+    <li>Inspect existing firewall or service logs for the recorded time window. A connection-only probe may leave no
+      application log entry. Report that visibility gap rather than inventing evidence.</li>
+    <li>Explain one restriction you would consider for an unnecessary service. This round changes no firewall or service
+      configuration.</li>
+    <li>Use a fresh laptop request to <a href="http://128.198.74.133:18080/index.html">the assigned website</a> to
+      confirm ordinary HTTP still works.</li>
+  </ol>
+  <p><strong>Complete:</strong> show the four results, the matching listener inventory, and a normal HTTP response. No
+    configuration cleanup is needed. The local pass does not establish laptop reachability or test the relay firewall.
+    Windows TCP 53 does not verify UDP DNS.</p>
+  <h3 id="section-2-2-practical-investigate-failed-ssh-authentication">2.2 Investigate failed SSH authentication</h3>
+  <p><strong>Defender, Ubuntu terminal:</strong> establish the baseline and note the current time. The instructor must
+    confirm the test account does not exist. If <code>getent</code> prints an account, stop and ask for a different test
+    name.</p>
+  <pre>date -Is
+getent passwd ccdc-probe-no-user
+systemctl is-active ssh nginx
+sudo journalctl -u ssh --since '10 minutes ago' --no-pager</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-sudo">sudo</a> · <a href="command-reference.html#linux-systemctl">systemctl</a>
+    · <a href="command-reference.html#linux-date">date</a> · <a
+      href="command-reference.html#linux-journalctl">journalctl</a> · <a
+      href="command-reference.html#linux-getent">getent</a></p>
+  <p><strong>Operator, a second Ubuntu terminal:</strong> this loopback exercise works without another group's VM. Run
+    once, enter arbitrary dummy text at the password prompt, and expect Permission denied. Repeat manually at most twice
+    more if instructed.</p>
+  <pre>ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o NumberOfPasswordPrompts=1 ccdc-probe-no-user@127.0.0.1</pre>
+  <p>On the first connection, verify the host key with the instructor before accepting it. This is a local SSH test:
+    expect a loopback source, not an outside attacker address. For a network-source demonstration, the instructor may
+    perform the same bounded test from the lab host to <code>172.29.242.30</code>; students do not need host access.</p>
+  <pre>sudo journalctl -u ssh --since '10 minutes ago' --no-pager
+sudo journalctl -t sshd --since '10 minutes ago' --no-pager</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-sudo">sudo</a> · <a
+      href="command-reference.html#linux-journalctl">journalctl</a></p>
+  <p>The second query is a fallback if unit filtering misses SSH records. Find the test username, invalid-user or
+    authentication-failure message, timestamp, source and source port. Distinguish log lines from attempts: one attempt
+    can create several records. Explain why testing a nonexistent account demonstrates rejected authentication without
+    risking a real account lockout. The journal is the primary source here; <code>/var/log/auth.log</code> may not exist
+    on this VM.</p>
+  <h3 id="section-2-3-practical-investigate-web-probing-and-a-dummy-exposed-backup">2.3 Investigate web probing and a
+    dummy exposed backup</h3>
+  <p>The instructor first publishes the dummy exercise file. <strong>Operator, Ubuntu terminal:</strong> make these
+    three requests, once each. The first is normal traffic; the last two model someone looking for files without logging
+    in.</p>
+  <pre>curl -i --max-time 5 http://172.29.242.30/index.html
+curl -i --max-time 5 http://172.29.242.30/ccdc-probe-missing.txt
+curl -i --max-time 5 http://172.29.242.30/ccdc-probe-backup.txt</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p><strong>Defender:</strong> inspect Nginx access records. Expect 200 for the normal page, 404 for the missing path
+    and 200 with clearly labeled dummy text for the published backup. If results differ, inspect the setup rather than
+    claiming success.</p>
+  <pre>sudo tail -n 60 /var/log/nginx/access.log
+sudo grep 'ccdc-probe-' /var/log/nginx/access.log | tail -n 20</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-sudo">sudo</a> · <a href="command-reference.html#linux-tail">tail</a> · <a
+      href="command-reference.html#syntax">script syntax</a></p>
+  <p>Locate the source, timestamp including timezone offset, method, request path and HTTP status. A request to a
+    suspicious path shows probing; a 200 with the dummy content shows information was available without authentication.
+    Neither alone proves command execution or a server takeover. Requests made on this server do not demonstrate an
+    external network boundary.</p>
+  <h3 id="section-mitigate-repeat-and-verify">Mitigate, repeat and verify</h3>
+  <p>Preserve the relevant log entries before cleanup. Confirm that this exact file contains only the instructor's dummy
+    marker. Then remove only the exercise file; keep Nginx and SSH running.</p>
+  <pre>sudo cat /var/www/html/ccdc-probe-backup.txt
+sudo rm -i /var/www/html/ccdc-probe-backup.txt
+curl -i --max-time 5 http://172.29.242.30/ccdc-probe-backup.txt
+curl -fsS --max-time 5 http://172.29.242.30/index.html
+systemctl is-active nginx ssh
+sudo tail -n 15 /var/log/nginx/access.log</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-sudo">sudo</a> · <a href="command-reference.html#linux-systemctl">systemctl</a>
+    · <a href="command-reference.html#linux-curl">curl</a> · <a href="command-reference.html#linux-cat">cat</a> · <a
+      href="command-reference.html#linux-tail">tail</a> · <a href="command-reference.html#linux-rm">rm</a></p>
+  <p>Accept 404 for the removed file and the operational storefront for <code>index.html</code>. Observe both results in
+    the log. Explain how removing exposed data changes the outcome even though requests can continue. For
+    authentication, propose supported MFA, SSH keys or source restrictions and identify how each would be tested. Do not
+    change SSH authentication, UFW rules or shared passwords during this round; those changes require a separate
+    recovery plan.</p>
+  <p><strong>Practice check:</strong> show one rejected SSH attempt and its evidence; show the web file before and after
+    mitigation; explain one ordinary-error explanation and one suspicious pattern. State what the evidence cannot prove.
+    Demonstrate a legitimate service check still passes. No written report is required.</p>
+  <p>References: <a href="https://manpages.ubuntu.com/manpages/noble/en/man1/journalctl.1.html">Ubuntu journalctl
+      manual</a>; <a href="https://nginx.org/en/docs/http/ngx_http_log_module.html">Nginx access logging</a>.</p>
+
+  <h3 id="traffic">2.4 — Investigate suspicious request traffic</h3>
+  <p>Use the assigned guest only. In these single-VM simulations, the red-team operator uses a normal guest terminal to
+    generate network requests; target administration is reserved for the blue team. The operator login is a
+    traffic-generation convenience, not evidence of a successful intrusion. Do not elevate the red-team commands.</p>
+  <h4>Prepare</h4>
+  <p>The instructor confirms access logging is enabled and the two probe paths below do not exist. The blue team records
+    the time and normal page response. This exercise uses web access logs as network-request evidence; it is not a
+    packet-capture exercise.</p>
+  <h4>Red team — generate a short request sequence</h4>
+  <p>Run once: four sequential requests, separated by one second. The unique marker distinguishes the round from
+    background traffic. Give the marker to the blue team after it locates the pattern.</p>
+  <pre>marker=&quot;ccdc24-$(date +%s)&quot;
+printf &#x27;Round marker: %s\n&#x27; &quot;$marker&quot;
+for path in index.html ccdc24-missing.txt ccdc24-backup.zip index.html; do
+  curl --max-time 5 -sS -o /dev/null -w &#x27;%{http_code} %{url_effective}\n&#x27; &quot;http://172.29.242.30/$path?round=$marker&quot;
+  sleep 1
+done</pre>
+  <h4>Blue team — find and interpret the evidence</h4>
+  <pre>sudo tail -n 120 /var/log/nginx/access.log | grep &#x27;ccdc24-&#x27;</pre>
+  <p>Use the actual configured log path if it differs. IIS records may be buffered: wait up to one minute and reread
+    once. Read its #Fields header; the instructor should enable date, time, c-ip, cs-method, cs-uri-stem, cs-uri-query
+    and sc-status. Nginx combined logs include the request path and query. Distinguish local time offsets from IIS UTC.
+  </p>
+  <ol>
+    <li>Locate the four requests and record time, source, method, path and status.</li>
+    <li>Explain why the two index requests are ordinary checks and why the backup-like path warrants investigation.
+      Expected status order: 200, 404, 404, 200. If different, investigate the actual site configuration.</li>
+    <li>Explain why a missing-file request does not demonstrate compromise. A source address identifies a connection,
+      not a person.</li>
+    <li>Propose one response if a sensitive backup really were exposed: preserve evidence and remove the exposed copy
+      while leaving normal content available.</li>
+  </ol>
+  <h4>Verify and close the round</h4>
+  <p>Repeat one normal index request and confirm operational content. Retain the relevant log lines; do not clear the
+    logs. No files, accounts or rules were changed. Reverse roles with a new marker. <strong>Complete:</strong> show the
+    ordered requests, explain their significance and uncertainty, and demonstrate normal service.</p>
+  <h3 id="dos">2.5 — Investigate denial of service and resource exhaustion</h3>
+  <p>This is a concrete offline investigation using a supplied synthetic incident dataset. It does not generate a flood
+    or change the live service. The red team introduces the incident evidence; the blue team diagnoses it, proposes
+    containment, and validates the recovery evidence.</p>
+  <h4>Open the evidence inside your assigned VM</h4>
+  <p>Save <a href="dos-linux-timeline.csv" download>the Linux incident CSV</a> into Downloads inside the VM. If viewing
+    this pack on a laptop, copy the CSV into the VM first. The commands below use that Downloads path; adjust it if
+    needed. Each row is a one-minute measurement. requests and http_5xx are counts; p95_ms is the 95th-percentile
+    response time in milliseconds; cpu_pct and memory_pct are percentages. The documentation-range source IP is
+    fictional and must not be contacted.</p>
+  <h4>Red team — present the scenario</h4>
+  <p>Tell the blue team: “Users report slow pages and intermittent errors starting at 10:02 UTC. The service monitor
+    still reports the web service running.” Provide the CSV. Do not stop the real service or send load traffic.</p>
+  <h4>Blue team — analyze</h4>
+  <pre>python3 - &lt;&lt;&#x27;PYCODE&#x27;
+import csv
+from pathlib import Path
+rows = list(csv.DictReader((Path.home() / &#x27;Downloads/dos-linux-timeline.csv&#x27;).open()))
+for r in rows:
+    errors = 100 * int(r[&#x27;http_5xx&#x27;]) / int(r[&#x27;requests&#x27;])
+    print(r[&#x27;time_utc&#x27;], r[&#x27;service_state&#x27;], &#x27;requests=&#x27;+r[&#x27;requests&#x27;],
+          &#x27;p95_ms=&#x27;+r[&#x27;p95_ms&#x27;], &#x27;CPU=&#x27;+r[&#x27;cpu_pct&#x27;], f&#x27;5xx={errors:.1f}%&#x27;)
+peak = max(rows, key=lambda r: int(r[&#x27;requests&#x27;]))
+print(&#x27;Peak:&#x27;, peak[&#x27;time_utc&#x27;], peak[&#x27;top_source&#x27;], peak[&#x27;top_source_requests&#x27;])
+PYCODE</pre>
+  <ol>
+    <li>Identify the normal baseline, first degraded minute and peak minute. Calculate how much request volume increased
+      from the baseline.</li>
+    <li>Use service state, CPU, latency and error rate to distinguish this incident from the stopped-service exercise.
+      Explain why these metrics alone cannot establish malicious intent.</li>
+    <li>Calculate the busiest source’s fraction of requests at the peak. Propose a narrowly scoped request limit or
+      upstream filter, and explain how you would avoid blocking legitimate users behind a shared gateway. Record the
+      proposed action; do not apply it to this lab.</li>
+    <li>Treat the 10:05 and 10:06 rows as supplied post-containment evidence. Verify recovery against the criteria below
+      and explain what monitoring you would continue.</li>
+  </ol>
+  <h4>Recovery criteria and live service check</h4>
+  <p>Accept the scenario recovery only if both final samples have a running service, p95 latency below 200 ms, error
+    rate below 1%, and CPU below 50%. Then independently check the real VM with the read-only commands below. The live
+    check demonstrates lab availability, not that you mitigated the synthetic incident.</p>
+  <pre>systemctl is-active nginx
+curl --max-time 5 -fsS http://172.29.242.30/index.html</pre>
+  <p><strong>Complete:</strong> present your timeline, calculations, diagnosis, proposed containment, and evidence that
+    recovery criteria pass. Preserve your notes; deleting your downloaded CSV after the debrief is optional. Reverse
+    roles with the other team explaining and challenging the diagnosis.</p>
+</section>
+<h2 id="section-inject-practice">Inject practice</h2>
+<p>Open <a href="inject-practice.html">Inject practice</a> and follow the instructions for your assigned operating
+  system.</p>
+<script id="training-sidebar-script">
+  (() => {const sidebar = document.getElementById('training-sidebar'); const button = sidebar.querySelector('button'); button.addEventListener('click', () => {const collapsed = sidebar.dataset.collapsed !== 'true'; sidebar.dataset.collapsed = String(collapsed); button.setAttribute('aria-expanded', String(!collapsed));}); const links = [...sidebar.querySelectorAll('a[href^="#"]')]; const sections = links.map(a => document.getElementById(decodeURIComponent(a.hash.slice(1)))); let pending = false; function update() {let active = 0; sections.forEach((section, i) => {if (section && section.getBoundingClientRect().top <= 110) active = i}); links.forEach((link, i) => {if (i === active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current')}); pending = false} window.addEventListener('scroll', () => {if (!pending) {pending = true; requestAnimationFrame(update)} }, {passive: true}); function reveal() {const target = document.getElementById(decodeURIComponent(location.hash.slice(1))); const link = links.find(a => a.hash === location.hash); if (target && link) {let parent = link.parentElement; while (parent && parent !== sidebar) {if (parent.tagName === 'DETAILS') parent.open = true; parent = parent.parentElement} } update()} window.addEventListener('hashchange', reveal); reveal();})();
+</script>
+
+</html>

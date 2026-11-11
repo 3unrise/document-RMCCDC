@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windows Training</title>
+<style>
+  body {
+    font: 16px/1.6 system-ui;
+    max-width: 1050px;
+    margin: 32px auto;
+    padding: 0 22px;
+    color: #193047
+  }
+
+  nav,
+  pre {
+    background: #edf3f7;
+    padding: 16px
+  }
+
+  pre {
+    white-space: pre-wrap
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%
+  }
+
+  td,
+  th {
+    border: 1px solid #ccd8e0;
+    padding: 10px;
+    text-align: left
+  }
+
+  h2 {
+    margin-top: 32px
+  }
+
+  svg {
+    width: 100%;
+    height: auto
+  }
+</style>
+<style id="training-sidebar-style">
+  html {
+    scroll-behavior: smooth
+  }
+
+  body {
+    max-width: 1050px !important;
+    width: auto !important;
+    margin: 32px auto 32px 312px !important;
+    padding: 0 28px !important
+  }
+
+  h2,
+  h3 {
+    scroll-margin-top: 24px
+  }
+
+  #training-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 272px;
+    box-sizing: border-box;
+    padding: 24px 16px;
+    overflow-y: auto;
+    background: #edf3f7;
+    border-right: 1px solid #ccd8e0;
+    z-index: 100;
+    font: 14px/1.45 system-ui;
+    color: #193047
+  }
+
+  #training-sidebar details {
+    margin: 3px 0
+  }
+
+  #training-sidebar summary {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    border-radius: 5px
+  }
+
+  #training-sidebar summary::-webkit-details-marker {
+    display: none
+  }
+
+  #training-sidebar summary::before {
+    content: '▸';
+    flex: 0 0 18px;
+    text-align: center
+  }
+
+  #training-sidebar details[open]>summary::before {
+    content: '▾'
+  }
+
+  #training-sidebar summary a {
+    flex: 1;
+    min-width: 0;
+    margin: 0
+  }
+
+  #training-sidebar summary:focus-visible {
+    outline: 3px solid #2479a8
+  }
+
+  #training-sidebar .page-children {
+    margin: 4px 0 10px 12px;
+    padding-left: 8px;
+    border-left: 1px solid #bccedb
+  }
+
+  #training-sidebar .section-children {
+    margin-left: 12px
+  }
+
+  #training-sidebar li {
+    margin: 0
+  }
+
+  #training-sidebar .sidebar-title {
+    font-weight: 750;
+    font-size: 18px;
+    margin: 0 0 14px
+  }
+
+  #training-sidebar .sidebar-label {
+    font-weight: 700;
+    margin: 20px 8px 8px;
+    color: #465e70
+  }
+
+  #training-sidebar a {
+    display: block;
+    padding: 7px 9px;
+    margin: 2px 0;
+    border-radius: 5px;
+    color: #193047;
+    text-decoration: none;
+    overflow-wrap: anywhere
+  }
+
+  #training-sidebar a:hover {
+    background: #dce7ef
+  }
+
+  #training-sidebar a:focus-visible {
+    outline: 3px solid #2479a8;
+    outline-offset: 1px
+  }
+
+  #training-sidebar a[aria-current="page"] {
+    font-weight: 750;
+    background: transparent;
+    color: #193047
+  }
+
+  #training-sidebar a[aria-current="location"] {
+    font-weight: 700;
+    background: transparent;
+    color: #193047
+  }
+
+  #training-sidebar a.submodule {
+    padding-left: 23px;
+    font-size: 13px
+  }
+
+  #training-sidebar .sidebar-toggle {
+    display: none
+  }
+
+  #training-sidebar nav {
+    padding: 0;
+    margin: 0;
+    background: transparent
+  }
+
+  #training-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0
+  }
+
+  @media(min-width:1550px) {
+    body {
+      margin-left: calc(272px + (100vw - 272px - 1106px)/2) !important
+    }
+  }
+
+  @media(max-width:850px) {
+    body {
+      margin: 20px auto !important;
+      padding: 0 18px !important
+    }
+
+    #training-sidebar {
+      position: relative;
+      width: auto;
+      inset: auto;
+      margin: 0 0 24px;
+      padding: 14px;
+      border: 1px solid #ccd8e0;
+      border-radius: 6px;
+      max-height: none
+    }
+
+    #training-sidebar .sidebar-toggle {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: 0;
+      padding: 4px;
+      font: 700 16px system-ui;
+      color: #193047;
+      cursor: pointer
+    }
+
+    #training-sidebar details {
+      margin: 3px 0
+    }
+
+    #training-sidebar summary {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      cursor: pointer;
+      border-radius: 5px
+    }
+
+    #training-sidebar summary::-webkit-details-marker {
+      display: none
+    }
+
+    #training-sidebar summary::before {
+      content: '▸';
+      flex: 0 0 18px;
+      text-align: center
+    }
+
+    #training-sidebar details[open]>summary::before {
+      content: '▾'
+    }
+
+    #training-sidebar summary a {
+      flex: 1;
+      min-width: 0;
+      margin: 0
+    }
+
+    #training-sidebar summary:focus-visible {
+      outline: 3px solid #2479a8
+    }
+
+    #training-sidebar .page-children {
+      margin: 4px 0 10px 12px;
+      padding-left: 8px;
+      border-left: 1px solid #bccedb
+    }
+
+    #training-sidebar .section-children {
+      margin-left: 12px
+    }
+
+    #training-sidebar li {
+      margin: 0
+    }
+
+    #training-sidebar .sidebar-title {
+      display: none
+    }
+
+    #training-sidebar[data-collapsed="true"] .sidebar-content {
+      display: none
+    }
+  }
+
+  @media(prefers-reduced-motion:reduce) {
+    html {
+      scroll-behavior: auto
+    }
+  }
+
+  @media print {
+    #training-sidebar {
+      display: none
+    }
+
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      max-width: none !important
+    }
+  }
+</style>
+<aside id="training-sidebar" data-collapsed="false">
+  <p class="sidebar-title">CCDC Training</p><button class="sidebar-toggle" type="button" aria-expanded="true"
+    aria-controls="training-sidebar-content">Training navigation ▾</button>
+  <div id="training-sidebar-content" class="sidebar-content">
+    <nav aria-label="Training pages and sections">
+      <ul>
+        <li>
+          <details class="page-group">
+            <summary><a href="index.html">Overview</a></summary>
+            <ul class="page-children">
+              <li>
+                <details open>
+                  <summary><a href="index.html#section-lab-topology">Lab environment</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="index.html#section-ubuntu-services">Ubuntu services</a></li>
+                    <li><a class="submodule" href="index.html#section-windows-services">Windows services</a></li>
+                    <li><a class="submodule" href="index.html#section-lab-dns-records">Lab DNS records</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="index.html#course-map">Course structure</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="index.html#training-groups">Two training groups</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-0">Module 0 — Connect to your assigned
+                        VM</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-1">Module 1 — Attacker already has system
+                        access</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-2">Module 2 — Attacker starts without
+                        system access</a></li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="student-workbook.html">Getting Started</a></summary>
+            <ul class="page-children">
+              <li><a href="student-workbook.html#section-shared-response-workflow">Exercise workflow</a></li>
+              <li>
+                <details open>
+                  <summary><a href="student-workbook.html#section-preparation-connect-to-your-assigned-vm">Module 0 —
+                      Connect to your assigned VM</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="student-workbook.html#linux-credentials">Linux group</a></li>
+                    <li><a class="submodule" href="student-workbook.html#windows-credentials">Windows group</a></li>
+                    <li><a class="submodule" href="student-workbook.html#section-connect-from-macos">Connect from
+                        macOS</a></li>
+                    <li><a class="submodule" href="student-workbook.html#section-connect-from-windows">Connect from
+                        Windows</a></li>
+                    <li><a class="submodule" href="student-workbook.html#section-connect-from-linux">Connect from
+                        Linux</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="student-workbook.html#module-1">Module 1 — Attacker already has system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="student-workbook.html#service-tampering">1.1 — Service tampering and
+                        recovery</a></li>
+                    <li><a class="submodule" href="student-workbook.html#web-integrity">1.2 — Web-content tampering and
+                        evidence</a></li>
+                    <li><a class="submodule" href="student-workbook.html#firewall-tampering">1.3 — Firewall tampering
+                        versus service failure</a></li>
+                    <li><a class="submodule" href="student-workbook.html#account-compromise">1.4 — Compromised account
+                        and excessive privilege</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="student-workbook.html#module-2">Module 2 — Attacker starts without system access</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="linux-training.html">Linux Training</a></summary>
+            <ul class="page-children">
+              <li><a href="linux-training.html#baseline">Preparation — Service inventory and baseline</a></li>
+              <li>
+                <details open>
+                  <summary><a href="linux-training.html#module-1">Module 1 — Attacker already has system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="linux-training.html#service-tampering">1.1 — Service tampering and
+                        recovery</a></li>
+                    <li><a class="submodule" href="linux-training.html#web-integrity">1.2 — Web-content tampering and
+                        evidence</a></li>
+                    <li><a class="submodule" href="linux-training.html#firewall-tampering">1.3 — Firewall tampering
+                        versus service failure</a></li>
+                    <li><a class="submodule" href="linux-training.html#account-compromise">1.4 — Compromised account and
+                        excessive privilege</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="linux-training.html#module-2">Module 2 — Attacker starts without system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="linux-training.html#discovery">2.1 — Port scanning and service
+                        discovery</a></li>
+                    <li><a class="submodule"
+                        href="linux-training.html#section-2-2-practical-investigate-failed-ssh-authentication">2.2
+                        Investigate failed SSH authentication</a></li>
+                    <li><a class="submodule"
+                        href="linux-training.html#section-2-3-practical-investigate-web-probing-and-a-dummy-exposed-backup">2.3
+                        Investigate web probing and a dummy exposed backup</a></li>
+                    <li><a class="submodule" href="linux-training.html#traffic">2.4 — Investigate suspicious request
+                        traffic</a></li>
+                    <li><a class="submodule" href="linux-training.html#dos">2.5 — Investigate denial of service and
+                        resource exhaustion</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="linux-training.html#section-inject-practice">Inject practice</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group" open>
+            <summary><a href="windows-training.html" aria-current="page">Windows Training</a></summary>
+            <ul class="page-children">
+              <li><a href="#baseline">Preparation — Service inventory and baseline</a></li>
+              <li>
+                <details open>
+                  <summary><a href="#module-1">Module 1 — Attacker already has system access</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="#service-tampering">1.1 — Service tampering and recovery</a></li>
+                    <li><a class="submodule" href="#web-integrity">1.2 — Web-content tampering and evidence</a></li>
+                    <li><a class="submodule" href="#firewall-tampering">1.3 — Firewall tampering versus service
+                        failure</a></li>
+                    <li><a class="submodule" href="#account-compromise">1.4 — Compromised account and excessive
+                        privilege</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="#module-2">Module 2 — Attacker starts without system access</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="#discovery">2.1 — Port scanning and service discovery</a></li>
+                    <li><a class="submodule" href="#section-2-2-practical-investigate-failed-windows-authentication">2.2
+                        practical — Investigate failed Windows authentication</a></li>
+                    <li><a class="submodule"
+                        href="#section-2-3-practical-investigate-iis-probing-and-a-dummy-exposed-backup">2.3 practical —
+                        Investigate IIS probing and a dummy exposed backup</a></li>
+                    <li><a class="submodule" href="#traffic">2.4 — Investigate suspicious request traffic</a></li>
+                    <li><a class="submodule" href="#dos">2.5 — Investigate denial of service and resource exhaustion</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="#business-inject">Practice — Business inject</a></li>
+              <li><a href="#section-inject-practice">Inject practice</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="inject-practice.html">Inject Practice</a></summary>
+            <ul class="page-children">
+              <li><a href="inject-practice.html#section-our-classroom-version">Our classroom version</a></li>
+              <li><a href="inject-practice.html#section-how-to-approach-any-inject">How to approach any inject</a></li>
+              <li><a href="inject-practice.html#section-practice-a-understand-services-and-ports">Practice A —
+                  Understand services and ports</a></li>
+              <li><a href="inject-practice.html#section-practice-b-write-a-disk-space-check">Practice B — Write a
+                  disk-space check</a></li>
+              <li><a href="inject-practice.html#section-practice-c-match-network-listeners-to-processes">Practice C —
+                  Match network listeners to processes</a></li>
+              <li><a href="inject-practice.html#section-when-you-need-help">When you need help</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="command-reference.html">Command Reference</a></summary>
+            <ul class="page-children">
+              <li><a href="command-reference.html#section-how-to-read-the-manual">How to read the manual</a></li>
+              <li><a href="command-reference.html#linux">Linux and Bash</a></li>
+              <li><a href="command-reference.html#windows">Windows</a></li>
+              <li><a href="command-reference.html#section-understanding-the-scripts">Understanding the scripts</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>
+<h1>Windows Training</h1>
+<p><a href="index.html">← Overview</a>|......|<a href="student-workbook.html#windows-credentials">Windows group login
+    credentials →</a>
+
+<h2 id="baseline">Preparation — Service inventory and baseline</h2>
+<p>Identify your hostname, IP, listeners and running services. Compare with Overview.</p>
+<pre>hostname
+Get-NetIPConfiguration
+Get-Service W3SVC,DNS
+Get-NetTCPConnection -State Listen
+Resolve-DnsName windows.training.test -Server 172.29.242.40
+Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#windows-get-netipconfiguration">Get-NetIPConfiguration</a> · <a
+    href="command-reference.html#windows-get-service">Get-Service</a> · <a
+    href="command-reference.html#windows-get-nettcpconnection">Get-NetTCPConnection</a> · <a
+    href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
+    href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
+    href="command-reference.html#shell-test">test</a> · <a href="command-reference.html#windows-hostname">hostname</a>
+</p>
+<h2 id="module-1">Module 1 — Attacker already has system access</h2>
+<p>Read <a href="student-workbook.html#module-1">Module 1 concepts and the exercise workflow in Getting Started</a>,
+  then complete these platform tasks.</p>
+<h3 id="service-tampering">1.1 — Service tampering and recovery</h3>
+<p></p>
+<p>Location: service and investigation commands run in PowerShell INSIDE the Windows VM (CCDC-WINDOWS, 172.29.242.40).
+  The explicitly labeled laptop browser checks run on your own computer outside the VM. No Linux terminal or dig command
+  is needed. Sign in as CCDC-WINDOWS rainee, open PowerShell with Run as administrator, and approve UAC.</p>
+<p>Scenario: an attacker already has administrative access. These are two controlled service-stop rounds, not
+  demonstrations of obtaining that access. Follow the red-team/blue-team exercise workflow. Do not stop Remote Desktop
+  Services, change networking or disable the firewall.</p>
+<h3 id="section-step-1-verify-the-windows-baseline">Step 1 - Verify the Windows baseline</h3>
+<p> Verify the relevant services and record the results. </p>
+<pre>(Get-Date).ToUniversalTime().ToString(&#x27;o&#x27;)
+hostname
+Get-Service W3SVC,DNS
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content
+Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#windows-get-service">Get-Service</a> · <a
+    href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
+    href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
+    href="command-reference.html#windows-get-date">Get-Date</a> · <a href="command-reference.html#shell-test">test</a> ·
+  <a href="command-reference.html#windows-hostname">hostname</a>
+</p>
+<section id="service-web-windows-baseline">
+  <h4>Laptop browser check — baseline</h4>
+  <p><strong>Location: your own computer, outside the VM.</strong> Before the attacker stops the service, confirm the
+    website works from your own campus laptop. Open <a
+      href="http://128.198.74.133:28080/index.html">http://128.198.74.133:28080/index.html</a>. Hard-refresh to avoid a
+    cached page, or use the command below for a new request. Keep this separate from the guest-side commands above.</p>
+  <p>Windows laptop, PowerShell:</p>
+  <pre>curl.exe -i --max-time 5 http://128.198.74.133:28080/index.html</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p>macOS/Linux laptop, Terminal:</p>
+  <pre>curl -i --max-time 5 http://128.198.74.133:28080/index.html</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p>Expect HTTP 200 and the page text <code>CCDC Windows intranet: operational</code>. Compare the response with the
+    service state and timestamps inside the target VM. The relay's TCP port can still accept a connection when the guest
+    HTTP service is down: a successful port test alone does not prove HTTP works. This is an HTTP service exercise; do
+    not stop networking, RDP or TCP itself.</p>
+</section>
+<h3 id="section-windows-attacker-stops-iis">Round A - Windows attacker stops IIS</h3>
+<p>Record the time, execute the stop once and hand over to the defender.</p>
+<pre>(Get-Date).ToUniversalTime().ToString(&#x27;o&#x27;)
+Stop-Service W3SVC</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#windows-stop-service">Stop-Service</a> · <a
+    href="command-reference.html#windows-get-date">Get-Date</a></p>
+<section id="service-web-windows-outage">
+  <h4>Laptop browser check — outage</h4>
+  <p><strong>Location: your own computer, outside the VM.</strong> With the HTTP service stopped, test again from your
+    own campus laptop before the defender restores it. Open <a
+      href="http://128.198.74.133:28080/index.html">http://128.198.74.133:28080/index.html</a>. Hard-refresh to avoid a
+    cached page, or use the command below for a new request. Keep this separate from the guest-side commands above.</p>
+  <p>Windows laptop, PowerShell:</p>
+  <pre>curl.exe -i --max-time 5 http://128.198.74.133:28080/index.html</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p>macOS/Linux laptop, Terminal:</p>
+  <pre>curl -i --max-time 5 http://128.198.74.133:28080/index.html</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p>Expect a request failure, empty reply, timeout or HTTP error; the operational page must not be returned. IIS can
+    return an HTTP error while its HTTP.sys TCP listener remains available. Compare the response with the service state
+    and timestamps inside the target VM. The relay's TCP port can still accept a connection when the guest HTTP service
+    is down: a successful port test alone does not prove HTTP works. This is an HTTP service exercise; do not stop
+    networking, RDP or TCP itself.</p>
+</section>
+<h3 id="section-windows-defender-investigates">Round A - Windows defender investigates</h3>
+<p>A failed request or an HTTP error is expected; it must not return the operational page. DNS should still answer.
+  Capture evidence before recovery.</p>
+<pre>Get-Service W3SVC,DNS
+Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5
+Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile
+Get-WinEvent -FilterHashtable @{LogName=&#x27;System&#x27;; StartTime=(Get-Date).AddMinutes(-15)} |
+  Where-Object ProviderName -eq &#x27;Service Control Manager&#x27; |
+  Select-Object TimeCreated,Id,Message</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#linux-id">id</a> · <a href="command-reference.html#windows-get-service">Get-Service</a>
+  · <a href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
+    href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
+    href="command-reference.html#windows-get-date">Get-Date</a> · <a
+    href="command-reference.html#windows-get-winevent">Get-WinEvent</a> · <a
+    href="command-reference.html#windows-where-object">Where-Object</a> · <a
+    href="command-reference.html#windows-select-object">Select-Object</a> · <a
+    href="command-reference.html#shell-test">test</a> · <a href="command-reference.html#syntax">script syntax</a></p>
+<h3 id="section-windows-defender-restores-iis">Round A - Windows defender restores IIS</h3>
+<pre>Start-Service W3SVC
+Get-Service W3SVC,DNS
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content
+(Get-Date).ToUniversalTime().ToString(&#x27;o&#x27;)</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#windows-get-service">Get-Service</a> · <a
+    href="command-reference.html#windows-start-service">Start-Service</a> · <a
+    href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
+    href="command-reference.html#windows-get-date">Get-Date</a></p>
+<p> Verify the relevant services and record the results. </p>
+<section id="service-web-windows-recovery">
+  <h4>Laptop browser check — recovery</h4>
+  <p><strong>Location: your own computer, outside the VM.</strong> After restoring the HTTP service, repeat the same
+    request from your own campus laptop. Open <a
+      href="http://128.198.74.133:28080/index.html">http://128.198.74.133:28080/index.html</a>. Hard-refresh to avoid a
+    cached page, or use the command below for a new request. Keep this separate from the guest-side commands above.</p>
+  <p>Windows laptop, PowerShell:</p>
+  <pre>curl.exe -i --max-time 5 http://128.198.74.133:28080/index.html</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p>macOS/Linux laptop, Terminal:</p>
+  <pre>curl -i --max-time 5 http://128.198.74.133:28080/index.html</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p>Expect HTTP 200 and the page text <code>CCDC Windows intranet: operational</code>. Compare the response with the
+    service state and timestamps inside the target VM. The relay's TCP port can still accept a connection when the guest
+    HTTP service is down: a successful port test alone does not prove HTTP works. This is an HTTP service exercise; do
+    not stop networking, RDP or TCP itself.</p>
+</section>
+<h3 id="section-windows-attacker-stops-dns">Round B - Windows attacker stops DNS</h3>
+<pre>(Get-Date).ToUniversalTime().ToString(&#x27;o&#x27;)
+Stop-Service DNS</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#windows-stop-service">Stop-Service</a> · <a
+    href="command-reference.html#windows-get-date">Get-Date</a></p>
+<h3 id="section-windows-defender-investigates-round-b">Round B - Windows defender investigates</h3>
+<p> Verify the relevant services and record the results. </p>
+<pre>Get-Service DNS,W3SVC
+Clear-DnsClientCache
+Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile -QuickTimeout
+Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile -TcpOnly -QuickTimeout
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content
+Get-WinEvent -FilterHashtable @{LogName=&#x27;System&#x27;; StartTime=(Get-Date).AddMinutes(-15)} |
+  Where-Object ProviderName -eq &#x27;Service Control Manager&#x27; |
+  Select-Object TimeCreated,Id,Message</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#linux-id">id</a> · <a href="command-reference.html#windows-get-service">Get-Service</a>
+  · <a href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
+    href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
+    href="command-reference.html#windows-get-date">Get-Date</a> · <a
+    href="command-reference.html#windows-get-winevent">Get-WinEvent</a> · <a
+    href="command-reference.html#windows-where-object">Where-Object</a> · <a
+    href="command-reference.html#windows-select-object">Select-Object</a> · <a
+    href="command-reference.html#windows-clear-dnsclientcache">Clear-DnsClientCache</a> · <a
+    href="command-reference.html#shell-test">test</a> · <a href="command-reference.html#syntax">script syntax</a></p>
+<section id="service-web-windows-dns">
+  <h4>Compare DNS failure with HTTP availability</h4>
+  <p><strong>On your campus laptop:</strong> open <a
+      href="http://128.198.74.133:28080/index.html">http://128.198.74.133:28080/index.html</a> or repeat the Round A
+    curl command. The operational page should still load while DNS is stopped, provided IIS and the VM remain running.
+    This numeric URL bypasses guest DNS; it cannot prove that DNS works. Use the Resolve-DnsName UDP and TCP checks
+    above inside Windows to establish DNS failure and repeat them after restoration. DNS over TCP means TCP port 53, not
+    a separate TCP service to stop.</p>
+</section>
+<h3 id="section-windows-defender-restores-dns">Round B - Windows defender restores DNS</h3>
+<pre>Start-Service DNS
+Clear-DnsClientCache
+Get-Service DNS,W3SVC
+Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile
+Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile -TcpOnly
+(Get-Date).ToUniversalTime().ToString(&#x27;o&#x27;)</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#windows-get-service">Get-Service</a> · <a
+    href="command-reference.html#windows-start-service">Start-Service</a> · <a
+    href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
+    href="command-reference.html#windows-get-date">Get-Date</a> · <a
+    href="command-reference.html#windows-clear-dnsclientcache">Clear-DnsClientCache</a> · <a
+    href="command-reference.html#shell-test">test</a></p>
+<h3 id="section-windows-defense-review-and-deliverables">Windows defense review and deliverables</h3>
+<p> Verify the relevant services and record the results. </p>
+<p>A service event may show a state change without proving who caused it, especially with a assigned account. Propose
+  separate accounts, credential rotation, reduced unnecessary privilege and service monitoring. Keep the assigned
+  trainee01 administrator permission for the remaining lessons. These rounds have been documented for the configured
+  lab; the full revised student sequence still needs classroom rehearsal.</p>
+<h3 id="web-integrity">1.2 — Web-content tampering and evidence</h3>
+<p><a href="student-workbook.html#web-integrity">Shared concept →</a>. Run commands in elevated PowerShell inside the
+  Windows VM. The instructor confirms the Default Web Site uses C:\inetpub\wwwroot and starts with the operational page.
+  This round simulates an attacker who already has administrative access.</p>
+<h4>Prepare a trusted recovery copy</h4>
+<p>Instructor: use a new exercise directory; the guard prevents overwriting an earlier round’s evidence. Retain this
+  directory through the debrief.</p>
+<pre>$site = &#x27;C:\inetpub\wwwroot\index.html&#x27;
+$case = &#x27;C:\CCDC-Exercise-1-2&#x27;
+if (Test-Path $case) { throw &#x27;Existing exercise directory: ask the instructor to archive it first.&#x27; }
+if (-not (Test-Path $site)) { throw &#x27;Confirm the IIS physical path before proceeding.&#x27; }
+New-Item -ItemType Directory -Path $case | Out-Null
+Copy-Item -LiteralPath $site -Destination &quot;$case\original.html&quot;
+Get-FileHash -LiteralPath $site | Format-List
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
+<h4>Red team — change the page</h4>
+<pre>Set-Content -LiteralPath &#x27;C:\inetpub\wwwroot\index.html&#x27; -Value &#x27;CCDC exercise: changed page&#x27; -Encoding UTF8</pre>
+<h4>Blue team — investigate before restoring</h4>
+<p>Use your campus laptop to open <a href="http://128.198.74.133:28080/index.html">the Windows website</a> with a fresh
+  request. The request may succeed while the expected content is missing. In the VM:</p>
+<pre>$site = &#x27;C:\inetpub\wwwroot\index.html&#x27;
+$case = &#x27;C:\CCDC-Exercise-1-2&#x27;
+Get-Service W3SVC
+Get-Item -LiteralPath $site | Select-Object FullName,Length,LastWriteTimeUtc
+Get-FileHash -LiteralPath $site
+Get-FileHash -LiteralPath &quot;$case\original.html&quot;
+Copy-Item -LiteralPath $site -Destination &quot;$case\changed.html&quot;
+Get-Content -LiteralPath $site
+Get-Acl -LiteralPath $site | Format-List</pre>
+<p>Review recent IIS access records at the configured logging location (normally C:\inetpub\logs\LogFiles\W3SVC1). They
+  show requests, not who edited the file. File-change attribution requires auditing enabled before the change; do not
+  infer an attacker identity from a timestamp alone.</p>
+<h4>Blue team — recover and verify</h4>
+<pre>Copy-Item -LiteralPath &#x27;C:\CCDC-Exercise-1-2\original.html&#x27; -Destination &#x27;C:\inetpub\wwwroot\index.html&#x27; -Force
+Get-FileHash -LiteralPath &#x27;C:\inetpub\wwwroot\index.html&#x27;
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
+<p>Success: the restored hash matches the original, the laptop sees “CCDC Windows intranet: operational”, and DNS still
+  answers. Explain why HTTP 200 alone was insufficient. Instructor archives the evidence directory before the next
+  round.</p>
+<h3 id="firewall-tampering">1.3 — Firewall tampering versus service failure</h3>
+<p><a href="student-workbook.html#firewall-tampering">Shared concept →</a>. Run guest commands in elevated PowerShell.
+  Before the round, confirm Windows Firewall is enabled, IIS is running, and a campus laptop can retrieve <a
+    href="http://128.198.74.133:28080/index.html">the Windows page</a>. Keep the instructor’s VM console available.</p>
+<h4>Red team — introduce one HTTP-only rule</h4>
+<pre>$rule = &#x27;CCDC-Exercise-HTTP-Block&#x27;
+if (Get-NetFirewallRule -Name $rule -ErrorAction SilentlyContinue) { throw &#x27;Exercise rule already exists.&#x27; }
+New-NetFirewallRule -Name $rule -DisplayName $rule -Direction Inbound -Action Block -Protocol TCP -LocalPort 80 -Profile Any</pre>
+<h4>Blue team — investigate</h4>
+<p>Repeat the laptop HTTP request; expect failure while RDP and DNS remain available. A TCP connection to the relay does
+  not prove the guest HTTP service works.</p>
+<pre>Get-Service W3SVC,DNS
+Get-NetTCPConnection -State Listen | Where-Object LocalPort -eq 80
+Get-NetFirewallProfile | Select-Object Name,Enabled
+Get-NetFirewallRule -Enabled True -Direction Inbound -Action Block |
+  Select-Object Name,DisplayName,Action,Profile
+Get-NetFirewallRule -Name &#x27;CCDC-Exercise-HTTP-Block&#x27; | Format-List
+Get-NetFirewallRule -Name &#x27;CCDC-Exercise-HTTP-Block&#x27; | Get-NetFirewallPortFilter
+Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
+<p>Preserve the rule properties and the before/after observations. Explain why a running service can still be
+  unreachable. A local HTTP check is useful but does not replace the external test.</p>
+<h4>Blue team — recover</h4>
+<pre>Remove-NetFirewallRule -Name &#x27;CCDC-Exercise-HTTP-Block&#x27;
+Get-Service W3SVC,DNS
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
+<p>Success: the exact exercise rule is absent, the laptop retrieves the operational page, DNS works, and legitimate RDP
+  access remains. Remove only this rule; leave the firewall enabled. The instructor can run the same removal command
+  from the guest console if recovery is needed.</p>
+<h3 id="account-compromise">1.4 — Compromised account and excessive privilege</h3>
+<p><a href="student-workbook.html#account-compromise">Shared concept →</a>. Use a dedicated exercise account, never a
+  student or instructor account. This round simulates credentials for an account that was improperly granted
+  administrator membership.</p>
+<h4>Instructor — prepare the dedicated account</h4>
+<p>Inside elevated Windows PowerShell, set a temporary lab-only password at the prompt and give it to the red team.
+  Confirm the account name is unused. This exercise uses local runas and does not require granting RDP access.</p>
+<pre>$name = &#x27;ccdc-red-demo&#x27;
+if (Get-LocalUser -Name $name -ErrorAction SilentlyContinue) { throw &#x27;Account exists: choose a fresh exercise account.&#x27; }
+$password = Read-Host &#x27;Temporary exercise password&#x27; -AsSecureString
+New-LocalUser -Name $name -Password $password -Description &#x27;Dedicated CCDC account exercise&#x27;
+$admins = Get-LocalGroup -SID &#x27;S-1-5-32-544&#x27;
+Add-LocalGroupMember -Group $admins.Name -Member $name
+Get-LocalGroupMember -Group $admins.Name</pre>
+<h4>Red team — demonstrate access</h4>
+<p>Run this in a separate PowerShell window and enter the temporary password. The new window stays open so the
+  instructor can observe the session.</p>
+<pre>runas /user:.\ccdc-red-demo &quot;cmd.exe /k whoami /all&quot;</pre>
+<p>Observe the identity and token groups. UAC may filter administrator privileges in this window; group membership does
+  not mean every process is elevated. No service stop is needed for this account exercise.</p>
+<h4>Blue team — investigate and contain</h4>
+<pre>Get-LocalUser -Name &#x27;ccdc-red-demo&#x27; | Format-List Name,Enabled,LastLogon,Description
+$admins = Get-LocalGroup -SID &#x27;S-1-5-32-544&#x27;
+Get-LocalGroupMember -Group $admins.Name
+Get-WinEvent -FilterHashtable @{LogName=&#x27;Security&#x27;; Id=4624,4720,4732; StartTime=(Get-Date).AddMinutes(-30)} -ErrorAction SilentlyContinue |
+  Select-Object TimeCreated,Id,Message | Format-List</pre>
+<p>Preserve the account details, unexpected membership and available events. Account creation/group changes require the
+  corresponding audit policy; missing events do not prove no change occurred. The instructor records and checks auditing
+  before class.</p>
+<pre>Disable-LocalUser -Name &#x27;ccdc-red-demo&#x27;
+$admins = Get-LocalGroup -SID &#x27;S-1-5-32-544&#x27;
+Remove-LocalGroupMember -Group $admins.Name -Member &#x27;ccdc-red-demo&#x27;
+Get-LocalUser -Name &#x27;ccdc-red-demo&#x27; | Select-Object Name,Enabled
+Get-LocalGroupMember -Group $admins.Name</pre>
+<p>Disabling an account and removing group membership do not revoke existing process tokens. Have the instructor close
+  the dedicated runas window and confirm its processes have ended in Task Manager’s Details view with the User name
+  column enabled. In a real incident, investigate and terminate all affected sessions/processes or use a planned
+  restart.</p>
+<h4>Verify and clean up</h4>
+<p>Repeat the runas command with the same correct password: expect denial. Confirm legitimate student access, the IIS
+  operational page and DNS still work. After the debrief and evidence retention, the instructor removes only the
+  dedicated account:</p>
+<pre>Remove-LocalUser -Name &#x27;ccdc-red-demo&#x27; </pre>
+<p>Success: identify the excessive privilege, disable new access, end the existing exercise process, and demonstrate
+  legitimate services still work. Prepare a fresh account before reversing roles.</p>
+<section id="before-login">
+  <h2 id="module-2">Module 2 — Attacker starts without system access</h2><span id="authentication"></span><span
+    id="web-inputs"></span>
+  <p>Read <a href="student-workbook.html#module-2">Module 2 concepts and exercise boundaries in Getting Started</a>,
+    then complete the platform tasks below. This track includes a bounded port pass, request-log investigation and a
+    supplied DoS evidence exercise.</p>
+  <h3 id="discovery">2.1 — Port scanning and service discovery</h3>
+  <p>Use the assigned guest only. In these single-VM simulations, the red-team operator uses a normal guest terminal to
+    generate network requests; target administration is reserved for the blue team. The operator login is a
+    traffic-generation convenience, not evidence of a successful intrusion. Do not elevate the red-team commands.</p>
+  <h4>Blue team — establish the service inventory</h4>
+  <p>Record listening ports before the red-team pass. The instructor confirms TCP 65000 is unused; if it is in use, omit
+    it. Required ports are 53 (DNS), 80 (HTTP), and 3389 (RDP).</p>
+  <pre>Get-Date -Format o
+Get-NetTCPConnection -State Listen | Sort-Object LocalPort | Select-Object LocalAddress,LocalPort,OwningProcess
+Get-Service DNS,W3SVC,TermService</pre>
+  <h4>Red team — one bounded pass</h4>
+  <p>Probe only these four ports once. A failed connection can mean a closed port or filtering; it is not a conclusive
+    firewall diagnosis. Save the displayed results for comparison.</p>
+  <pre>53,80,3389,65000 | ForEach-Object {
+  $port = $_
+  $open = Test-NetConnection -ComputerName 172.29.242.40 -Port $port -InformationLevel Quiet -WarningAction SilentlyContinue
+  [pscustomobject]@{Port=$port; TcpReachable=$open}
+}</pre>
+  <h4>Blue team — explain and verify</h4>
+  <ol>
+    <li>Compare probe results with the inventory. Explain each expected listener and investigate any discrepancy.</li>
+    <li>Inspect existing firewall or service logs for the recorded time window. A connection-only probe may leave no
+      application log entry. Report that visibility gap rather than inventing evidence.</li>
+    <li>Explain one restriction you would consider for an unnecessary service. This round changes no firewall or service
+      configuration.</li>
+    <li>Use a fresh laptop request to <a href="http://128.198.74.133:28080/index.html">the assigned website</a> to
+      confirm ordinary HTTP still works.</li>
+  </ol>
+  <p><strong>Complete:</strong> show the four results, the matching listener inventory, and a normal HTTP response. No
+    configuration cleanup is needed. The local pass does not establish laptop reachability or test the relay firewall.
+    Windows TCP 53 does not verify UDP DNS.</p>
+  <h3 id="section-2-2-practical-investigate-failed-windows-authentication">2.2 practical — Investigate failed Windows
+    authentication</h3>
+  <p><strong>Defender, elevated PowerShell:</strong> establish the baseline. The instructor verifies that failure
+    auditing is enabled and that the test name does not exist. The account lookup must return False.</p>
+  <pre>Get-Date -Format o
+Get-Service W3SVC,DNS,TermService
+[bool](Get-LocalUser | Where-Object Name -eq 'ccdc-probe-no-user')
+auditpol /get /subcategory:"Logon"</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#windows-get-service">Get-Service</a> · <a
+      href="command-reference.html#windows-get-date">Get-Date</a> · <a
+      href="command-reference.html#windows-where-object">Where-Object</a> · <a
+      href="command-reference.html#syntax">script syntax</a></p>
+  <p><strong>Operator, a separate PowerShell window:</strong> run once and enter arbitrary dummy text at the password
+    prompt. Expect a logon failure; no command window should open. Repeat manually at most twice more if instructed.</p>
+  <pre>runas /user:.\ccdc-probe-no-user "cmd.exe /c whoami"</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#windows-whoami">whoami</a></p>
+  <p>This tests a local logon path, not remote RDP. Expect local/blank source information and inspect the actual logon
+    type. The instructor can additionally demonstrate one rejected RDP login through the lab's existing connection
+    route, using the same nonexistent account. NLA and authentication method can change the logon type and event
+    sequence; do not assume every failed RDP attempt is type 10. The relay may hide the original client IP.</p>
+  <p><strong>Defender, elevated PowerShell:</strong> inspect recent failures and successes. Read the full message for an
+    event containing the test username; unrelated background events may appear too.</p>
+  <pre>$since = (Get-Date).AddMinutes(-10)
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=$since} |
+  Select-Object -First 20 TimeCreated,Id,Message | Format-List
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624; StartTime=$since} |
+  Select-Object -First 10 TimeCreated,Id,Message | Format-List</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-id">id</a> · <a href="command-reference.html#windows-get-date">Get-Date</a> ·
+    <a href="command-reference.html#windows-get-winevent">Get-WinEvent</a> · <a
+      href="command-reference.html#windows-select-object">Select-Object</a> · <a
+      href="command-reference.html#syntax">script syntax</a>
+  </p>
+  <p>Find the target account, time, logon type, status/substatus and source where populated. Event 4625 records failed
+    logon; 4624 records successful logon. Do not confuse the Subject account with the account being targeted. No
+    matching events: verify the time window, audit policy and permissions; do not repeatedly generate failures. One
+    attempt can cause multiple records. Compare an isolated mistake with a cluster of failures; discuss spraying across
+    accounts without performing it.</p>
+  <h3 id="section-2-3-practical-investigate-iis-probing-and-a-dummy-exposed-backup">2.3 practical — Investigate IIS
+    probing and a dummy exposed backup</h3>
+  <p>The instructor first publishes the dummy exercise file. <strong>Operator, PowerShell:</strong> run these requests
+    once each. Use <code>curl.exe</code> explicitly; <code>curl</code> can be a PowerShell alias on this server.</p>
+  <pre>curl.exe -i --max-time 5 http://172.29.242.40/index.html
+curl.exe -i --max-time 5 http://172.29.242.40/ccdc-probe-missing.txt
+curl.exe -i --max-time 5 http://172.29.242.40/ccdc-probe-backup.txt</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a></p>
+  <p>Expect 200 for the operational page, 404 for the missing path and 200 with dummy text for the published backup. No
+    valid server login was needed to read that file.</p>
+  <p><strong>Defender, elevated PowerShell:</strong> find the website ID and log location in IIS Manager: Sites →
+    Default Web Site → Logging. These commands assume the default W3C path and site ID 1; substitute the actual location
+    if different.</p>
+  <pre>$logRoot = "$env:SystemDrive\inetpub\logs\LogFiles\W3SVC1"
+$log = Get-ChildItem -LiteralPath $logRoot -Filter '*.log' |
+  Sort-Object LastWriteTime -Descending | Select-Object -First 1
+if ($null -eq $log) { throw 'No IIS log found; ask the instructor to check logging.' }
+Get-Content -LiteralPath $log.FullName -TotalCount 5
+Get-Content -LiteralPath $log.FullName -Tail 60</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#windows-select-object">Select-Object</a> · <a
+      href="command-reference.html#windows-sort-object">Sort-Object</a> · <a href="command-reference.html#syntax">script
+      syntax</a></p>
+  <p>W3C log records can be buffered: wait up to a minute and reread; ask the instructor if evidence is still missing.
+    Read the <code>#Fields:</code> header rather than assuming column positions. Identify <code>date</code>,
+    <code>time</code>, <code>c-ip</code>, <code>cs-method</code>, <code>cs-uri-stem</code>, <code>sc-status</code> and,
+    if present, substatus. W3C timestamps are UTC; compare with the timezone shown by Get-Date. A suspicious path is a
+    clue; a 200 with dummy contents demonstrates exposure, not execution or compromise.
+  </p>
+  <h3 id="section-mitigate-repeat-and-verify">Mitigate, repeat and verify</h3>
+  <p>Preserve the relevant records. The following assumes the default website root; the instructor must confirm the
+    physical path first. Verify the file contains only the exercise marker, then remove this file only.</p>
+  <pre>Get-Content -LiteralPath 'C:\inetpub\wwwroot\ccdc-probe-backup.txt'
+Remove-Item -LiteralPath 'C:\inetpub\wwwroot\ccdc-probe-backup.txt' -Confirm
+curl.exe -i --max-time 5 http://172.29.242.40/ccdc-probe-backup.txt
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content
+Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile
+Get-Service W3SVC,DNS,TermService
+Get-Content -LiteralPath $log.FullName -Tail 20</pre>
+  <p class="command-help-links"><strong>Understand these commands:</strong> <a
+      href="command-reference.html#linux-curl">curl</a> · <a
+      href="command-reference.html#windows-get-service">Get-Service</a> · <a
+      href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
+      href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
+      href="command-reference.html#shell-test">test</a> · <a href="command-reference.html#syntax">script syntax</a></p>
+  <p>Expect 404 for the removed backup, the operational Windows intranet, DNS answer <code>172.29.242.30</code>, and
+    Running services. Allow for IIS log buffering. Discuss unique passwords, supported MFA, restricted administrative
+    reachability and temporary throttling. Aggressive account lockouts can also deny legitimate users access. Do not
+    change shared account policies, RDP rules or host firewall settings during this lesson.</p>
+  <p><strong>Practice check:</strong> show a rejected logon and its evidence; explain why a local source differs from
+    network evidence; show the web exposure before and after mitigation. Give one benign explanation and one suspicious
+    pattern, state the limits of the evidence, and show legitimate services still work. No written report is required.
+  </p>
+  <p>References: <a href="https://learn.microsoft.com/windows/security/threat-protection/auditing/event-4625">Microsoft
+      failed-logon event 4625</a>; <a
+      href="https://learn.microsoft.com/en-us/iis/manage/provisioning-and-managing-iis/configure-logging-in-iis">IIS
+      logging and W3C fields</a>; <a
+      href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-get">Audit policy
+      inspection</a>.</p>
+
+  <h3 id="traffic">2.4 — Investigate suspicious request traffic</h3>
+  <p>Use the assigned guest only. In these single-VM simulations, the red-team operator uses a normal guest terminal to
+    generate network requests; target administration is reserved for the blue team. The operator login is a
+    traffic-generation convenience, not evidence of a successful intrusion. Do not elevate the red-team commands.</p>
+  <h4>Prepare</h4>
+  <p>The instructor confirms access logging is enabled and the two probe paths below do not exist. The blue team records
+    the time and normal page response. This exercise uses web access logs as network-request evidence; it is not a
+    packet-capture exercise.</p>
+  <h4>Red team — generate a short request sequence</h4>
+  <p>Run once: four sequential requests, separated by one second. The unique marker distinguishes the round from
+    background traffic. Give the marker to the blue team after it locates the pattern.</p>
+  <pre>$marker = &#x27;ccdc24-&#x27; + (Get-Date -Format yyyyMMddHHmmss)
+&quot;Round marker: $marker&quot;
+&#x27;index.html&#x27;,&#x27;ccdc24-missing.txt&#x27;,&#x27;ccdc24-backup.zip&#x27;,&#x27;index.html&#x27; | ForEach-Object {
+  curl.exe --max-time 5 -sS -o NUL -w &quot;%{http_code} %{url_effective}\n&quot; &quot;http://172.29.242.40/$_`?round=$marker&quot;
+  Start-Sleep -Seconds 1
+}</pre>
+  <h4>Blue team — find and interpret the evidence</h4>
+  <pre>$logRoot = &#x27;C:\inetpub\logs\LogFiles\W3SVC1&#x27;
+$log = Get-ChildItem -LiteralPath $logRoot -Filter &#x27;*.log&#x27; | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+if ($null -eq $log) { throw &#x27;Ask the instructor to verify the IIS log location and logging.&#x27; }
+Get-Content -LiteralPath $log.FullName -TotalCount 8
+Get-Content -LiteralPath $log.FullName -Tail 150 | Select-String &#x27;ccdc24-&#x27; </pre>
+  <p>Use the actual configured log path if it differs. IIS records may be buffered: wait up to one minute and reread
+    once. Read its #Fields header; the instructor should enable date, time, c-ip, cs-method, cs-uri-stem, cs-uri-query
+    and sc-status. Nginx combined logs include the request path and query. Distinguish local time offsets from IIS UTC.
+  </p>
+  <ol>
+    <li>Locate the four requests and record time, source, method, path and status.</li>
+    <li>Explain why the two index requests are ordinary checks and why the backup-like path warrants investigation.
+      Expected status order: 200, 404, 404, 200. If different, investigate the actual site configuration.</li>
+    <li>Explain why a missing-file request does not demonstrate compromise. A source address identifies a connection,
+      not a person.</li>
+    <li>Propose one response if a sensitive backup really were exposed: preserve evidence and remove the exposed copy
+      while leaving normal content available.</li>
+  </ol>
+  <h4>Verify and close the round</h4>
+  <p>Repeat one normal index request and confirm operational content. Retain the relevant log lines; do not clear the
+    logs. No files, accounts or rules were changed. Reverse roles with a new marker. <strong>Complete:</strong> show the
+    ordered requests, explain their significance and uncertainty, and demonstrate normal service.</p>
+  <h3 id="dos">2.5 — Investigate denial of service and resource exhaustion</h3>
+  <p>This is a concrete offline investigation using a supplied synthetic incident dataset. It does not generate a flood
+    or change the live service. The red team introduces the incident evidence; the blue team diagnoses it, proposes
+    containment, and validates the recovery evidence.</p>
+  <h4>Open the evidence inside your assigned VM</h4>
+  <p>Save <a href="dos-windows-timeline.csv" download>the Windows incident CSV</a> into Downloads inside the VM. If
+    viewing this pack on a laptop, copy the CSV into the VM first. The commands below use that Downloads path; adjust it
+    if needed. Each row is a one-minute measurement. requests and http_5xx are counts; p95_ms is the 95th-percentile
+    response time in milliseconds; cpu_pct and memory_pct are percentages. The documentation-range source IP is
+    fictional and must not be contacted.</p>
+  <h4>Red team — present the scenario</h4>
+  <p>Tell the blue team: “Users report slow pages and intermittent errors starting at 10:02 UTC. The service monitor
+    still reports the web service running.” Provide the CSV. Do not stop the real service or send load traffic.</p>
+  <h4>Blue team — analyze</h4>
+  <pre>$rows = Import-Csv -LiteralPath &quot;$env:USERPROFILE\Downloads\dos-windows-timeline.csv&quot;
+$rows | Select-Object time_utc,service_state,requests,p95_ms,cpu_pct,@{Name=&#x27;error_pct&#x27;;Expression={[math]::Round(100 * [int]$_.http_5xx / [int]$_.requests,1)}} | Format-Table -AutoSize
+$rows | Sort-Object {[int]$_.requests} -Descending | Select-Object -First 1 time_utc,top_source,top_source_requests</pre>
+  <ol>
+    <li>Identify the normal baseline, first degraded minute and peak minute. Calculate how much request volume increased
+      from the baseline.</li>
+    <li>Use service state, CPU, latency and error rate to distinguish this incident from the stopped-service exercise.
+      Explain why these metrics alone cannot establish malicious intent.</li>
+    <li>Calculate the busiest source’s fraction of requests at the peak. Propose a narrowly scoped request limit or
+      upstream filter, and explain how you would avoid blocking legitimate users behind a shared gateway. Record the
+      proposed action; do not apply it to this lab.</li>
+    <li>Treat the 10:05 and 10:06 rows as supplied post-containment evidence. Verify recovery against the criteria below
+      and explain what monitoring you would continue.</li>
+  </ol>
+  <h4>Recovery criteria and live service check</h4>
+  <p>Accept the scenario recovery only if both final samples have a running service, p95 latency below 200 ms, error
+    rate below 1%, and CPU below 50%. Then independently check the real VM with the read-only commands below. The live
+    check demonstrates lab availability, not that you mitigated the synthetic incident.</p>
+  <pre>Get-Service W3SVC,DNS
+(Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content
+Resolve-DnsName www.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile</pre>
+  <p><strong>Complete:</strong> present your timeline, calculations, diagnosis, proposed containment, and evidence that
+    recovery criteria pass. Preserve your notes; deleting your downloaded CSV after the debrief is optional. Reverse
+    roles with the other team explaining and challenging the diagnosis.</p>
+</section>
+<h2 id="business-inject">Practice — Business inject</h2>
+<p>Request: create intranet.training.test pointing to 172.29.242.40. Existing www.training.test, both web pages and SSH
+  must remain available. Demonstrate the change after verifying it.</p>
+<p>Windows elevated PowerShell:</p>
+<pre>Add-DnsServerResourceRecordA -ZoneName training.test -Name intranet -IPv4Address 172.29.242.40</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#windows-add-dnsserverresourcerecorda">Add-DnsServerResourceRecordA</a> · <a
+    href="command-reference.html#shell-test">test</a></p>
+<p>Windows verification:</p>
+<pre>Resolve-DnsName intranet.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile
+Resolve-DnsName intranet.training.test -Server 172.29.242.40 -DnsOnly -NoHostsFile -TcpOnly
+Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing</pre>
+<p class="command-help-links"><strong>Understand these commands:</strong> <a
+    href="command-reference.html#windows-resolve-dnsname">Resolve-DnsName</a> · <a
+    href="command-reference.html#windows-invoke-webrequest">Invoke-WebRequest</a> · <a
+    href="command-reference.html#shell-test">test</a></p>
+<p>Practice check: demonstrate the result, explain your actions to your group, and retain your working files. No written
+  report submission is required.</p>
+<h2 id="section-inject-practice">Inject practice</h2>
+<p>Open <a href="inject-practice.html">Inject practice</a> and follow the instructions for your assigned operating
+  system.</p>
+<script id="training-sidebar-script">
+  (() => {const sidebar = document.getElementById('training-sidebar'); const button = sidebar.querySelector('button'); button.addEventListener('click', () => {const collapsed = sidebar.dataset.collapsed !== 'true'; sidebar.dataset.collapsed = String(collapsed); button.setAttribute('aria-expanded', String(!collapsed));}); const links = [...sidebar.querySelectorAll('a[href^="#"]')]; const sections = links.map(a => document.getElementById(decodeURIComponent(a.hash.slice(1)))); let pending = false; function update() {let active = 0; sections.forEach((section, i) => {if (section && section.getBoundingClientRect().top <= 110) active = i}); links.forEach((link, i) => {if (i === active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current')}); pending = false} window.addEventListener('scroll', () => {if (!pending) {pending = true; requestAnimationFrame(update)} }, {passive: true}); function reveal() {const target = document.getElementById(decodeURIComponent(location.hash.slice(1))); const link = links.find(a => a.hash === location.hash); if (target && link) {let parent = link.parentElement; while (parent && parent !== sidebar) {if (parent.tagName === 'DETAILS') parent.open = true; parent = parent.parentElement} } update()} window.addEventListener('hashchange', reveal); reveal();})();
+</script>
+
+</html>

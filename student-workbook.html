@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting Started</title>
+<style>
+  body {
+    font: 16px/1.6 system-ui;
+    max-width: 1050px;
+    margin: 32px auto;
+    padding: 0 22px;
+    color: #193047
+  }
+
+  nav,
+  pre {
+    background: #edf3f7;
+    padding: 16px
+  }
+
+  pre {
+    white-space: pre-wrap
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%
+  }
+
+  td,
+  th {
+    border: 1px solid #ccd8e0;
+    padding: 10px;
+    text-align: left
+  }
+
+  h2 {
+    margin-top: 32px
+  }
+
+  svg {
+    width: 100%;
+    height: auto
+  }
+</style>
+
+
+<style id="training-sidebar-style">
+  html {
+    scroll-behavior: smooth
+  }
+
+  body {
+    max-width: 1050px !important;
+    width: auto !important;
+    margin: 32px auto 32px 312px !important;
+    padding: 0 28px !important
+  }
+
+  h2,
+  h3 {
+    scroll-margin-top: 24px
+  }
+
+  #training-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 272px;
+    box-sizing: border-box;
+    padding: 24px 16px;
+    overflow-y: auto;
+    background: #edf3f7;
+    border-right: 1px solid #ccd8e0;
+    z-index: 100;
+    font: 14px/1.45 system-ui;
+    color: #193047
+  }
+
+  #training-sidebar details {
+    margin: 3px 0
+  }
+
+  #training-sidebar summary {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+    border-radius: 5px
+  }
+
+  #training-sidebar summary::-webkit-details-marker {
+    display: none
+  }
+
+  #training-sidebar summary::before {
+    content: '▸';
+    flex: 0 0 18px;
+    text-align: center
+  }
+
+  #training-sidebar details[open]>summary::before {
+    content: '▾'
+  }
+
+  #training-sidebar summary a {
+    flex: 1;
+    min-width: 0;
+    margin: 0
+  }
+
+  #training-sidebar summary:focus-visible {
+    outline: 3px solid #2479a8
+  }
+
+  #training-sidebar .page-children {
+    margin: 4px 0 10px 12px;
+    padding-left: 8px;
+    border-left: 1px solid #bccedb
+  }
+
+  #training-sidebar .section-children {
+    margin-left: 12px
+  }
+
+  #training-sidebar li {
+    margin: 0
+  }
+
+  #training-sidebar .sidebar-title {
+    font-weight: 750;
+    font-size: 18px;
+    margin: 0 0 14px
+  }
+
+  #training-sidebar .sidebar-label {
+    font-weight: 700;
+    margin: 20px 8px 8px;
+    color: #465e70
+  }
+
+  #training-sidebar a {
+    display: block;
+    padding: 7px 9px;
+    margin: 2px 0;
+    border-radius: 5px;
+    color: #193047;
+    text-decoration: none;
+    overflow-wrap: anywhere
+  }
+
+  #training-sidebar a:hover {
+    background: #dce7ef
+  }
+
+  #training-sidebar a:focus-visible {
+    outline: 3px solid #2479a8;
+    outline-offset: 1px
+  }
+
+  #training-sidebar a[aria-current="page"] {
+    font-weight: 750;
+    background: transparent;
+    color: #193047
+  }
+
+  #training-sidebar a[aria-current="location"] {
+    font-weight: 700;
+    background: transparent;
+    color: #193047
+  }
+
+  #training-sidebar a.submodule {
+    padding-left: 23px;
+    font-size: 13px
+  }
+
+  #training-sidebar .sidebar-toggle {
+    display: none
+  }
+
+  #training-sidebar nav {
+    padding: 0;
+    margin: 0;
+    background: transparent
+  }
+
+  #training-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0
+  }
+
+  @media(min-width:1550px) {
+    body {
+      margin-left: calc(272px + (100vw - 272px - 1106px)/2) !important
+    }
+  }
+
+  @media(max-width:850px) {
+    body {
+      margin: 20px auto !important;
+      padding: 0 18px !important
+    }
+
+    #training-sidebar {
+      position: relative;
+      width: auto;
+      inset: auto;
+      margin: 0 0 24px;
+      padding: 14px;
+      border: 1px solid #ccd8e0;
+      border-radius: 6px;
+      max-height: none
+    }
+
+    #training-sidebar .sidebar-toggle {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: 0;
+      padding: 4px;
+      font: 700 16px system-ui;
+      color: #193047;
+      cursor: pointer
+    }
+
+    #training-sidebar details {
+      margin: 3px 0
+    }
+
+    #training-sidebar summary {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      cursor: pointer;
+      border-radius: 5px
+    }
+
+    #training-sidebar summary::-webkit-details-marker {
+      display: none
+    }
+
+    #training-sidebar summary::before {
+      content: '▸';
+      flex: 0 0 18px;
+      text-align: center
+    }
+
+    #training-sidebar details[open]>summary::before {
+      content: '▾'
+    }
+
+    #training-sidebar summary a {
+      flex: 1;
+      min-width: 0;
+      margin: 0
+    }
+
+    #training-sidebar summary:focus-visible {
+      outline: 3px solid #2479a8
+    }
+
+    #training-sidebar .page-children {
+      margin: 4px 0 10px 12px;
+      padding-left: 8px;
+      border-left: 1px solid #bccedb
+    }
+
+    #training-sidebar .section-children {
+      margin-left: 12px
+    }
+
+    #training-sidebar li {
+      margin: 0
+    }
+
+    #training-sidebar .sidebar-title {
+      display: none
+    }
+
+    #training-sidebar[data-collapsed="true"] .sidebar-content {
+      display: none
+    }
+  }
+
+  @media(prefers-reduced-motion:reduce) {
+    html {
+      scroll-behavior: auto
+    }
+  }
+
+  @media print {
+    #training-sidebar {
+      display: none
+    }
+
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      max-width: none !important
+    }
+  }
+</style>
+<aside id="training-sidebar" data-collapsed="false">
+  <p class="sidebar-title">CCDC Training</p><button class="sidebar-toggle" type="button" aria-expanded="true"
+    aria-controls="training-sidebar-content">Training navigation ▾</button>
+  <div id="training-sidebar-content" class="sidebar-content">
+    <nav aria-label="Training pages and sections">
+      <ul>
+        <li>
+          <details class="page-group">
+            <summary><a href="index.html">Overview</a></summary>
+            <ul class="page-children">
+              <li>
+                <details open>
+                  <summary><a href="index.html#section-lab-topology">Lab environment</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="index.html#section-ubuntu-services">Ubuntu services</a></li>
+                    <li><a class="submodule" href="index.html#section-windows-services">Windows services</a></li>
+                    <li><a class="submodule" href="index.html#section-lab-dns-records">Lab DNS records</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="index.html#course-map">Course structure</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="index.html#training-groups">Two training groups</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-0">Module 0 — Connect to your assigned
+                        VM</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-1">Module 1 — Attacker already has system
+                        access</a></li>
+                    <li><a class="submodule" href="index.html#summary-module-2">Module 2 — Attacker starts without
+                        system access</a></li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group" open>
+            <summary><a href="student-workbook.html" aria-current="page">Getting Started</a></summary>
+            <ul class="page-children">
+              <li><a href="#section-shared-response-workflow">Exercise workflow</a></li>
+              <li>
+                <details open>
+                  <summary><a href="#section-preparation-connect-to-your-assigned-vm">Module 0 — Connect to your
+                      assigned VM</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="#linux-credentials">Linux group</a></li>
+                    <li><a class="submodule" href="#windows-credentials">Windows group</a></li>
+                    <li><a class="submodule" href="#section-connect-from-macos">Connect from macOS</a></li>
+                    <li><a class="submodule" href="#section-connect-from-windows">Connect from Windows</a></li>
+                    <li><a class="submodule" href="#section-connect-from-linux">Connect from Linux</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="#module-1">Module 1 — Attacker already has system access</a></summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="#service-tampering">1.1 — Service tampering and recovery</a></li>
+                    <li><a class="submodule" href="#web-integrity">1.2 — Web-content tampering and evidence</a></li>
+                    <li><a class="submodule" href="#firewall-tampering">1.3 — Firewall tampering versus service
+                        failure</a></li>
+                    <li><a class="submodule" href="#account-compromise">1.4 — Compromised account and excessive
+                        privilege</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="#module-2">Module 2 — Attacker starts without system access</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="linux-training.html">Linux Training</a></summary>
+            <ul class="page-children">
+              <li><a href="linux-training.html#baseline">Preparation — Service inventory and baseline</a></li>
+              <li>
+                <details open>
+                  <summary><a href="linux-training.html#module-1">Module 1 — Attacker already has system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="linux-training.html#service-tampering">1.1 — Service tampering and
+                        recovery</a></li>
+                    <li><a class="submodule" href="linux-training.html#web-integrity">1.2 — Web-content tampering and
+                        evidence</a></li>
+                    <li><a class="submodule" href="linux-training.html#firewall-tampering">1.3 — Firewall tampering
+                        versus service failure</a></li>
+                    <li><a class="submodule" href="linux-training.html#account-compromise">1.4 — Compromised account and
+                        excessive privilege</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="linux-training.html#module-2">Module 2 — Attacker starts without system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="linux-training.html#discovery">2.1 — Port scanning and service
+                        discovery</a></li>
+                    <li><a class="submodule"
+                        href="linux-training.html#section-2-2-practical-investigate-failed-ssh-authentication">2.2
+                        Investigate failed SSH authentication</a></li>
+                    <li><a class="submodule"
+                        href="linux-training.html#section-2-3-practical-investigate-web-probing-and-a-dummy-exposed-backup">2.3
+                        Investigate web probing and a dummy exposed backup</a></li>
+                    <li><a class="submodule" href="linux-training.html#traffic">2.4 — Investigate suspicious request
+                        traffic</a></li>
+                    <li><a class="submodule" href="linux-training.html#dos">2.5 — Investigate denial of service and
+                        resource exhaustion</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="linux-training.html#section-inject-practice">Inject practice</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="windows-training.html">Windows Training</a></summary>
+            <ul class="page-children">
+              <li><a href="windows-training.html#baseline">Preparation — Service inventory and baseline</a></li>
+              <li>
+                <details open>
+                  <summary><a href="windows-training.html#module-1">Module 1 — Attacker already has system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="windows-training.html#service-tampering">1.1 — Service tampering and
+                        recovery</a></li>
+                    <li><a class="submodule" href="windows-training.html#web-integrity">1.2 — Web-content tampering and
+                        evidence</a></li>
+                    <li><a class="submodule" href="windows-training.html#firewall-tampering">1.3 — Firewall tampering
+                        versus service failure</a></li>
+                    <li><a class="submodule" href="windows-training.html#account-compromise">1.4 — Compromised account
+                        and excessive privilege</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details open>
+                  <summary><a href="windows-training.html#module-2">Module 2 — Attacker starts without system access</a>
+                  </summary>
+                  <ul class="section-children">
+                    <li><a class="submodule" href="windows-training.html#discovery">2.1 — Port scanning and service
+                        discovery</a></li>
+                    <li><a class="submodule"
+                        href="windows-training.html#section-2-2-practical-investigate-failed-windows-authentication">2.2
+                        practical — Investigate failed Windows authentication</a></li>
+                    <li><a class="submodule"
+                        href="windows-training.html#section-2-3-practical-investigate-iis-probing-and-a-dummy-exposed-backup">2.3
+                        practical — Investigate IIS probing and a dummy exposed backup</a></li>
+                    <li><a class="submodule" href="windows-training.html#traffic">2.4 — Investigate suspicious request
+                        traffic</a></li>
+                    <li><a class="submodule" href="windows-training.html#dos">2.5 — Investigate denial of service and
+                        resource exhaustion</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="windows-training.html#business-inject">Practice — Business inject</a></li>
+              <li><a href="windows-training.html#section-inject-practice">Inject practice</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="inject-practice.html">Inject Practice</a></summary>
+            <ul class="page-children">
+              <li><a href="inject-practice.html#section-our-classroom-version">Our classroom version</a></li>
+              <li><a href="inject-practice.html#section-how-to-approach-any-inject">How to approach any inject</a></li>
+              <li><a href="inject-practice.html#section-practice-a-understand-services-and-ports">Practice A —
+                  Understand services and ports</a></li>
+              <li><a href="inject-practice.html#section-practice-b-write-a-disk-space-check">Practice B — Write a
+                  disk-space check</a></li>
+              <li><a href="inject-practice.html#section-practice-c-match-network-listeners-to-processes">Practice C —
+                  Match network listeners to processes</a></li>
+              <li><a href="inject-practice.html#section-when-you-need-help">When you need help</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="page-group">
+            <summary><a href="command-reference.html">Command Reference</a></summary>
+            <ul class="page-children">
+              <li><a href="command-reference.html#section-how-to-read-the-manual">How to read the manual</a></li>
+              <li><a href="command-reference.html#linux">Linux and Bash</a></li>
+              <li><a href="command-reference.html#windows">Windows</a></li>
+              <li><a href="command-reference.html#section-understanding-the-scripts">Understanding the scripts</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>
+<h1>Getting Started</h1>
+<section id="module-guidance">
+  <span id="detailed-module-guidance"></span>
+  <p id="module-scenarios">These exercises cover two starting scenarios. In the first, the attacker already has access
+    to the system through valid credentials or an existing foothold. In the second, the attacker starts without system
+    access and tries to gain entry or disrupt services. We organize the modules by the attacker’s access at the start of
+    the exercise.</p>
+  <p><a href="#section-preparation-connect-to-your-assigned-vm"><strong>Module 0 — Connect to your assigned
+        VM</strong></a> provides your group’s credentials and connection instructions so you can open your assigned VM
+    desktop. <a href="#module-1"><strong>Module 1 — Attacker already has system access</strong></a> focuses on
+    investigating changes, containing unauthorized activity and recovering services. <a href="#module-2"><strong>Module
+        2 — Attacker starts without system access</strong></a> focuses on detecting attempts, reducing exposure and
+    maintaining availability. Use the exercise workflow below, then choose your group’s Linux or Windows tasks.</p>
+
+  <section id="response-workflow">
+    <h3 id="section-shared-response-workflow">Exercise workflow</h3>
+    <ol>
+      <li><strong>Assign teams:</strong> divide each group into a red team and a blue team for the selected exercise.
+      </li>
+      <li><strong>Attack:</strong> the red team performs the assigned attack on its group’s VM.</li>
+      <li><strong>Investigate and recover:</strong> the blue team identifies what happened, examines and preserves
+        evidence, contains the attack, and restores the affected services. Verify that normal service and legitimate
+        access work again.</li>
+      <li><strong>Reverse roles:</strong> after recovery, the red team becomes the blue team and the blue team becomes
+        the red team. Repeat the exercise so everyone practices both attack and defense.</li>
+      <li><strong>Optional platform swap:</strong> after both rounds, the Linux and Windows groups may exchange
+        platforms. Use the new platform’s assigned credentials and tasks, and repeat the red-team/blue-team rounds.</li>
+    </ol>
+    <p>Finish recovery and restore the exercise starting conditions before reversing roles or swapping platforms.</p>
+  </section>
+
+  <span id="section-step-1-get-the-teaching-pack-before-connecting"></span><span
+    id="section-step-2-choose-the-access-tab-for-your-own-computer"></span><span
+    id="section-step-3-confirm-your-group-and-connection"></span><span
+    id="section-step-4-verify-the-assigned-guest-and-privileges"></span><span
+    id="section-step-5-open-the-local-materials-and-report-readiness"></span><span
+    id="section-troubleshooting-and-handover"></span><span id="section-before-every-exercise"></span><span
+    id="section-parallel-lab-organization-two-groups-two-vms"></span><span
+    id="section-login-and-first-check"></span><span id="section-using-the-desktop"></span><span
+    id="windows11-client-help"></span><span id="section-on-your-own-windows-11-computer"></span><span
+    id="section-login-and-first-check-2"></span><span id="section-using-the-desktop-2"></span><span
+    id="section-login-and-first-check-3"></span><span id="section-using-the-desktop-3"></span>
+  <section id="module-0">
+    <h2 id="section-preparation-connect-to-your-assigned-vm">Module 0 — Connect to your assigned VM</h2>
+    <div id="vm-access"><span id="connection-instructions"></span>
+      <p>Find your assigned group’s login below, then follow the instructions for the computer you are using: <a
+          href="#mac">macOS</a>, <a href="#windows">Windows</a>, or <a href="#linux">Linux</a>.</p>
+      <section id="training-accounts"><span id="section-four-training-accounts-on-each-vm"></span>
+        <p>Use the credentials for your assigned lab group and student number. Choose your computer’s operating system
+          separately in the connection instructions below.</p>
+        <h3 id="linux-credentials">Linux group</h3>
+        <p>Use only your assigned numbered account and its matching password.</p>
+        <table style="width:100%;table-layout:fixed">
+          <colgroup>
+            <col style="width:50%">
+            <col style="width:50%">
+          </colgroup>
+          <tr>
+            <th>VM</th>
+            <th>Address</th>
+          </tr>
+          <tr>
+            <td>ccdc-linux</td>
+            <td><code>128.198.74.133:13389</code></td>
+          </tr>
+        </table>
+        <table style="width:100%;table-layout:fixed;margin-top:16px">
+          <colgroup>
+            <col style="width:50%">
+            <col style="width:50%">
+          </colgroup>
+          <tr>
+            <th>Linux username</th>
+            <th>Password</th>
+          </tr>
+          <tr>
+            <td>trainee01</td>
+            <td>TrainLab!2601</td>
+          </tr>
+          <tr>
+            <td>trainee02</td>
+            <td>TrainLab!2602</td>
+          </tr>
+          <tr>
+            <td>trainee03</td>
+            <td>TrainLab!2603</td>
+          </tr>
+          <tr>
+            <td>trainee04</td>
+            <td>TrainLab!2604</td>
+          </tr>
+        </table>
+        <p><strong>Login note:</strong> Select Xorg if prompted, then enter your assigned Linux credentials.</p>
+        <h3 id="windows-credentials">Windows group</h3>
+        <p>Use only your assigned numbered account and its matching password.</p>
+        <table style="width:100%;table-layout:fixed">
+          <colgroup>
+            <col style="width:50%">
+            <col style="width:50%">
+          </colgroup>
+          <tr>
+            <th>VM</th>
+            <th>Address</th>
+          </tr>
+          <tr>
+            <td>ccdc-windows</td>
+            <td><code>128.198.74.133:23389</code></td>
+          </tr>
+        </table>
+        <table style="width:100%;table-layout:fixed;margin-top:16px">
+          <colgroup>
+            <col style="width:50%">
+            <col style="width:50%">
+          </colgroup>
+          <tr>
+            <th>Windows username</th>
+            <th>Password</th>
+          </tr>
+          <tr>
+            <td>CCDC-WINDOWS\trainee01</td>
+            <td>TrainLab!2601</td>
+          </tr>
+          <tr>
+            <td>CCDC-WINDOWS\trainee02</td>
+            <td>TrainLab!2602</td>
+          </tr>
+          <tr>
+            <td>CCDC-WINDOWS\trainee03</td>
+            <td>TrainLab!2603</td>
+          </tr>
+          <tr>
+            <td>CCDC-WINDOWS\trainee04</td>
+            <td>TrainLab!2604</td>
+          </tr>
+        </table>
+        <p><strong>Login note:</strong> Sign in with your assigned CCDC-WINDOWS account to open the Windows Server
+          desktop.</p>
+
+      </section><span id="vm-connection-details"></span><span id="shared-vm-connection-details"></span><span
+        id="top"></span>
+      <section id="mac">
+        <h3 id="section-connect-from-macos">Connect from macOS</h3>
+        <ol>
+          <li>Open Microsoft Windows App on your Mac (available from the Mac App Store), then select <strong>+ → Add
+              PC</strong>.</li>
+          <li>Enter your assigned VM’s connection address from the <a href="#linux-credentials">Linux group table</a> or
+            <a href="#windows-credentials">Windows group table</a> in <strong>PC name</strong>. Set Gateway to
+            <strong>No gateway</strong>, or leave it unset.
+          </li>
+          <li>Save the connection and open it to sign in. Enter your assigned group username and password. Follow the
+            remote-login note in your group’s table.</li>
+        </ol>
+        <span id="mac-to-ubuntu"></span><span id="mac-to-windows"></span>
+      </section>
+      <section id="windows">
+        <h3 id="section-connect-from-windows">Connect from Windows</h3>
+        <ol>
+          <li>On your Windows computer, press <strong>Windows+R</strong>, type <code>mstsc</code>, and press Enter.</li>
+          <li>Enter your assigned VM’s connection address from the <a href="#linux-credentials">Linux group table</a> or
+            <a href="#windows-credentials">Windows group table</a> in <strong>Computer</strong>. Set Gateway to
+            <strong>No gateway</strong>, or leave it unset.
+          </li>
+          <li>Select <strong>Connect</strong>. Choose <strong>More choices → Use a different account</strong> if needed.
+            Enter your assigned group username and password. Follow the remote-login note in your group’s table.</li>
+        </ol>
+        <span id="windows-to-ubuntu"></span><span id="windows-to-windows"></span>
+      </section>
+      <section id="linux">
+        <h3 id="section-connect-from-linux">Connect from Linux</h3>
+        <ol>
+          <li>On your Linux computer, open Remmina and create a connection using the <strong>RDP</strong> protocol.</li>
+          <li>Enter your assigned VM’s connection address from the <a href="#linux-credentials">Linux group table</a> or
+            <a href="#windows-credentials">Windows group table</a> in <strong>Server</strong>. Set Gateway to <strong>No
+              gateway</strong>, or leave it unset.
+          </li>
+          <li>Save the connection and connect. Enter your assigned group username and password. Follow the remote-login
+            note in your group’s table.</li>
+        </ol>
+        <span id="linux-to-ubuntu"></span><span id="linux-to-windows"></span>
+      </section>
+      <p>If a certificate warning appears, ask the instructor to confirm the certificate. If you cannot connect, give
+        the instructor the error message and your assigned VM. </p>
+    </div>
+  </section>
+  <h2 id="module-1">Module 1 — Attacker already has system access</h2>
+  <h3 id="service-tampering">1.1 — Service tampering and recovery</h3>
+  <p>Investigate a service outage, identify its cause, and restore normal operation while keeping other services
+    available.</p>
+  <p><a href="linux-training.html#service-tampering">Linux task →</a> · <a
+      href="windows-training.html#service-tampering">Windows task →</a></p>
+  <h3 id="web-integrity">1.2 — Web-content tampering and evidence</h3>
+  <p>Detect unauthorized web-content changes and restore the trusted page, even when the server still returns a
+    successful response.</p>
+  <p><a href="linux-training.html#web-integrity">Linux task →</a> · <a
+      href="windows-training.html#web-integrity">Windows task →</a></p>
+  <h3 id="firewall-tampering">1.3 — Firewall tampering versus service failure</h3>
+  <p>Distinguish a firewall-related outage from a stopped service and restore required access.</p>
+  <p><a href="linux-training.html#firewall-tampering">Linux task →</a> · <a
+      href="windows-training.html#firewall-tampering">Windows task →</a></p>
+  <h3 id="account-compromise">1.4 — Compromised account and excessive privilege</h3>
+  <p>Identify excessive account privileges, contain unauthorized access, and preserve legitimate users and services.</p>
+  <p><a href="linux-training.html#account-compromise">Linux task →</a> · <a
+      href="windows-training.html#account-compromise">Windows task →</a></p>
+  <h2 id="module-2">Module 2 — Attacker starts without system access</h2><span
+    id="section-think-like-an-attacker-reason-like-a-defender"></span><span id="discovery"></span><span
+    id="authentication"></span><span id="web-inputs"></span><span id="traffic"></span><span id="dos"></span>
+  <table>
+    <tr>
+      <th>Possible attacker action</th>
+      <th>Evidence to look for</th>
+      <th>Defense to consider</th>
+      <th>Tasks</th>
+    </tr>
+    <tr>
+      <td>2.1 - Identify reachable services and software</td>
+      <td>Connections, web requests and firewall records where logging is enabled; some discovery leaves little
+        application evidence</td>
+      <td>Remove unnecessary services; restrict administrative access; keep software updated</td>
+      <td><a href="linux-training.html#discovery">Linux task</a><br><a href="windows-training.html#discovery">Windows
+          task</a></td>
+    </tr>
+    <tr>
+      <td>2.2 - Authentication attempts</td>
+      <td>Failures grouped by time, account and source; unexpected successes; authentication logs</td>
+      <td>Unique passwords, supported MFA, SSH keys, throttling and carefully chosen lockout policies</td>
+      <td><a href="linux-training.html#section-2-2-practical-investigate-failed-ssh-authentication">Linux
+          task</a><br><a
+          href="windows-training.html#section-2-2-practical-investigate-failed-windows-authentication">Windows
+          task</a></td>
+    </tr>
+    <tr>
+      <td>2.3 - Find an exposed backup or configuration file</td>
+      <td>Web request path, response status, source and time</td>
+      <td>Keep secrets and backups outside the web root; review publication permissions</td>
+      <td><a href="linux-training.html#section-2-3-practical-investigate-web-probing-and-a-dummy-exposed-backup">Linux
+          task</a><br><a
+          href="windows-training.html#section-2-3-practical-investigate-iis-probing-and-a-dummy-exposed-backup">Windows
+          task</a></td>
+    </tr>
+    <tr>
+      <td>2.3 - Malicious web inputs and application exploitation</td>
+      <td>Application errors, unusual processes, account changes and endpoint evidence; login failures may be absent
+      </td>
+      <td>Patch applications, reduce privileges and teach phishing recognition</td>
+      <td><a href="linux-training.html#section-2-3-practical-investigate-web-probing-and-a-dummy-exposed-backup">Linux
+          task</a><br><a
+          href="windows-training.html#section-2-3-practical-investigate-iis-probing-and-a-dummy-exposed-backup">Windows
+          task</a><br><small>These tasks cover web probing and exposed files. Application exploitation requires a
+          separate prepared lab.</small></td>
+    </tr>
+    <tr>
+      <td>2.4 - Suspicious network traffic</td>
+      <td>Endpoints, ports, timing and request/response patterns in supplied captures or logs</td>
+      <td>Investigate unexpected connections and preserve legitimate traffic</td>
+      <td><a href="linux-training.html#traffic">Linux task</a><br><a href="windows-training.html#traffic">Windows
+          task</a></td>
+    </tr>
+    <tr>
+      <td>2.5 - Denial of service and resource exhaustion</td>
+      <td>Request volume, latency, errors and resource usage in the supplied timeline</td>
+      <td>Consider request limits, timeouts and upstream filtering</td>
+      <td><a href="linux-training.html#dos">Linux task</a><br><a href="windows-training.html#dos">Windows task</a></td>
+    </tr>
+  </table>
+</section>
+
+
+<script id="training-sidebar-script">
+  (() => {const sidebar = document.getElementById('training-sidebar'); const button = sidebar.querySelector('button'); button.addEventListener('click', () => {const collapsed = sidebar.dataset.collapsed !== 'true'; sidebar.dataset.collapsed = String(collapsed); button.setAttribute('aria-expanded', String(!collapsed));}); const links = [...sidebar.querySelectorAll('a[href^="#"]')]; const sections = links.map(a => document.getElementById(decodeURIComponent(a.hash.slice(1)))); let pending = false; function update() {let active = 0; sections.forEach((section, i) => {if (section && section.getBoundingClientRect().top <= 110) active = i}); links.forEach((link, i) => {if (i === active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current')}); pending = false} window.addEventListener('scroll', () => {if (!pending) {pending = true; requestAnimationFrame(update)} }, {passive: true}); function reveal() {const target = document.getElementById(decodeURIComponent(location.hash.slice(1))); const link = links.find(a => a.hash === location.hash); if (target && link) {let parent = link.parentElement; while (parent && parent !== sidebar) {if (parent.tagName === 'DETAILS') parent.open = true; parent = parent.parentElement} } update()} window.addEventListener('hashchange', reveal); reveal();})();
+</script>
+
+</html>
