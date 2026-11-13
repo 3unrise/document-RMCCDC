@@ -1097,7 +1097,7 @@ curl.exe --max-time 5 -fsS http://172.29.242.1:18081/receipts/windows</pre>
   the blocked retry and normal business services. Switch roles and repeat from Step 1. No written report submission
   is required.</p>
 <section id="before-login">
-  <h2 id="module-2">Module 2 — Attacker starts without system access</h2><span id="authentication"></span><span
+  <h2 id="module-2">Module 2 — Attacker starts without system access</h2><p><strong>Command locations:</strong> the attacker works outside the target VM; the defender inspects and administers the assigned VM. Laptop HTTP uses <code>http://128.198.74.133:28080</code> and RDP uses <code>128.198.74.133:23389</code>. Use only these assigned relay endpoints on the approved campus connection. Private guest addresses are for defender checks and the explicitly assigned lab-host SSH test. Task 2.5 uses offline evidence, not a live attack.</p><span id="authentication"></span><span
     id="web-inputs"></span>
   <p>Practice service discovery, authentication and request-log investigation, and analysis of a supplied incident timeline.</p>
   <h3 id="discovery">Task 2.1 — Port scanning and service discovery</h3>
@@ -1107,24 +1107,15 @@ curl.exe --max-time 5 -fsS http://172.29.242.1:18081/receipts/windows</pre>
   <li>Attacker — one bounded pass</li>
   <li>Defender — explain and verify</li>
 </ol>
-  <p>Use the assigned guest only. In these single-VM simulations, the attacker uses a normal guest terminal to
-    generate network requests; target administration is reserved for the defender. The attacker uses the assigned
-    account only to generate traffic; this login does not demonstrate a successful intrusion. Run the attacker’s
-    commands without elevation.</p>
+
   <h4>Step 1 — Defender: establish the service inventory</h4>
-  <p>Record listening ports before the attacker’s scan. Use the listener inventory to confirm TCP 65000 is unused; omit it if it is in use. Required ports are 53 (DNS), 80 (HTTP), and 3389 (RDP).</p>
+  <p>Record the guest listeners before the external checks. Compare the published relay ports with their guest destinations. Required guest ports are 53 (DNS), 80 (HTTP), and 3389 (RDP).</p>
   <pre>Get-Date -Format o
 Get-NetTCPConnection -State Listen | Sort-Object LocalPort | Select-Object LocalAddress,LocalPort,OwningProcess
 Get-Service DNS,W3SVC,TermService</pre>
-  <h4>Step 2 — Attacker: one bounded pass</h4>
-  <p>Probe only these four ports once. A failed connection can mean a closed port or filtering; it is not a conclusive
-    firewall diagnosis. Save the displayed results for comparison.</p>
-  <pre>53,80,3389,65000 | ForEach-Object {
-  $port = $_
-  $open = Test-NetConnection -ComputerName 172.29.242.40 -Port $port -InformationLevel Quiet -WarningAction SilentlyContinue
-  [pscustomobject]@{Port=$port; TcpReachable=$open}
-}</pre>
-  <h4>Step 3 — Defender: explain and verify</h4>
+  <h4>Step 2 — Attacker: one bounded pass from your laptop</h4><p>Test only your assigned HTTP and RDP relay ports once. These external ports map to guest TCP 80 and 3389 respectively. Do not scan other host ports or subnets.</p><h5>Attacker uses Windows — PowerShell</h5><pre>Test-NetConnection -ComputerName 128.198.74.133 -Port 28080
+Test-NetConnection -ComputerName 128.198.74.133 -Port 23389</pre><h5>Attacker uses macOS or Linux — Terminal</h5><p>The commands are the same on both systems and require <code>nc</code>. If it is unavailable, use an instructor-provided workstation with the tool installed.</p><pre>nc -vz -w 3 128.198.74.133 28080
+nc -vz -w 3 128.198.74.133 23389</pre><p>Record reachability, time and source computer. A successful TCP connection proves the relay accepted a connection, not that the guest service is healthy. Open <a href="http://128.198.74.133:28080/index.html">the assigned website</a> to check the HTTP response. A timeout can reflect campus access restrictions or filtering as well as a service issue.</p><h4>Step 3 — Defender: explain and verify</h4>
   <ol>
     <li>Compare probe results with the inventory. Explain each expected listener and investigate any discrepancy.</li>
     <li>Inspect existing firewall or service logs for the recorded time window. A connection-only probe may leave no
@@ -1134,15 +1125,16 @@ Get-Service DNS,W3SVC,TermService</pre>
     <li>Use a fresh laptop request to <a href="http://128.198.74.133:28080/index.html">the assigned website</a> to
       confirm ordinary HTTP still works.</li>
   </ol>
-  <p><strong>Complete:</strong> show the four results, the matching listener inventory, and a normal HTTP response. No
-    configuration cleanup is needed. The local pass does not establish laptop reachability or test the relay firewall.
+  <p><strong>Complete:</strong> show the two external port results, the matching listener inventory, and a normal HTTP response. No
+    configuration cleanup is needed. The relay does not expose every guest listener; explain the difference between the internal inventory and the externally reachable endpoints.
     Windows TCP 53 does not verify UDP DNS.</p>
   <h3 id="section-2-2-practical-investigate-failed-windows-authentication">Task 2.2 practical — Investigate failed Windows
     authentication</h3>
+<p><strong>Instructor-operated login demonstration:</strong> the instructor performs all login attempts for this task from outside the target VM. Students do not run the login commands or enter passwords. Students establish the defender baseline, observe the attempt times and results, then investigate the guest logs.</p>
 <p>Investigate rejected authentication attempts and distinguish the evidence from a successful login. Follow the steps below:</p>
 <ol>
   <li>Defender — establish the baseline</li>
-  <li>Attacker — generate the failed authentication attempt</li>
+  <li>Instructor — demonstrate the failed authentication attempt</li>
   <li>Defender — inspect and explain the authentication evidence</li>
 </ol>
 <h4>Step 1 — Defender: establish the baseline</h4>
@@ -1152,19 +1144,15 @@ Get-Service W3SVC,DNS,TermService
 [bool](Get-LocalUser | Where-Object Name -eq 'ccdc-probe-no-user')
 auditpol /get /subcategory:"Logon"</pre>
 <p>Expect the account lookup to return <code>False</code> and Logon auditing to include failures. If failure auditing
-  is not enabled, the defender enables it before the attacker starts:</p>
+  is not enabled, the defender enables it before the instructor starts:</p>
 <p class="permission-hint"><strong>Administrator PowerShell required — inside the Windows VM.</strong> <a href="#administrator-powershell">How to open it</a></p><pre>auditpol /set /subcategory:"Logon" /failure:enable</pre>
 <p>Repeat the audit-policy check before continuing.</p>
 
-  <h4>Step 2 — Attacker: generate the failed authentication attempt</h4>
-<p><strong>Attacker, a separate PowerShell window:</strong> run once and enter arbitrary dummy text at the password
-    prompt. Expect a logon failure; no command window should open. Repeat manually at most twice more to compare several failures; do not exceed three attempts in this round.</p>
-  <pre>runas /user:.\ccdc-probe-no-user "cmd.exe /c whoami"</pre>
-  <p class="command-help-links"><strong>Official command documentation:</strong>
-  <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/whoami">whoami</a></p>
-  <p>This tests a local logon path. Expect local or blank source information and inspect the actual logon type rather
-    than assuming it is an RDP event.</p>
-  <h4>Step 3 — Defender: inspect and explain the authentication evidence</h4>
+  <h4>Step 2 — Instructor: failed RDP attempt from the instructor’s laptop</h4><p>Instructor: use your own approved campus-connected computer outside the target VM. Confirm the defender baseline is ready, then announce the attempt time to students. Use the instructions for your computer below. The destination is <code>128.198.74.133:23389</code> for every client. Use the defender-confirmed nonexistent username <code>CCDC-WINDOWS\ccdc-probe-no-user</code>, never a real student account.</p>
+<h5>Instructor uses Windows</h5><ol><li>Press Windows+R, enter <code>mstsc</code>, and press Enter.</li><li>Enter the destination above in Computer and connect.</li><li>Select More choices → Use a different account; enter the test username and arbitrary dummy password text.</li></ol>
+<h5>Instructor uses macOS</h5><ol><li>Open Microsoft Windows App and add a separate PC connection for the destination above.</li><li>Set Gateway to No gateway and choose to enter credentials when connecting.</li><li>Open the connection and enter the test username and arbitrary dummy password text. Do not reuse saved student credentials.</li></ol>
+<h5>Instructor uses Linux</h5><ol><li>Open Remmina, select RDP, and enter the destination above as Server.</li><li>Leave the gateway unset. Use username <code>ccdc-probe-no-user</code> and domain <code>CCDC-WINDOWS</code>.</li><li>Connect using arbitrary dummy password text. Do not save it.</li></ol>
+<p>Instructor, for all clients: verify an unfamiliar server certificate against the expected lab certificate before proceeding. Expect rejection and no desktop. Cancel after one failure; repeat manually at most twice more if needed. Stop after three attempts. Do not keep retrying when the client fails before authentication; report that connection error instead.</p><p>The defender examines the actual logon type and event sequence; NLA may affect these, and the relay may appear as the source. Remove the temporary client connection or restore normal account selection after the exercise.</p><h4>Step 3 — Defender: inspect and explain the authentication evidence</h4><p>Students: wait until the instructor announces that the attempt is complete. Compare the observed rejection and recorded time with the guest evidence below. Ask the instructor before any additional attempt.</p>
 <p><strong>Defender, elevated PowerShell:</strong> inspect recent failures and successes. Read the full message for an
     event containing the test username; unrelated background events may appear too.</p>
   <p class="permission-hint"><strong>Administrator PowerShell required — inside the Windows VM.</strong> <a href="#administrator-powershell">How to open it</a></p><pre>$since = (Get-Date).AddMinutes(-10)
@@ -1190,23 +1178,19 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624; StartTime=$since} |
 <p>Before requests begin, verify logging in IIS Manager: Sites → Default Web Site → Logging. Enable site logging if
   disabled, select W3C format, and include date, time, c-ip, cs-method, cs-uri-stem, cs-uri-query and sc-status. Use the
   physical website and log paths shown for this site.</p>
-<p><strong>Attacker, elevated PowerShell:</strong> prepare the deliberately exposed dummy file using your assigned
-  trainee account. This is scenario setup; the later requests model finding exposed data without logging in.</p>
+<p><strong>Defender — scenario preparation inside the target VM:</strong> create only the dummy exposure below before the attacker starts. The attacker does not log in to the target or prepare files.</p>
 <p>Check that both exercise paths are absent; expect False for each:</p>
 <pre>Test-Path -LiteralPath 'C:\inetpub\wwwroot\ccdc-probe-backup.txt'
 Test-Path -LiteralPath 'C:\inetpub\wwwroot\ccdc-probe-missing.txt'</pre>
 <p>If the known dummy backup remains from a previous round, complete Step 3 first. Do not overwrite an unknown file.</p>
 <p>Create only the fictional dummy backup; continue only if creation succeeds:</p>
 <p class="permission-hint"><strong>Administrator PowerShell required — inside the Windows VM.</strong> <a href="#administrator-powershell">How to open it</a></p><pre>New-Item -ItemType File -Path 'C:\inetpub\wwwroot\ccdc-probe-backup.txt' -Value 'CCDC DUMMY BACKUP - NO REAL SECRETS' -ErrorAction Stop</pre>
-<p>Make the following requests once each. Use <code>curl.exe</code> explicitly; <code>curl</code> can be a PowerShell
-  alias on this server.</p>
-  <pre>curl.exe -i --max-time 5 http://172.29.242.40/index.html
-curl.exe -i --max-time 5 http://172.29.242.40/ccdc-probe-missing.txt
-curl.exe -i --max-time 5 http://172.29.242.40/ccdc-probe-backup.txt</pre>
-
-  <p>Expect 200 for the operational page, 404 for the missing path and 200 with dummy text for the published backup. No
-    valid server login was needed to read that file.</p>
-  <h4>Step 2 — Defender: inspect the request evidence</h4>
+<p><strong>Attacker — on your own laptop:</strong> choose the command set matching your operating system.</p>
+  <h5>Attacker uses Windows — PowerShell on your laptop</h5><pre>curl.exe -i --max-time 5 http://128.198.74.133:28080/index.html
+curl.exe -i --max-time 5 http://128.198.74.133:28080/ccdc-probe-missing.txt
+curl.exe -i --max-time 5 http://128.198.74.133:28080/ccdc-probe-backup.txt</pre><h5>Attacker uses macOS or Linux — Terminal on your laptop</h5><pre>curl -i --max-time 5 http://128.198.74.133:28080/index.html
+curl -i --max-time 5 http://128.198.74.133:28080/ccdc-probe-missing.txt
+curl -i --max-time 5 http://128.198.74.133:28080/ccdc-probe-backup.txt</pre><p>Choose one command set and run each request once, without elevation. Expected results: 200 with the operational page, 404 for the missing file, and 200 with the dummy backup. Use this same client and URLs to retest after defender cleanup.</p><h4>Step 2 — Defender: inspect the request evidence</h4>
 <p><strong>Defender, elevated PowerShell:</strong> find the website ID and log location in IIS Manager: Sites →
     Default Web Site → Logging. These commands assume the default W3C path and site ID 1; substitute the actual location
     if different.</p>
@@ -1224,7 +1208,7 @@ Get-Content -LiteralPath $log.FullName -Tail 60</pre>
     if present, substatus. W3C timestamps are UTC; compare with the timezone shown by Get-Date. A suspicious path is a
     clue; a 200 with dummy contents demonstrates exposure, not execution or compromise.
   </p>
-  <h4 id="section-mitigate-repeat-and-verify">Step 3 — Defender: mitigate, repeat and verify</h4>
+  <h4 id="section-mitigate-repeat-and-verify">Step 3 — Defender: mitigate, repeat and verify</h4><p>After guest cleanup, ask the attacker to repeat the same laptop requests to <code>http://128.198.74.133:28080</code>. The removed backup should return 404 and index.html should return operational content. The guest commands below provide additional internal checks.</p>
   <p>Preserve the relevant records. The following assumes the default website root; confirm the physical path in IIS Manager: Sites → Default Web Site → Basic Settings before proceeding. Verify the file contains only the exercise marker, then remove this file only.</p>
   <p class="permission-hint"><strong>Administrator PowerShell required — inside the Windows VM.</strong> <a href="#administrator-powershell">How to open it</a></p><pre>Get-Content -LiteralPath 'C:\inetpub\wwwroot\ccdc-probe-backup.txt'
 Remove-Item -LiteralPath 'C:\inetpub\wwwroot\ccdc-probe-backup.txt' -Confirm
@@ -1238,8 +1222,7 @@ Get-Content -LiteralPath $log.FullName -Tail 20</pre>
     Running services. Allow for IIS log buffering. Discuss unique passwords, supported MFA, restricted administrative
     reachability and temporary throttling. Aggressive account lockouts can also deny legitimate users access. Do not
     change shared account policies, RDP rules or host firewall settings during this lesson.</p>
-  <p><strong>Practice check:</strong> show a rejected logon and its evidence; explain why a local source differs from
-    network evidence; show the web exposure before and after mitigation. Give one benign explanation and one suspicious
+  <p><strong>Practice check:</strong> show a rejected logon and its evidence; explain the recorded logon type and how the relay affects source attribution; show the web exposure before and after mitigation. Give one benign explanation and one suspicious
     pattern, state the limits of the evidence, and show legitimate services still work. No written report is required.
   </p>
   <p>References: <a href="https://learn.microsoft.com/windows/security/threat-protection/auditing/event-4625">Microsoft
@@ -1257,10 +1240,7 @@ Get-Content -LiteralPath $log.FullName -Tail 20</pre>
   <li>Defender — find and interpret the evidence</li>
   <li>Verify and close the round</li>
 </ol>
-  <p>Use the assigned guest only. In these single-VM simulations, the attacker uses a normal guest terminal to
-    generate network requests; target administration is reserved for the defender. The attacker uses the assigned
-    account only to generate traffic; this login does not demonstrate a successful intrusion. Run the attacker’s
-    commands without elevation.</p>
+
   <h4>Step 1 — Prepare</h4>
 <p>Before requests begin, verify logging in IIS Manager: Sites → Default Web Site → Logging. Enable site logging if
   disabled, select W3C format, and include date, time, c-ip, cs-method, cs-uri-stem, cs-uri-query and sc-status. Use the
@@ -1268,16 +1248,17 @@ Get-Content -LiteralPath $log.FullName -Tail 20</pre>
   <p>The defender confirms access logging is enabled and the two probe paths below do not exist, then records
     the time and normal page response. This exercise uses web access logs as network-request evidence; it is not a
     packet-capture exercise.</p>
-  <h4>Step 2 — Attacker: generate a short request sequence</h4>
-  <p>Run once: four sequential requests, separated by one second. The unique marker distinguishes the round from
-    background traffic. Give the marker to the defender after it locates the pattern.</p>
-  <pre>$marker = &#x27;ccdc24-&#x27; + (Get-Date -Format yyyyMMddHHmmss)
+  <h4>Step 2 — Attacker: generate requests from your laptop</h4><p>Choose one command set for your laptop. Run once: four requests separated by one second. Record the marker and start time. Do not use a terminal inside the target VM.</p><h5>Attacker uses Windows — PowerShell</h5><pre>$marker = &#x27;ccdc24-&#x27; + (Get-Date -Format yyyyMMddHHmmss)
 &quot;Round marker: $marker&quot;
 &#x27;index.html&#x27;,&#x27;ccdc24-missing.txt&#x27;,&#x27;ccdc24-backup.zip&#x27;,&#x27;index.html&#x27; | ForEach-Object {
-  curl.exe --max-time 5 -sS -o NUL -w &quot;%{http_code} %{url_effective}\n&quot; &quot;http://172.29.242.40/$_`?round=$marker&quot;
+  curl.exe --max-time 5 -sS -o NUL -w &quot;%{http_code} %{url_effective}\n&quot; &quot;http://128.198.74.133:28080/$($_)?round=$marker&quot;
   Start-Sleep -Seconds 1
-}</pre>
-  <h4>Step 3 — Defender: find and interpret the evidence</h4>
+}</pre><h5>Attacker uses macOS or Linux — Terminal</h5><pre>marker=&quot;ccdc24-$(date +%s)&quot;
+printf &#x27;Round marker: %s\n&#x27; &quot;$marker&quot;
+for path in index.html ccdc24-missing.txt ccdc24-backup.zip index.html; do
+  curl --max-time 5 -sS -o /dev/null -w &#x27;%{http_code} %{url_effective}\n&#x27; &quot;http://128.198.74.133:28080/$path?round=$marker&quot;
+  sleep 1
+done</pre><p>Expect 200, 404, 404, 200. Give the marker to the defender after they locate the sequence. Guest logs may show the relay rather than your laptop address.</p><h4>Step 3 — Defender: find and interpret the evidence</h4>
   <p class="permission-hint"><strong>Administrator PowerShell required — inside the Windows VM.</strong> <a href="#administrator-powershell">How to open it</a></p><pre>$logRoot = &#x27;C:\inetpub\logs\LogFiles\W3SVC1&#x27;
 $log = Get-ChildItem -LiteralPath $logRoot -Filter &#x27;*.log&#x27; | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 if ($null -eq $log) { throw &#x27;No IIS log found; check the configured log directory and site logging.&#x27; }
@@ -1285,7 +1266,7 @@ Get-Content -LiteralPath $log.FullName -TotalCount 8
 Get-Content -LiteralPath $log.FullName -Tail 150 | Select-String &#x27;ccdc24-&#x27; </pre>
   <p>Use the actual configured log path if it differs. IIS records may be buffered: wait up to one minute and reread
     once. Read its #Fields header; the defender checks that date, time, c-ip, cs-method, cs-uri-stem, cs-uri-query
-    and sc-status are enabled under IIS Manager → Sites → Default Web Site → Logging → Select Fields. Nginx combined logs include the request path and query. Distinguish local time offsets from IIS UTC.
+    and sc-status are enabled under IIS Manager → Sites → Default Web Site → Logging → Select Fields. Distinguish local time offsets from IIS UTC.
   </p>
   <ol>
     <li>Locate the four requests and record time, source, method, path and status.</li>
@@ -1309,7 +1290,7 @@ Get-Content -LiteralPath $log.FullName -Tail 150 | Select-String &#x27;ccdc24-&#
   <li>Recovery criteria and live service check</li>
 </ol>
   <p>This is a concrete offline investigation using a supplied synthetic incident dataset. It does not generate a flood
-    or change the live service. The attacker introduces the incident evidence; the defender diagnoses it, proposes
+    or change the live service. The attacker presents the incident evidence from their own computer; the defender diagnoses it, proposes
     containment, and validates the recovery evidence.</p>
   <h4>Step 1 — Open the evidence inside your assigned VM</h4>
   <p>Save <a href="dos-windows-timeline.csv" download>the Windows incident CSV</a> into Downloads inside the VM. If
@@ -1317,7 +1298,7 @@ Get-Content -LiteralPath $log.FullName -Tail 150 | Select-String &#x27;ccdc24-&#
     if needed. Each row is a one-minute measurement. requests and http_5xx are counts; p95_ms is the 95th-percentile
     response time in milliseconds; cpu_pct and memory_pct are percentages. The documentation-range source IP is
     fictional and must not be contacted.</p>
-  <h4>Step 2 — Attacker: present the scenario</h4>
+  <h4>Step 2 — Attacker: present the scenario</h4><p><strong>Windows, macOS or Linux attacker computer:</strong> open the supplied CSV in a text editor or spreadsheet viewer and present the scenario below. No attack command is run for this offline exercise. The defender’s analysis commands remain specific to the target VM.</p>
   <p>Tell the defender: “Users report slow pages and intermittent errors starting at 10:02 UTC. The service monitor
     still reports the web service running.” Provide the CSV. Do not stop the real service or send load traffic.</p>
   <h4>Step 3 — Defender: analyze</h4>
