@@ -762,8 +762,18 @@ $case = Join-Path $HOME ('CCDC-Exercise-1-2-' + [guid]::NewGuid().ToString('N'))
 <h4>Step 2 — Attacker: change the page</h4>
 <p>Record the time of the assigned change:</p>
 <pre>(Get-Date).ToUniversalTime().ToString('o')</pre>
-<p>Replace only the exercise webpage with the changed-page marker:</p>
-<p class="permission-hint"><strong>Administrator PowerShell required — inside the Windows VM.</strong> <a href="#administrator-powershell">How to open it</a></p><pre>Set-Content -LiteralPath $site -Value 'CCDC exercise: changed page' -Encoding UTF8</pre>
+<p>Confirm that the defender has saved the trusted original and checksum in Step 1. Run the entire block below in the same Administrator PowerShell window to set the path, check that the file exists, and replace only the exercise webpage with the changed-page marker:</p>
+<p class="permission-hint"><strong>Administrator PowerShell required — inside the Windows VM.</strong> <a href="#administrator-powershell">How to open it</a></p><pre>$site = 'C:\inetpub\wwwroot\index.html'
+if (Test-Path -LiteralPath $site -PathType Leaf) {
+    Set-Content -LiteralPath $site -Value 'CCDC exercise: changed page' -Encoding UTF8 -ErrorAction Stop
+} else {
+    throw "Exercise webpage not found: $site. Check the path before continuing."
+}</pre>
+<p><strong>Troubleshooting:</strong> “Cannot bind argument to parameter 'LiteralPath' because it is null” means
+  <code>$site</code> has no value in the current PowerShell session. Variables set in another window, including a
+  window opened before elevation, do not carry over. Run the whole block, including the first line. When returning
+  to defender steps, use the original window or restore <code>$case</code> to the directory recorded in Step 1;
+  do not create a new baseline from the changed page.</p>
 <p>Check that IIS remains running and request the changed page:</p>
 <pre>Get-Service W3SVC
 (Invoke-WebRequest http://172.29.242.40/index.html -UseBasicParsing -TimeoutSec 5).Content</pre>
